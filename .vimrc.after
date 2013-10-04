@@ -1,0 +1,3 @@
+set t_Co=256
+color molokai
+au BufNewFile,BufRead *.hamlc set filetype=haml

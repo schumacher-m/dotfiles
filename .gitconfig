@@ -1,0 +1,7 @@
+[color]
+	ui = true
+[push]
+	default = simple
+[user]
+	name = Michael Schumacher
+	email = schumacher.m@me.com

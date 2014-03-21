@@ -1,5 +1,7 @@
-set t_Co=256
-color molokai
-au BufNewFile,BufRead *.hamlc set filetype=haml
-au! BufRead,BufNewFile *.jade set filetype=jade
-au! BufRead,BufNewFile *.json set filetype=json
+set t_Co=256                                                                                                                                                              │
+color molokai                                                                                                                                                             │
+au BufNewFile,BufRead *.hamlc set filetype=haml                                                                                                                           │
+au! BufRead,BufNewFile *.jade set filetype=jade                                                                                                                           │
+au! BufRead,BufNewFile *.json set filetype=json                                                                                                                           │
+autocmd BufNewFile,BufReadPost *.coffee setl shiftwidth=2 expandtab                                                                                                       │
+set mouse=a

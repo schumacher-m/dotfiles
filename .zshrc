@@ -42,7 +42,7 @@ ZSH_THEME="robbyrussell"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 
 ZSH_TMUX_AUTOSTART=false
-plugins=(git autojump brew bundler coffee compleat dircycle gem node npm osx redis-cli rvm tmux)
+plugins=(pass git autojump brew bundler coffee compleat dircycle gem node npm osx redis-cli rvm tmux)
 
 source $ZSH/oh-my-zsh.sh
 

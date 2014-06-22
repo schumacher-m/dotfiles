@@ -5,3 +5,4 @@ au! BufRead,BufNewFile *.jade set filetype=jade
 au! BufRead,BufNewFile *.json set filetype=json
 autocmd BufNewFile,BufReadPost *.coffee setl shiftwidth=2 expandtab
 set mouse=a
+:au FocusLost * :wa

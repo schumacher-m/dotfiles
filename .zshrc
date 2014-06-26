@@ -47,10 +47,10 @@ plugins=(pass git autojump brew bundler coffee compleat dircycle gem node npm os
 source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
-export PATH=$PATH:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/local/share/npm/bin/:/usr/local/bin
+export PATH=$PATH:/usr/local/Cellar/ctags/5.8/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/sbin:/usr/local/bin:/usr/local/share/npm/bin
 
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 alias bower='noglob bower'
 
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting

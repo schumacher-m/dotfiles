@@ -5,3 +5,7 @@
 [user]
 	name = Michael Schumacher
 	email = schumacher.m@me.com
+[mergetool "fugitive"]
+	cmd = mvim -f -c \"Gdiff\" \"$MERGED\"
+[merge]
+	tool = fugitive

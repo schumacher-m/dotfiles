@@ -54,3 +54,4 @@ export LANG=en_US.UTF-8
 alias bower='noglob bower'
 
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+source ~/.nvm/nvm.sh

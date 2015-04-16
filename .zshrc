@@ -47,19 +47,23 @@ plugins=(pass git autojump brew bundler coffee compleat dircycle gem node npm os
 source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
-export PATH=/usr/local/bin:$PATH
+export PATH=$PATH:/usr/local/Cellar/git/2.1.3/bin:/usr/local/Cellar/ctags/5.8/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/sbin:/usr/local/bin:/usr/local/share/npm/bin
 
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 alias bower='noglob bower'
+alias gg='noglob gg'
 
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+
+export DOCKER_HOST=tcp://192.168.59.103:2376
 export DOCKER_CERT_PATH=/Users/m/.boot2docker/certs/boot2docker-vm
 export DOCKER_TLS_VERIFY=1
-export DOCKER_HOST=tcp://192.168.59.103:2376
 
 export REDIS_PORT_6379_TCP_ADDR=192.168.59.103
 export PG_PORT_5432_TCP_ADDR=192.168.59.103
 export MONGO_PORT_27017_TCP_ADDR=192.168.59.103
 
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+[[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh
+
 source ~/.nvm/nvm.sh

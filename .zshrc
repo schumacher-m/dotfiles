@@ -5,7 +5,7 @@ ZSH=$HOME/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="robbyrussell"
+# ZSH_THEME="robbyrussell"
 
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
@@ -42,12 +42,12 @@ ZSH_THEME="robbyrussell"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 
 ZSH_TMUX_AUTOSTART=false
-plugins=(pass git autojump brew bundler coffee compleat dircycle gem node npm osx redis-cli rvm tmux)
+plugins=(pass git autojump brew bundler coffee compleat dircycle gem node npm osx redis-cli rvm tmux docker docker-compose)
 
 source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
-export PATH=$PATH:/usr/local/Cellar/git/2.1.3/bin:/usr/local/Cellar/ctags/5.8/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/sbin:/usr/local/bin:/usr/local/share/npm/bin
+export PATH=$PATH:/Users/m/.nvm/versions/node/v0.12.2/bin/:/usr/local/Cellar/git/2.3.4/bin:/usr/local/Cellar/ctags/5.8/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/sbin:/usr/local/bin:/usr/local/share/npm/bin
 
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
@@ -56,14 +56,50 @@ alias gg='noglob gg'
 
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 
+export DOCKER_IP=192.168.59.103
 export DOCKER_HOST=tcp://192.168.59.103:2376
 export DOCKER_CERT_PATH=/Users/m/.boot2docker/certs/boot2docker-vm
 export DOCKER_TLS_VERIFY=1
-
-export REDIS_PORT_6379_TCP_ADDR=192.168.59.103
-export PG_PORT_5432_TCP_ADDR=192.168.59.103
-export MONGO_PORT_27017_TCP_ADDR=192.168.59.103
+export SSL_CERT_FILE=/usr/local/etc/openssl/certs/cert.pem
 
 [[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh
+
+DOCKER_CREALYTICS_STATUS="$(docker-machine status crealytics)"
+
+if [ $DOCKER_CREALYTICS_STATUS != "Running" ]
+then
+  docker-machine start crealytics
+fi
+
+eval "$(docker-machine env crealytics)"
+
+local ret_status="%(?:%{$fg_bold[green]%}➜ :%{$fg_bold[red]%}➜ %s)"
+PROMPT='%T ${ret_status}%{$fg_bold[green]%}%p %{$fg[cyan]%}%c %{$fg_bold[blue]%}$(git_prompt_info)%{$fg_bold[blue]%} % %{$reset_color%}'
+
+ZSH_THEME_GIT_PROMPT_PREFIX="git:(%{$fg[red]%}"
+ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%}"
+ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[blue]%}) %{$fg[yellow]%}✗%{$reset_color%}"
+ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg[blue]%})"
+
+schedprompt() {
+  emulate -L zsh
+  zmodload -i zsh/sched
+
+  # Remove existing event, so that multiple calls to
+  # "schedprompt" work OK.  (You could put one in precmd to push
+  # the timer 30 seconds into the future, for example.)
+  integer i=${"${(@)zsh_scheduled_events#*:*:}"[(I)schedprompt]}
+  (( i )) && sched -$i
+
+  # Test that zle is running before calling the widget (recommended
+  # to avoid error messages).
+  # Otherwise it updates on entry to zle, so there's no loss.
+  zle && zle reset-prompt
+
+  # This ensures we're not too far off the start of the minute
+  sched +30 schedprompt
+}
+
+schedprompt
 
 source ~/.nvm/nvm.sh

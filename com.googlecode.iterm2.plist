@@ -330,11 +330,11 @@
 		<integer>1</integer>
 	</dict>
 	<key>NSWindow Frame Preferences</key>
-	<string>389 442 924 485 0 0 1680 1027 </string>
+	<string>1032 1622 924 485 820 1050 1920 1057 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>845 1056 955 1051 845 1050 1920 1057 </string>
+	<string>155 472 585 473 0 0 1680 1027 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
-	<string>845 1056 1914 1051 845 1050 1920 1057 </string>
+	<string>0 10 1677 1017 0 0 1680 1027 </string>
 	<key>NSWindow Frame iTerm Window 2</key>
 	<string>0 33 1676 986 0 0 1680 1027 </string>
 	<key>NSWindow Frame iTerm Window 3</key>
@@ -988,7 +988,7 @@
 	<key>NoSyncTimeOfLastPromo</key>
 	<real>453628667.18319899</real>
 	<key>NoSyncTimeOfLastPromoDownload</key>
-	<real>455530799.32767099</real>
+	<real>465180844.71665502</real>
 	<key>OnlyWhenMoreTabs</key>
 	<true/>
 	<key>OpenArrangementAtStartup</key>
@@ -1055,8 +1055,10 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2015-06-09T11:31:25Z</date>
+	<date>2015-10-01T09:23:09Z</date>
 	<key>SavePasteHistory</key>
+	<false/>
+	<key>Secure Input</key>
 	<false/>
 	<key>Show Toolbelt</key>
 	<false/>
@@ -1078,6 +1080,10 @@
 	<false/>
 	<key>TmuxDashboardLimit</key>
 	<integer>10</integer>
+	<key>ToolbeltTools</key>
+	<array>
+		<string>Profiles</string>
+	</array>
 	<key>TripleClickSelectsFullWrappedLines</key>
 	<false/>
 	<key>URLHandlersByGuid</key>

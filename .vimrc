@@ -15,6 +15,12 @@ Plugin 'rking/ag.vim'
 Plugin 'bronson/vim-trailing-whitespace'
 Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'octol/vim-cpp-enhanced-highlight'
+Plugin 'rdnetto/YCM-Generator'
+Plugin 'unblevable/quick-scope'
+Plugin 'easymotion/vim-easymotion'
+Plugin 'tpope/vim-commentary'
+Plugin 'a.vim'
+Plugin 'junegunn/vim-easy-align'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -26,6 +32,8 @@ colorscheme molokai
 set expandtab
 set shiftwidth=2
 set softtabstop=2
+set ttyfast
+set mouse=a
 let mapleader=" "
 
 nmap <leader>n :NERDTreeToggle<CR>
@@ -39,3 +47,4 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+let g:ycm_confirm_extra_conf = 0

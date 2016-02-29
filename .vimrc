@@ -21,6 +21,10 @@ Plugin 'easymotion/vim-easymotion'
 Plugin 'tpope/vim-commentary'
 Plugin 'a.vim'
 Plugin 'junegunn/vim-easy-align'
+Plugin 'tpope/vim-rails'
+Plugin 'vim-ruby/vim-ruby'
+Plugin 'guns/vim-clojure-static'
+Plugin 'airblade/vim-gitgutter'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -42,9 +46,12 @@ let NERDTreeHighlightCursorline=1
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
+set hlsearch
 
+let g:ycm_seed_identifiers_with_syntax = 1
 let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
+let g:syntastic_auto_loc_list = 0
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:ycm_confirm_extra_conf = 0
+let g:syntastic_javascript_jslint_args = "--edition latest --indent 2"

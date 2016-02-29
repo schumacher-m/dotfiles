@@ -330,13 +330,13 @@
 		<integer>1</integer>
 	</dict>
 	<key>NSWindow Frame Preferences</key>
-	<string>1032 1622 924 485 820 1050 1920 1080 </string>
+	<string>1075 1622 924 485 863 1050 1920 1080 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>0 7 1677 1017 0 0 1680 1050 </string>
+	<string>0 16 1677 1034 0 0 1680 1050 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
-	<string>632 414 585 473 0 0 1680 1050 </string>
+	<string>0 16 1677 1034 0 0 1680 1050 </string>
 	<key>NSWindow Frame iTerm Window 2</key>
-	<string>0 33 1676 986 0 0 1680 1027 </string>
+	<string>0 16 1677 1034 0 0 1680 1050 </string>
 	<key>NSWindow Frame iTerm Window 3</key>
 	<string>-1099 1085 948 666 -1104 1050 1920 1058 </string>
 	<key>NeverWarnAboutShortLivedSessions_E470BCC7-0639-46CA-88A3-441739329988</key>
@@ -361,7 +361,7 @@
 			<key>Allow Title Reporting</key>
 			<false/>
 			<key>Ambiguous Double Width</key>
-			<true/>
+			<false/>
 			<key>Ansi 0 Color</key>
 			<dict>
 				<key>Blue Component</key>
@@ -988,7 +988,7 @@
 	<key>NoSyncTimeOfLastPromo</key>
 	<real>453628667.18319899</real>
 	<key>NoSyncTimeOfLastPromoDownload</key>
-	<real>469904886.46859401</real>
+	<real>477323766.26731902</real>
 	<key>OnlyWhenMoreTabs</key>
 	<true/>
 	<key>OpenArrangementAtStartup</key>
@@ -1055,7 +1055,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2015-11-22T19:20:06Z</date>
+	<date>2016-02-16T08:54:09Z</date>
 	<key>SavePasteHistory</key>
 	<false/>
 	<key>Secure Input</key>
@@ -1088,6 +1088,8 @@
 	<false/>
 	<key>URLHandlersByGuid</key>
 	<dict/>
+	<key>Use background pattern indicator</key>
+	<true/>
 	<key>UseBorder</key>
 	<false/>
 	<key>UseCompactLabel</key>

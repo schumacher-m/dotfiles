@@ -47,7 +47,7 @@ plugins=(pass git autojump brew bundler coffee compleat dircycle gem node npm os
 source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
-export PATH=$PATH:/Users/m/.nvm/versions/node/v0.12.2/bin/:/usr/local/Cellar/git/2.3.4/bin:/usr/local/Cellar/ctags/5.8/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/sbin:/usr/local/bin:/usr/local/share/npm/bin
+export PATH=/usr/local/bin:/usr/local/sbin:$PATH:/usr/local/Cellar/ctags/5.8/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/share/npm/bin
 
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8

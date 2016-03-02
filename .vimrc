@@ -25,6 +25,7 @@ Plugin 'tpope/vim-rails'
 Plugin 'vim-ruby/vim-ruby'
 Plugin 'guns/vim-clojure-static'
 Plugin 'airblade/vim-gitgutter'
+Plugin 'kchmck/vim-coffee-script'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -38,7 +39,7 @@ set shiftwidth=2
 set softtabstop=2
 set ttyfast
 set mouse=a
-let mapleader=" "
+let mapleader=","
 
 nmap <leader>n :NERDTreeToggle<CR>
 let NERDTreeHighlightCursorline=1

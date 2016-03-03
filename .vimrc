@@ -26,10 +26,12 @@ Plugin 'junegunn/vim-easy-align'
 Plugin 'guns/vim-clojure-static'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'kchmck/vim-coffee-script'
+Plugin 'tpope/vim-fugitive'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
 
+set hidden
 set number
 syntax enable
 let g:rehash256 = 1
@@ -40,6 +42,7 @@ set softtabstop=2
 set ttyfast
 set mouse=a
 let mapleader=","
+set ttymouse=xterm2
 
 nmap <leader>n :NERDTreeToggle<CR>
 let NERDTreeHighlightCursorline=1

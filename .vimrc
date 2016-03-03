@@ -21,8 +21,8 @@ Plugin 'easymotion/vim-easymotion'
 Plugin 'tpope/vim-commentary'
 Plugin 'a.vim'
 Plugin 'junegunn/vim-easy-align'
-Plugin 'tpope/vim-rails'
-Plugin 'vim-ruby/vim-ruby'
+"Plugin 'tpope/vim-rails'
+"Plugin 'vim-ruby/vim-ruby'
 Plugin 'guns/vim-clojure-static'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'kchmck/vim-coffee-script'
@@ -48,6 +48,7 @@ set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 set hlsearch
+set backspace=indent,eol,start
 
 let g:ycm_seed_identifiers_with_syntax = 1
 let g:syntastic_always_populate_loc_list = 1

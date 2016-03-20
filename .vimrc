@@ -27,6 +27,7 @@ Plugin 'guns/vim-clojure-static'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'tpope/vim-fugitive'
+Plugin 'mxw/vim-jsx'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -36,10 +37,12 @@ set number
 syntax enable
 let g:rehash256 = 1
 colorscheme molokai
+set tabstop=2
 set expandtab
 set shiftwidth=2
 set softtabstop=2
 set ttyfast
+set lazyredraw
 set mouse=a
 let mapleader=","
 set ttymouse=xterm2

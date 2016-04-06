@@ -41,7 +41,7 @@ ZSH=$HOME/.oh-my-zsh
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 
-ZSH_TMUX_AUTOSTART=false
+ZSH_TMUX_AUTOSTART=true
 plugins=(pass git autojump brew bundler coffee compleat dircycle gem node npm osx redis-cli rbenv tmux docker docker-compose)
 
 source $ZSH/oh-my-zsh.sh
@@ -63,16 +63,16 @@ export JAVA_HOME="$(/usr/libexec/java_home)"
 
 [[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh
 
-echo "Getting status of docker-machine:crealytics ..."
-DOCKER_CREALYTICS_STATUS="$(docker-machine status crealytics)"
+echo "Getting status of docker-machine:default ..."
+DOCKER_DEFAULT_STATUS="$(docker-machine status)"
 
-if [ $DOCKER_CREALYTICS_STATUS != "Running" ]
+if [ $DOCKER_DEFAULT_STATUS != "Running" ]
 then
   echo "docker-machine not running. Starting ..."
-  docker-machine start crealytics
+  docker-machine start
 fi
 
-eval "$(docker-machine env crealytics)"
+eval "$(docker-machine env)"
 eval $(thefuck --alias)
 eval "$(rbenv init -)"
 

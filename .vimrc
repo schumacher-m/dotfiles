@@ -63,3 +63,4 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:ycm_confirm_extra_conf = 0
 let g:syntastic_javascript_jslint_args = "--edition latest --indent 2"
+let g:ruby_path = system('echo $HOME/.rbenv/shims')

@@ -47,7 +47,7 @@ plugins=(pass git autojump brew bundler coffee compleat dircycle gem node npm os
 source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
-export PATH=/usr/local/bin:/usr/local/sbin:$PATH:/usr/local/Cellar/ctags/5.8/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/share/npm/bin
+export PATH=/usr/local/bin:/usr/local/sbin:$PATH:/usr/local/Cellar/ctags/5.8/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/share/npm/bin:/Users/m/.cargo/bin
 
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
@@ -60,6 +60,7 @@ alias gg='noglob gg'
 export HIVE_HOME=/usr/local/Cellar/hive/1.2.1/libexec
 export HCAT_HOME=/usr/local/Cellar/hive/1.2.1/libexec/hcatalog
 export JAVA_HOME="$(/usr/libexec/java_home)"
+export RUST_SRC_PATH=/Users/m/Workspace/rust/rustc-1.10.0/src
 
 [[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh
 
@@ -106,9 +107,3 @@ ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[blue]%}) %{$fg[yellow]%}✗"
 ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg[blue]%})"
 
 source ~/.nvm/nvm.sh
-
-PATH="/Users/m/perl5/bin${PATH+:}${PATH}"; export PATH;
-PERL5LIB="/Users/m/perl5/lib/perl5${PERL5LIB+:}${PERL5LIB}"; export PERL5LIB;
-PERL_LOCAL_LIB_ROOT="/Users/m/perl5${PERL_LOCAL_LIB_ROOT+:}${PERL_LOCAL_LIB_ROOT}"; export PERL_LOCAL_LIB_ROOT;
-PERL_MB_OPT="--install_base \"/Users/m/perl5\""; export PERL_MB_OPT;
-PERL_MM_OPT="INSTALL_BASE=/Users/m/perl5"; export PERL_MM_OPT;

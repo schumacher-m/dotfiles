@@ -54,8 +54,8 @@ export LANG=en_US.UTF-8
 alias bower='noglob bower'
 alias gg='noglob gg'
 
-export DOCKER_CERT_PATH=/Users/m/.boot2docker/certs/boot2docker-vm
-export DOCKER_TLS_VERIFY=1
+# export DOCKER_CERT_PATH=/Users/m/.boot2docker/certs/boot2docker-vm
+# export DOCKER_TLS_VERIFY=1
 #export SSL_CERT_FILE=/usr/local/etc/openssl/certs/cert.pem
 export HIVE_HOME=/usr/local/Cellar/hive/1.2.1/libexec
 export HCAT_HOME=/usr/local/Cellar/hive/1.2.1/libexec/hcatalog
@@ -63,47 +63,47 @@ export JAVA_HOME="$(/usr/libexec/java_home)"
 
 [[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh
 
-echo "Getting status of docker-machine:default ..."
-DOCKER_DEFAULT_STATUS="$(docker-machine status)"
+# echo "Getting status of docker-machine:default ..."
+# DOCKER_DEFAULT_STATUS="$(docker-machine status)"
 
-if [ $DOCKER_DEFAULT_STATUS != "Running" ]
-then
-  echo "docker-machine not running. Starting ..."
-  docker-machine start
-fi
+# if [ $DOCKER_DEFAULT_STATUS != "Running" ]
+# then
+#   echo "docker-machine not running. Starting ..."
+#   docker-machine start
+# fi
 
-eval "$(docker-machine env)"
+#eval "$(docker-machine env)"
 eval $(thefuck --alias)
 eval "$(rbenv init -)"
 
-local ret_status="%(?:%{$fg_bold[green]%}➜ :%{$fg_bold[red]%}➜ %s)"
-PROMPT='%T ${ret_status}%{$fg_bold[green]%}%p %{$fg[cyan]%}%c %{$fg_bold[blue]%}$(git_prompt_info)%{$fg_bold[blue]%} % %{$reset_color%}'
+# schedprompt() {
+#   emulate -L zsh
+#   zmodload -i zsh/sched
 
-ZSH_THEME_GIT_PROMPT_PREFIX="git:(%{$fg[red]%}"
-ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%}"
-ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[blue]%}) %{$fg[yellow]%}✗%{$reset_color%}"
+#   # Remove existing event, so that multiple calls to
+#   # "schedprompt" work OK.  (You could put one in precmd to push
+#   # the timer 30 seconds into the future, for example.)
+#   integer i=${"${(@)zsh_scheduled_events#*:*:}"[(I)schedprompt]}
+#   (( i )) && sched -$i
+
+#   # Test that zle is running before calling the widget (recommended
+#   # to avoid error messages).
+#   # Otherwise it updates on entry to zle, so there's no loss.
+#   zle && zle reset-prompt
+
+#   # This ensures we're not too far off the start of the minute
+#   sched +30 schedprompt
+# }
+
+# schedprompt
+
+local ret_status="%(?:%{$fg_bold[green]%}➜ :%{$fg_bold[red]%}➜ )"
+PROMPT='${ret_status} %{$fg[cyan]%}%c%{$reset_color%} $(git_prompt_info)'
+
+ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg_bold[blue]%}git:(%{$fg[red]%}"
+ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%} "
+ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[blue]%}) %{$fg[yellow]%}✗"
 ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg[blue]%})"
-
-schedprompt() {
-  emulate -L zsh
-  zmodload -i zsh/sched
-
-  # Remove existing event, so that multiple calls to
-  # "schedprompt" work OK.  (You could put one in precmd to push
-  # the timer 30 seconds into the future, for example.)
-  integer i=${"${(@)zsh_scheduled_events#*:*:}"[(I)schedprompt]}
-  (( i )) && sched -$i
-
-  # Test that zle is running before calling the widget (recommended
-  # to avoid error messages).
-  # Otherwise it updates on entry to zle, so there's no loss.
-  zle && zle reset-prompt
-
-  # This ensures we're not too far off the start of the minute
-  sched +30 schedprompt
-}
-
-schedprompt
 
 source ~/.nvm/nvm.sh
 

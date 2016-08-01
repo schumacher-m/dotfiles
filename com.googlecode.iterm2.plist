@@ -717,16 +717,14 @@
 	<true/>
 	<key>MaxVertically</key>
 	<false/>
+	<key>NSColorPanelMode</key>
+	<string>5</string>
 	<key>NSFontPanelAttributes</key>
-	<string>1, 4</string>
+	<string>1, 3</string>
 	<key>NSNavLastRootDirectory</key>
-	<string>~/Desktop</string>
+	<string>~/Downloads</string>
 	<key>NSNavPanelExpandedSizeForOpenMode</key>
 	<string>{712, 448}</string>
-	<key>NSNavPanelExpandedSizeForSaveMode</key>
-	<string>{712, 521}</string>
-	<key>NSNavPanelExpandedStateForSaveMode</key>
-	<true/>
 	<key>NSQuotedKeystrokeBinding</key>
 	<string></string>
 	<key>NSRepeatCountBinding</key>
@@ -746,40 +744,33 @@
 		BAtzdHJlYW10eXBlZIHoA4QBQISEhAhOU1N0cmluZwGEhAhOU09iamVjdACF
 		hAErATGG
 		</data>
-		<string>322</string>
+		<string>307</string>
 	</array>
 	<key>NSTableView Hidden Columns KeyBingingTable</key>
 	<array/>
 	<key>NSTableView Sort Ordering KeyBingingTable</key>
 	<array/>
-	<key>NSToolbar Configuration Terminal Toolbar</key>
-	<dict>
-		<key>TB Display Mode</key>
-		<integer>3</integer>
-		<key>TB Icon Size Mode</key>
-		<integer>2</integer>
-		<key>TB Is Shown</key>
-		<integer>0</integer>
-		<key>TB Size Mode</key>
-		<integer>1</integer>
-	</dict>
 	<key>NSToolbar Configuration com.apple.NSColorPanel</key>
 	<dict>
 		<key>TB Is Shown</key>
 		<integer>1</integer>
 	</dict>
-	<key>NSWindow Frame NSFontPanel</key>
-	<string>-622 41 515 316 -1440 -550 1440 2537 </string>
 	<key>NSWindow Frame Preferences</key>
-	<string>485 874 606 456 0 0 2560 1417 </string>
+	<string>1245 1628 606 456 863 1050 1920 1057 </string>
 	<key>NSWindow Frame SUAutomaticUpdateAlert</key>
-	<string>972 933 616 174 0 0 2560 1417 </string>
+	<string>1515 1712 616 174 863 1050 1920 1057 </string>
+	<key>NSWindow Frame SUUpdateAlert</key>
+	<string>1513 1548 620 392 863 1050 1920 1057 </string>
+	<key>NSWindow Frame SharedPreferences</key>
+	<string>1124 1302 918 512 863 1050 1920 1057 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>1280 13 1277 1404 0 0 2560 1417 </string>
+	<string>863 1053 1915 1054 863 1050 1920 1057 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
-	<string>282 692 570 451 0 0 2560 1417 </string>
+	<string>-1057 1060 1929 1047 -1057 1050 1920 1057 </string>
 	<key>NSWindow Frame iTerm Window 2</key>
-	<string>1047 774 570 451 0 0 2560 1417 </string>
+	<string>577 501 585 451 0 0 1680 1050 </string>
+	<key>NSWindow Frame iTerm Window 3</key>
+	<string>-1099 1085 948 666 -1104 1050 1920 1058 </string>
 	<key>NeverWarnAboutShortLivedSessions_E470BCC7-0639-46CA-88A3-441739329988</key>
 	<true/>
 	<key>New Bookmarks</key>
@@ -962,10 +953,8 @@
 			</dict>
 			<key>Background Image Is Tiled</key>
 			<false/>
-			<key>Background Image Location</key>
-			<string></string>
 			<key>Blend</key>
-			<real>0.30000001192092896</real>
+			<real>0.050000000000000003</real>
 			<key>Blink Allowed</key>
 			<false/>
 			<key>Blinking Cursor</key>
@@ -1250,6 +1239,8 @@
 			<true/>
 			<key>Normal Font</key>
 			<string>Hack-Regular 12</string>
+			<key>Only The Default BG Color Uses Transparency</key>
+			<true/>
 			<key>Option Key Sends</key>
 			<integer>0</integer>
 			<key>Prompt Before Closing 2</key>
@@ -1394,6 +1385,8 @@
 					<string>\btelnet:([a-z0-9A-Z_]+@)?([a-zA-Z0-9\-]+\.)*[a-zA-Z0-9\-]+\b</string>
 				</dict>
 			</array>
+			<key>Space</key>
+			<integer>0</integer>
 			<key>Sync Title</key>
 			<false/>
 			<key>Tags</key>
@@ -1426,14 +1419,12 @@
 	</array>
 	<key>NoSyncConfirmBeta</key>
 	<true/>
-	<key>NoSyncDoNotWarnBeforeMultilinePaste</key>
-	<true/>
-	<key>NoSyncDoNotWarnBeforeMultilinePaste_selection</key>
-	<integer>0</integer>
 	<key>NoSyncHaveShownPromoWithId_4</key>
 	<true/>
+	<key>NoSyncHaveWarnedAboutIncompatibleSoftware</key>
+	<true/>
 	<key>NoSyncInstallationId</key>
-	<string>84684296-BE0D-4B26-8E34-37274649F3CB</string>
+	<string>84B75E5C-C2B3-48FF-8EF8-EDE38495D588</string>
 	<key>NoSyncNeverRemindPrefsChangesCopy</key>
 	<true/>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile</key>
@@ -1442,17 +1433,12 @@
 	<integer>0</integer>
 	<key>NoSyncPermissionToShowTip</key>
 	<false/>
-	<key>NoSyncSavePanelSavedSettings_StartSessionLog</key>
-	<dict>
-		<key>Initial Directory</key>
-		<string>/Users/m/Desktop</string>
-	</dict>
 	<key>NoSyncTimeOfFirstLaunchOfVersionWithTip</key>
-	<real>483190745.78973103</real>
+	<real>482663973.46052903</real>
 	<key>NoSyncTimeOfLastPromo</key>
-	<real>477522851.01477098</real>
+	<real>477910334.12672299</real>
 	<key>NoSyncTimeOfLastPromoDownload</key>
-	<real>483175610.079961</real>
+	<real>482311224.68609899</real>
 	<key>OnlyWhenMoreTabs</key>
 	<true/>
 	<key>OpenArrangementAtStartup</key>
@@ -1501,7 +1487,7 @@
 		</dict>
 	</dict>
 	<key>PrefsCustomFolder</key>
-	<string>/Users/m/Workspace/dotfiles</string>
+	<string>/Users/m/Documents/workspace/dotfiles</string>
 	<key>PromptOnQuit</key>
 	<true/>
 	<key>QuitWhenAllWindowsClosed</key>
@@ -1517,11 +1503,11 @@
 	<key>SUFeedAlternateAppNameKey</key>
 	<string>iTerm</string>
 	<key>SUFeedURL</key>
-	<string>https://iterm2.com/appcasts/testing.xml?shard=59</string>
+	<string>https://iterm2.com/appcasts/testing.xml?shard=63</string>
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2016-07-12T08:17:55Z</date>
+	<date>2016-07-27T11:13:20Z</date>
 	<key>SavePasteHistory</key>
 	<false/>
 	<key>Show Toolbelt</key>
@@ -1573,6 +1559,6 @@
 	<key>findRegex_iTerm</key>
 	<false/>
 	<key>iTerm Version</key>
-	<string>3.0.4</string>
+	<string>3.0.5</string>
 </dict>
 </plist>

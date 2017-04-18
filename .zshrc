@@ -42,61 +42,31 @@ ZSH=$HOME/.oh-my-zsh
 # Example format: plugins=(rails git textmate ruby lighthouse)
 
 ZSH_TMUX_AUTOSTART=true
-plugins=(pass git autojump brew bundler coffee compleat dircycle gem node npm osx redis-cli rbenv tmux docker docker-compose)
+plugins=(pass git autojump bundler compleat dircycle gem rbenv tmux docker docker-compose sbt thefuck)
 
 source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
-export PATH=/usr/local/bin:/usr/local/sbin:$PATH:/usr/local/Cellar/ctags/5.8/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/share/npm/bin:/Users/m/.cargo/bin
+export PATH=~/bin:/usr/local/bin:/usr/local/sbin:$PATH:/usr/local/Cellar/ctags/5.8/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/share/npm/bin:/Users/m/.cargo/bin
 
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
-alias bower='noglob bower'
-alias gg='noglob gg'
 
-# export DOCKER_CERT_PATH=/Users/m/.boot2docker/certs/boot2docker-vm
-# export DOCKER_TLS_VERIFY=1
-#export SSL_CERT_FILE=/usr/local/etc/openssl/certs/cert.pem
-export HIVE_HOME=/usr/local/Cellar/hive/1.2.1/libexec
-export HCAT_HOME=/usr/local/Cellar/hive/1.2.1/libexec/hcatalog
-export JAVA_HOME="$(/usr/libexec/java_home)"
-export RUST_SRC_PATH=/Users/m/Workspace/rust/rustc-1.10.0/src
-
-[[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh
-
-# echo "Getting status of docker-machine:default ..."
-# DOCKER_DEFAULT_STATUS="$(docker-machine status)"
-
-# if [ $DOCKER_DEFAULT_STATUS != "Running" ]
-# then
-#   echo "docker-machine not running. Starting ..."
-#   docker-machine start
-# fi
-
-#eval "$(docker-machine env)"
 eval $(thefuck --alias)
 eval "$(rbenv init -)"
 
-# schedprompt() {
-#   emulate -L zsh
-#   zmodload -i zsh/sched
+alias pbcopy='xclip -selection clipboard'
+alias pbpaste='xclip -selection clipboard -o'
 
-#   # Remove existing event, so that multiple calls to
-#   # "schedprompt" work OK.  (You could put one in precmd to push
-#   # the timer 30 seconds into the future, for example.)
-#   integer i=${"${(@)zsh_scheduled_events#*:*:}"[(I)schedprompt]}
-#   (( i )) && sched -$i
+tmateip () {
+  output=$(tmate show-message | grep -m 1 "ssh session:")
+  echo ${output#*session: } # display it
+  echo ${output#*session: } | pbcopy # and copy it to clipboard
 
-#   # Test that zle is running before calling the widget (recommended
-#   # to avoid error messages).
-#   # Otherwise it updates on entry to zle, so there's no loss.
-#   zle && zle reset-prompt
+}
 
-#   # This ensures we're not too far off the start of the minute
-#   sched +30 schedprompt
-# }
-
-# schedprompt
+# export JAVA_HOME=/usr/lib/jvm/java-8-oracle/jre/bin/java
+# export JAVACMD=drip
 
 local ret_status="%(?:%{$fg_bold[green]%}➜ :%{$fg_bold[red]%}➜ )"
 PROMPT='${ret_status} %{$fg[cyan]%}%c%{$reset_color%} $(git_prompt_info)'
@@ -105,5 +75,4 @@ ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg_bold[blue]%}git:(%{$fg[red]%}"
 ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%} "
 ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[blue]%}) %{$fg[yellow]%}✗"
 ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg[blue]%})"
-
-source ~/.nvm/nvm.sh
+export PATH="$HOME/.rbenv/bin:$PATH"

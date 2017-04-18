@@ -13,23 +13,29 @@ Plugin 'kien/ctrlp.vim'
 Plugin 'rking/ag.vim'
 Plugin 'bronson/vim-trailing-whitespace'
 Plugin 'nathanaelkane/vim-indent-guides'
-Plugin 'octol/vim-cpp-enhanced-highlight'
+" Plugin 'octol/vim-cpp-enhanced-highlight'
 Plugin 'rdnetto/YCM-Generator'
-Plugin 'unblevable/quick-scope'
-Plugin 'easymotion/vim-easymotion'
+" Plugin 'unblevable/quick-scope'
+" Plugin 'easymotion/vim-easymotion'
 Plugin 'tpope/vim-commentary'
 Plugin 'a.vim'
-Plugin 'junegunn/vim-easy-align'
+" Plugin 'junegunn/vim-easy-align'
 " Plugin 'tpope/vim-rails'
 " Plugin 'vim-ruby/vim-ruby'
-Plugin 'guns/vim-clojure-static'
+" Plugin 'guns/vim-clojure-static'
 Plugin 'airblade/vim-gitgutter'
-Plugin 'kchmck/vim-coffee-script'
+" Plugin 'kchmck/vim-coffee-script'
 Plugin 'tpope/vim-fugitive'
-Plugin 'mxw/vim-jsx'
-Plugin 'rust-lang/rust.vim'
-Plugin 'racer-rust/vim-racer'
-Plugin 'timonv/vim-cargo'
+" Plugin 'mxw/vim-jsx'
+" Plugin 'rust-lang/rust.vim'
+" Plugin 'racer-rust/vim-racer'
+" Plugin 'timonv/vim-cargo'
+" Plugin 'ensime/ensime-vim'
+Plugin 'derekwyatt/vim-scala'
+Plugin 'godlygeek/tabular'
+Plugin 'jiangmiao/auto-pairs'
+Plugin 'mileszs/ack.vim'
+Plugin 'chrisbra/csv.vim'
 call vundle#end()            " required
 
 filetype plugin indent on    " required
@@ -48,6 +54,13 @@ set lazyredraw
 set mouse=a
 let mapleader=","
 set ttymouse=xterm2
+set term=screen-256color
+
+augroup CursorLine
+  au!
+  au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
+  au WinLeave * setlocal nocursorline
+augroup END
 
 nmap <leader>n :NERDTreeToggle<CR>
 let NERDTreeHighlightCursorline=1
@@ -68,3 +81,8 @@ let g:ycm_confirm_extra_conf = 0
 let g:syntastic_javascript_jslint_args = "--edition latest --indent 2"
 let g:ruby_path = system('echo $HOME/.rbenv/shims')
 let g:racer_cmd = "/Users/m/.cargo/bin/racer"
+
+let g:scala_scaladoc_indent = 1
+" autocmd BufWritePost *.scala silent :EnTypeCheck
+" nnoremap <localleader>t :EnTypeCheck<CR>
+" au FileType scala nnoremap <localleader>df :EnDeclaration<CR>

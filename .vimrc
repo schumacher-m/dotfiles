@@ -5,6 +5,7 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'tomasr/molokai'
+Plugin 'altercation/vim-colors-solarized'
 Plugin 'scrooloose/syntastic'
 Plugin 'scrooloose/nerdtree'
 Plugin 'Valloric/YouCompleteMe'
@@ -36,15 +37,21 @@ Plugin 'godlygeek/tabular'
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'mileszs/ack.vim'
 Plugin 'chrisbra/csv.vim'
+Plugin 'stanangeloff/php.vim'
+Plugin 'janko-m/vim-test'
 call vundle#end()            " required
 
 filetype plugin indent on    " required
+
+set backupdir=$TMPDIR
+set directory=$TMPDIR
 
 set hidden
 set number
 syntax enable
 let g:rehash256 = 1
 colorscheme molokai
+let g:solarized_termcolors=256
 set tabstop=2
 set expandtab
 set shiftwidth=2

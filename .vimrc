@@ -39,6 +39,10 @@ Plugin 'mileszs/ack.vim'
 Plugin 'chrisbra/csv.vim'
 Plugin 'stanangeloff/php.vim'
 Plugin 'janko-m/vim-test'
+Plugin 'quentindecock/vim-cucumber-align-pipes'
+Plugin 'dbext.vim'
+Plugin 'SQLUtilities'
+Plugin 'Align'
 call vundle#end()            " required
 
 filetype plugin indent on    " required

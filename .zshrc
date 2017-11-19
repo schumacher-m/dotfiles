@@ -42,12 +42,18 @@ ZSH=$HOME/.oh-my-zsh
 # Example format: plugins=(rails git textmate ruby lighthouse)
 
 ZSH_TMUX_AUTOSTART=true
-plugins=(pass git autojump bundler compleat dircycle gem rbenv tmux docker docker-compose sbt thefuck)
+plugins=(pass git autojump bundler compleat dircycle gem rbenv tmux docker docker-compose sbt thefuck zsh-iterm-touchbar)
 
 source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
 export PATH=~/bin:/usr/local/bin:/usr/local/sbin:$PATH:/usr/local/Cellar/ctags/5.8/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/share/npm/bin:/Users/m/.cargo/bin
+export PATH="$HOME/.rbenv/bin:$PATH"
+export PATH="/usr/local/opt/libpq/bin:$PATH"
+
+export NVM_DIR="$HOME/.nvm"
+export NVM_BREW_DIR="/usr/local/opt/nvm"
+[ -s "$NVM_BREW_DIR/nvm.sh"  ] && . "$NVM_BREW_DIR/nvm.sh" # This loads nvm
 
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
@@ -65,9 +71,6 @@ tmateip () {
 
 }
 
-# export JAVA_HOME=/usr/lib/jvm/java-8-oracle/jre/bin/java
-# export JAVACMD=drip
-
 local ret_status="%(?:%{$fg_bold[green]%}➜ :%{$fg_bold[red]%}➜ )"
 PROMPT='${ret_status} %{$fg[cyan]%}%c%{$reset_color%} $(git_prompt_info)'
 
@@ -75,4 +78,3 @@ ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg_bold[blue]%}git:(%{$fg[red]%}"
 ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%} "
 ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[blue]%}) %{$fg[yellow]%}✗"
 ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg[blue]%})"
-export PATH="$HOME/.rbenv/bin:$PATH"

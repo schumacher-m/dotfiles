@@ -15,18 +15,18 @@ Plugin 'rking/ag.vim'
 Plugin 'bronson/vim-trailing-whitespace'
 Plugin 'nathanaelkane/vim-indent-guides'
 " Plugin 'octol/vim-cpp-enhanced-highlight'
-Plugin 'rdnetto/YCM-Generator'
+" Plugin 'rdnetto/YCM-Generator'
 " Plugin 'unblevable/quick-scope'
 " Plugin 'easymotion/vim-easymotion'
 Plugin 'tpope/vim-commentary'
-Plugin 'a.vim'
+" Plugin 'a.vim'
 " Plugin 'junegunn/vim-easy-align'
 " Plugin 'tpope/vim-rails'
 " Plugin 'vim-ruby/vim-ruby'
 " Plugin 'guns/vim-clojure-static'
 Plugin 'airblade/vim-gitgutter'
 " Plugin 'kchmck/vim-coffee-script'
-Plugin 'tpope/vim-fugitive'
+" Plugin 'tpope/vim-fugitive'
 " Plugin 'mxw/vim-jsx'
 " Plugin 'rust-lang/rust.vim'
 " Plugin 'racer-rust/vim-racer'
@@ -34,9 +34,9 @@ Plugin 'tpope/vim-fugitive'
 " Plugin 'ensime/ensime-vim'
 "Plugin 'derekwyatt/vim-scala'
 Plugin 'godlygeek/tabular'
-Plugin 'jiangmiao/auto-pairs'
+Plugin 'auto-pairs-gentle'
 Plugin 'mileszs/ack.vim'
-Plugin 'chrisbra/csv.vim'
+" Plugin 'chrisbra/csv.vim'
 "Plugin 'stanangeloff/php.vim'
 "Plugin 'janko-m/vim-test'
 Plugin 'quentindecock/vim-cucumber-align-pipes'
@@ -92,7 +92,7 @@ let g:ycm_confirm_extra_conf = 0
 let g:syntastic_javascript_jslint_args = "--edition latest --indent 2"
 let g:ruby_path = system('echo $HOME/.rbenv/shims')
 let g:racer_cmd = "/Users/m/.cargo/bin/racer"
-
+let g:AutoPairsUseInsertedCount = 1
 let g:scala_scaladoc_indent = 1
 " autocmd BufWritePost *.scala silent :EnTypeCheck
 " nnoremap <localleader>t :EnTypeCheck<CR>

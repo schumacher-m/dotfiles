@@ -19,7 +19,7 @@ antigen bundle bundler
 antigen bundle ruby
 antigen bundle rust
 antigen bundle rake-fast
-
+antigen bundle brew
 
 antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle zsh-users/zsh-completions
@@ -28,8 +28,6 @@ antigen bundle zsh-users/zsh-autosuggestions
 antigen theme robbyrussell
 
 antigen apply
-
-# plugins=(pass git autojump bundler compleat dircycle gem rbenv tmux docker docker-compose sbt thefuck zsh-iterm-touchbar)
 
 # export PATH=~/bin:/usr/local/bin:/usr/local/sbin:$PATH:/usr/local/Cellar/ctags/5.8/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/share/npm/bin:/Users/m/.cargo/bin
 # export PATH="$HOME/.rbenv/bin:$PATH"
@@ -40,6 +38,6 @@ alias pbpaste='xclip -selection clipboard -o'
 
 tmateip () {
   output=$(tmate show-message | grep -m 1 "ssh session:")
-  echo ${output#*session: } # display it
-  echo ${output#*session: } | pbcopy # and copy it to clipboard
+  echo ${output#*session: }
+  echo ${output#*session: } | pbcopy
 }

@@ -25,6 +25,8 @@ antigen bundle brew
 antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle zsh-users/zsh-completions
 antigen bundle zsh-users/zsh-autosuggestions
+antigen bundle unixorn/autoupdate-antigen.zshplugin
+antigen bundle fcambus/ansiweather
 
 antigen theme robbyrussell
 

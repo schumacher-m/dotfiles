@@ -33,8 +33,12 @@ antigen theme robbyrussell
 antigen apply
 
 # export PATH=~/bin:/usr/local/bin:/usr/local/sbin:$PATH:/usr/local/Cellar/ctags/5.8/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/share/npm/bin:/Users/m/.cargo/bin
-# export PATH="$HOME/.rbenv/bin:$PATH"
+
 # export PATH="/usr/local/opt/libpq/bin:$PATH"
+
+export PATH="$HOME/.rbenv/bin:$PATH"
+
+eval "$(rbenv init -)"
 
 alias pbcopy='xclip -selection clipboard'
 alias pbpaste='xclip -selection clipboard -o'

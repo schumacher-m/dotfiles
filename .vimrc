@@ -43,6 +43,7 @@ Plugin 'quentindecock/vim-cucumber-align-pipes'
 Plugin 'dbext.vim'
 Plugin 'SQLUtilities'
 Plugin 'Align'
+Plugin 'jceb/vim-orgmode'
 call vundle#end()            " required
 
 filetype plugin indent on    " required

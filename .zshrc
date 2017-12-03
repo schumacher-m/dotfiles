@@ -49,3 +49,4 @@ tmateip () {
   echo ${output#*session: }
   echo ${output#*session: } | pbcopy
 }
+stty icrnl

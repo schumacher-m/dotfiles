@@ -26,7 +26,7 @@ Plugin 'tpope/vim-commentary'
 " Plugin 'guns/vim-clojure-static'
 Plugin 'airblade/vim-gitgutter'
 " Plugin 'kchmck/vim-coffee-script'
-" Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-fugitive'
 " Plugin 'mxw/vim-jsx'
 " Plugin 'rust-lang/rust.vim'
 " Plugin 'racer-rust/vim-racer'
@@ -43,7 +43,8 @@ Plugin 'quentindecock/vim-cucumber-align-pipes'
 Plugin 'dbext.vim'
 Plugin 'SQLUtilities'
 Plugin 'Align'
-Plugin 'jceb/vim-orgmode'
+" Plugin 'jceb/vim-orgmode'
+Plugin 'vim-airline/vim-airline-themes'
 call vundle#end()            " required
 
 filetype plugin indent on    " required
@@ -95,6 +96,7 @@ let g:ruby_path = system('echo $HOME/.rbenv/shims')
 let g:racer_cmd = "/Users/m/.cargo/bin/racer"
 let g:AutoPairsUseInsertedCount = 1
 let g:scala_scaladoc_indent = 1
+let g:airline_theme='molokai'
 " autocmd BufWritePost *.scala silent :EnTypeCheck
 " nnoremap <localleader>t :EnTypeCheck<CR>
 " au FileType scala nnoremap <localleader>df :EnDeclaration<CR>

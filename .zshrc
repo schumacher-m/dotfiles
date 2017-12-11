@@ -39,6 +39,7 @@ antigen apply
 export PATH="$HOME/.rbenv/bin:$PATH"
 export PATH="$HOME/.chefdk/gem/ruby/2.4.0/bin:$PATH"
 export PATH="$HOME/.cargo/RustDT/bin:$PATH"
+export PATH="/usr/local/bin:$PATH"
 eval "$(rbenv init -)"
 
 alias pbcopy='xclip -selection clipboard'

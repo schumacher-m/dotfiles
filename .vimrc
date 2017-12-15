@@ -45,6 +45,9 @@ Plugin 'SQLUtilities'
 Plugin 'Align'
 " Plugin 'jceb/vim-orgmode'
 Plugin 'vim-airline/vim-airline-themes'
+Plugin 'tpope/vim-speeddating'
+Plugin 'majutsushi/tagbar'
+Plugin 'taglist.vim'
 call vundle#end()            " required
 
 filetype plugin indent on    " required

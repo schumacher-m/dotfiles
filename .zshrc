@@ -4,7 +4,7 @@ export LANG=en_US.UTF-8
 
 ZSH_TMUX_AUTOSTART="true"
 
-source ~/bin/antigen.zsh
+source /usr/local/share/antigen/antigen.zsh
 
 antigen use oh-my-zsh
 
@@ -33,13 +33,13 @@ antigen theme robbyrussell
 antigen apply
 
 # export PATH=~/bin:/usr/local/bin:/usr/local/sbin:$PATH:/usr/local/Cellar/ctags/5.8/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/share/npm/bin:/Users/m/.cargo/bin
-
 # export PATH="/usr/local/opt/libpq/bin:$PATH"
 
 export PATH="$HOME/.rbenv/bin:$PATH"
 export PATH="$HOME/.chefdk/gem/ruby/2.4.0/bin:$PATH"
 export PATH="$HOME/.cargo/RustDT/bin:$PATH"
 export PATH="/usr/local/bin:$PATH"
+export PATH="$HOME/go/bin:$PATH"
 eval "$(rbenv init -)"
 
 alias pbcopy='xclip -selection clipboard'

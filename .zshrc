@@ -1,4 +1,3 @@
-export NVM_DIR="/usr/local/opt/nvm"
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
@@ -13,7 +12,6 @@ antigen bundle autojump
 antigen bundle tmux
 antigen bundle thefuck
 antigen bundle rbenv
-antigen bundle nvm
 antigen bundle docker
 antigen bundle docker-compose
 antigen bundle bundler
@@ -32,14 +30,12 @@ antigen theme robbyrussell
 
 antigen apply
 
-# export PATH=~/bin:/usr/local/bin:/usr/local/sbin:$PATH:/usr/local/Cellar/ctags/5.8/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/share/npm/bin:/Users/m/.cargo/bin
-# export PATH="/usr/local/opt/libpq/bin:$PATH"
-
+export PATH="/usr/local/bin:$PATH"
 export PATH="$HOME/.rbenv/bin:$PATH"
 export PATH="$HOME/.chefdk/gem/ruby/2.4.0/bin:$PATH"
 export PATH="$HOME/.cargo/RustDT/bin:$PATH"
-export PATH="/usr/local/bin:$PATH"
 export PATH="$HOME/go/bin:$PATH"
+
 eval "$(rbenv init -)"
 
 alias pbcopy='xclip -selection clipboard'
@@ -50,4 +46,5 @@ tmateip () {
   echo ${output#*session: }
   echo ${output#*session: } | pbcopy
 }
+
 stty icrnl

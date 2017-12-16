@@ -95,10 +95,6 @@ let g:AutoPairsUseInsertedCount = 1
 let g:scala_scaladoc_indent = 1
 let g:airline_theme='molokai'
 
-augroup sourcesession
-        autocmd!
-        autocmd VimEnter * nested
-        \ if !argc()
 " autocmd BufWritePost *.scala silent :EnTypeCheck
 " nnoremap <localleader>t :EnTypeCheck<CR>
 " au FileType scala nnoremap <localleader>df :EnDeclaration<CR>

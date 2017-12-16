@@ -50,7 +50,6 @@ Plugin 'majutsushi/tagbar'
 Plugin 'taglist.vim'
 Plugin 'tpope/vim-obsession'
 call vundle#end()            " required
-
 filetype plugin indent on    " required
 
 set backupdir=$TMPDIR
@@ -73,12 +72,6 @@ let mapleader=","
 set ttymouse=xterm2
 set term=screen-256color
 
-augroup CursorLine
-  au!
-  au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
-  au WinLeave * setlocal nocursorline
-augroup END
-
 nmap <leader>n :NERDTreeToggle<CR>
 let NERDTreeHighlightCursorline=1
 
@@ -97,10 +90,29 @@ let g:syntastic_check_on_wq = 0
 let g:ycm_confirm_extra_conf = 0
 let g:syntastic_javascript_jslint_args = "--edition latest --indent 2"
 let g:ruby_path = system('echo $HOME/.rbenv/shims')
-let g:racer_cmd = "/Users/m/.cargo/bin/racer"
+let g:racer_cmd = system('echo $HOME/.cargo/bin/racer')
 let g:AutoPairsUseInsertedCount = 1
 let g:scala_scaladoc_indent = 1
 let g:airline_theme='molokai'
+
+augroup sourcesession
+        autocmd!
+        autocmd VimEnter * nested
+        \ if !argc()
 " autocmd BufWritePost *.scala silent :EnTypeCheck
 " nnoremap <localleader>t :EnTypeCheck<CR>
 " au FileType scala nnoremap <localleader>df :EnDeclaration<CR>
+
+augroup CursorLine
+  au!
+  au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
+  au WinLeave * setlocal nocursorline
+augroup END
+
+augroup sourcesession
+  autocmd!
+  autocmd VimEnter * nested
+        \ if !argc() && empty(v:this_session) && filereadable('Session.vim') |
+        \   source Session.vim |
+        \ endif
+augroup END

@@ -70,7 +70,7 @@ let g:ruby_path = system('echo $HOME/.rbenv/shims')
 let g:racer_cmd = system('echo $HOME/.cargo/bin/racer')
 let g:AutoPairsUseInsertedCount = 1
 let g:scala_scaladoc_indent = 1
-let g:airline_theme='molokai'
+let g:airline_theme='solarized'
 
 " autocmd BufWritePost *.scala silent :EnTypeCheck
 " nnoremap <localleader>t :EnTypeCheck<CR>

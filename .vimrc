@@ -5,7 +5,6 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'tomasr/molokai'
-Plugin 'altercation/vim-colors-solarized'
 Plugin 'scrooloose/syntastic'
 Plugin 'scrooloose/nerdtree'
 Plugin 'Valloric/YouCompleteMe'
@@ -49,19 +48,17 @@ Plugin 'tpope/vim-speeddating'
 Plugin 'majutsushi/tagbar'
 Plugin 'taglist.vim'
 Plugin 'tpope/vim-obsession'
+Plugin 'lifepillar/vim-solarized8'
 call vundle#end()            " required
 filetype plugin indent on    " required
 
 set backupdir=$TMPDIR
 set directory=$TMPDIR
-
 set hidden
 set number
 syntax enable
-let g:rehash256 = 1
 set background=dark
-colorscheme solarized
-let g:solarized_termcolors=256
+colorscheme solarized8
 set tabstop=2
 set expandtab
 set shiftwidth=2

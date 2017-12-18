@@ -59,7 +59,8 @@ set hidden
 set number
 syntax enable
 let g:rehash256 = 1
-colorscheme molokai
+set background=dark
+colorscheme solarized
 let g:solarized_termcolors=256
 set tabstop=2
 set expandtab

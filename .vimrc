@@ -7,7 +7,7 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'scrooloose/syntastic'
 Plugin 'scrooloose/nerdtree'
 Plugin 'Valloric/YouCompleteMe'
-Plugin 'bling/vim-airline'
+Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'kien/ctrlp.vim'
 Plugin 'rking/ag.vim'
@@ -52,12 +52,13 @@ set mouse=a
 set ttymouse=xterm2
 set term=screen-256color
 nmap <leader>n :NERDTreeToggle<CR>
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+" set statusline+=%#warningmsg#
+" set statusline+=%{SyntasticStatuslineFlag()}
+" set statusline+=%*
 set hlsearch
 set backspace=indent,eol,start
 set hidden
+let g:airline_powerline_fonts = 1
 let NERDTreeHighlightCursorline=1
 let g:ycm_seed_identifiers_with_syntax = 1
 let g:syntastic_always_populate_loc_list = 1

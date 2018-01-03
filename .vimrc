@@ -43,9 +43,9 @@ syntax enable
 set background=dark
 colorscheme solarized8
 set tabstop=2
-set expandtab
 set shiftwidth=2
 set softtabstop=2
+set expandtab
 set ttyfast
 set lazyredraw
 set mouse=a

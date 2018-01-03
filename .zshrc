@@ -19,6 +19,7 @@ antigen bundle ruby
 antigen bundle rust
 antigen bundle rake-fast
 antigen bundle brew
+antigen bundle aws
 
 antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle zsh-users/zsh-completions
@@ -35,6 +36,8 @@ export PATH="$HOME/.rbenv/bin:$PATH"
 export PATH="$HOME/.chefdk/gem/ruby/2.4.0/bin:$PATH"
 export PATH="$HOME/.cargo/RustDT/bin:$PATH"
 export PATH="$HOME/go/bin:$PATH"
+export PATH="$HOME/Library/Python/3.6/bin:$PATH"
+export PATH="$HOME/bin:$PATH"
 
 eval "$(rbenv init -)"
 

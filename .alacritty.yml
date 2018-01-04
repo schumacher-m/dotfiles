@@ -1,6 +1,5 @@
 # Configuration for Alacritty, the GPU enhanced terminal emulator
 
-
 # Any items in the `env` entry below will be added as
 # environment variables. Some entries may override variables
 # set by alacritty it self.
@@ -14,66 +13,52 @@ env:
   # `infocmp xterm-256color`.
   TERM: xterm-256color
 
-# Window dimensions in character columns and lines
-# Falls back to size specified by window manager if set to 0x0.
-# (changes require restart)
-dimensions:
-  columns: 80
-  lines: 24
+window:
+  # Window dimensions in character columns and lines
+  # (changes require restart)
+  dimensions:
+    columns: 80
+    lines: 24
 
-# Adds this many blank pixels of padding around the window
-# Units are physical pixels; this is not DPI aware.
-# (change requires restart)
-padding:
-  x: 2
-  y: 2
+  # Adds this many blank pixels of padding around the window
+  # Units are physical pixels; this is not DPI aware.
+  # (change requires restart)
+  padding:
+    x: 2
+    y: 2
+
+  # Window decorations
+  # Setting this to false will result in window without borders and title bar.
+  decorations: true
 
 # Display tabs using this many cells (changes require restart)
-tabspaces: 2
+tabspaces: 8
 
 # When true, bold text is drawn using the bright variant of colors.
 draw_bold_text_with_bright_colors: true
 
 # Font configuration (changes require restart)
-#
-# Important font attributes like antialiasing, subpixel aa, and hinting can be
-# controlled through fontconfig. Specifically, the following attributes should
-# have an effect:
-#
-# * hintstyle
-# * antialias
-# * lcdfilter
-# * rgba
-#
-# For instance, if you wish to disable subpixel antialiasing, you might set the
-# rgba property to "none". If you wish to completely disable antialiasing, you
-# can set antialias to false.
-#
-# Please see these resources for more information on how to use fontconfig
-#
-# * https://wiki.archlinux.org/index.php/font_configuration#Fontconfig_configuration
-# * file:///usr/share/doc/fontconfig/fontconfig-user.html
 font:
   # The normal (roman) font face to use.
   normal:
-    family: Hack # should be "Menlo" or something on macOS.
+    family: Hack
     # Style can be specified to pick a specific face.
     style: Regular
 
   # The bold font face
   bold:
-    family: Hack # should be "Menlo" or something on macOS.
+    family: Hack
     # Style can be specified to pick a specific face.
-    style: Bold
+    # style: Bold
 
   # The italic font face
   italic:
-    family: Hack # should be "Menlo" or something on macOS.
+    family: Hack
     # Style can be specified to pick a specific face.
-    style: Italic
+    # style: Italic
 
   # Point size of the font
-  size: 11.0
+  size: 12.0
 
   # Offset is the extra space around each character. offset.y can be thought of
   # as modifying the linespacing, and offset.x as modifying the letter spacing.
@@ -145,6 +130,7 @@ colors:
     cyan:    '0x66cccc'
     white:   '0xdddddd'
 
+
 # Visual Bell
 #
 # Any time the BEL code is received, Alacritty "rings" the visual bell. Once
@@ -169,7 +155,7 @@ colors:
 #
 visual_bell:
   animation: EaseOutExpo
-  duration: 1
+  duration: 0
 
 # Background opacity
 background_opacity: 1.0
@@ -193,11 +179,28 @@ mouse_bindings:
   - { mouse: Middle, action: PasteSelection }
 
 mouse:
+  # Click settings
+  #
+  # The `double_click` and `triple_click` settings control the time
+  # alacritty should wait for accepting multiple clicks as one double
+  # or triple click.
   double_click: { threshold: 300 }
   triple_click: { threshold: 300 }
 
+  # Faux Scrollback
+  #
+  # The `faux_scrollback_lines` setting controls the number
+  # of lines the terminal should scroll when the alternate
+  # screen buffer is active. This is used to allow mouse
+  # scrolling for applications like `man`.
+  #
+  # To disable this completely, set `faux_scrollback_lines` to 0.
+  faux_scrollback_lines: 1
+
 selection:
   semantic_escape_chars: ",│`|:\"' ()[]{}<>"
+
+dynamic_title: true
 
 hide_cursor_when_typing: false
 
@@ -216,11 +219,16 @@ live_config_reload: true
 #
 # You can set shell.program to the path of your favorite shell, e.g. /bin/fish.
 # Entries in shell.args are passed unmodified as arguments to the shell.
+#
+# shell:
+#   program: /bin/bash
+#   args:
+#     - --login
+
 shell:
   program: /bin/zsh
   args:
     - --login
-
 
 # Key bindings
 #
@@ -254,23 +262,18 @@ shell:
 #   `command` must be a map containing a `program` string, and `args` array of
 #     strings. For example:
 #     - { ... , command: { program: "alacritty", args: ["-e", "vttest"] } }
-#
-# Want to add a binding (e.g. "PageUp") but are unsure what the X sequence
-# (e.g. "\x1b[5~") is? Open another terminal (like xterm) without tmux,
-# then run `showkey -a` to get the sequence associated to a key combination.
 key_bindings:
-  - { key: V,        mods: Control|Shift,    action: Paste               }
-  - { key: C,        mods: Control|Shift,    action: Copy                }
+  - { key: V,        mods: Command, action: Paste                        }
+  - { key: C,        mods: Command, action: Copy                         }
   - { key: Q,        mods: Command, action: Quit                         }
   - { key: W,        mods: Command, action: Quit                         }
-  - { key: Insert,   mods: Shift,   action: PasteSelection               }
-  - { key: Key0,     mods: Control, action: ResetFontSize                }
-  - { key: Equals,   mods: Control, action: IncreaseFontSize             }
-  - { key: Subtract, mods: Control, action: DecreaseFontSize             }
   - { key: Home,                    chars: "\x1bOH",   mode: AppCursor   }
   - { key: Home,                    chars: "\x1b[H",   mode: ~AppCursor  }
   - { key: End,                     chars: "\x1bOF",   mode: AppCursor   }
   - { key: End,                     chars: "\x1b[F",   mode: ~AppCursor  }
+  - { key: Key0,     mods: Command, action: ResetFontSize                }
+  - { key: Equals,   mods: Command, action: IncreaseFontSize             }
+  - { key: Minus,    mods: Command, action: DecreaseFontSize             }
   - { key: PageUp,   mods: Shift,   chars: "\x1b[5;2~"                   }
   - { key: PageUp,   mods: Control, chars: "\x1b[5;5~"                   }
   - { key: PageUp,                  chars: "\x1b[5~"                     }
@@ -350,34 +353,26 @@ key_bindings:
   - { key: F10,      mods: Alt,     chars: "\x1b[21;6~"                  }
   - { key: F11,      mods: Alt,     chars: "\x1b[23;6~"                  }
   - { key: F12,      mods: Alt,     chars: "\x1b[24;6~"                  }
-  - { key: F1,       mods: Super,   chars: "\x1b[1;3P"                   }
-  - { key: F2,       mods: Super,   chars: "\x1b[1;3Q"                   }
-  - { key: F3,       mods: Super,   chars: "\x1b[1;3R"                   }
-  - { key: F4,       mods: Super,   chars: "\x1b[1;3S"                   }
-  - { key: F5,       mods: Super,   chars: "\x1b[15;3~"                  }
-  - { key: F6,       mods: Super,   chars: "\x1b[17;3~"                  }
-  - { key: F7,       mods: Super,   chars: "\x1b[18;3~"                  }
-  - { key: F8,       mods: Super,   chars: "\x1b[19;3~"                  }
-  - { key: F9,       mods: Super,   chars: "\x1b[20;3~"                  }
-  - { key: F10,      mods: Super,   chars: "\x1b[21;3~"                  }
-  - { key: F11,      mods: Super,   chars: "\x1b[23;3~"                  }
-  - { key: F12,      mods: Super,   chars: "\x1b[24;3~"                  }
-    # OSX DE Keyboard Modifications: @~{}\|
-  # - { key: L,        mods: Alt,     chars: "\u0040"                      }
-  # - { key: N,        mods: Alt,     chars: "\u007E"                      }
-  # - { key: Key8,     mods: Alt,     chars: "\u007B"                   }
-  # - { key: Key9,     mods: Alt,     chars: "\u007D"                   }
-  # - { key: Key7,     mods: Alt|Shift,     chars: "\u005C"                   }
-  # - { key: Key7,     mods: Alt,     chars: "\u007C"                   }
-  - { key: Key5,     mods: Alt,           chars: "\x5b"                         }
-  - { key: Key6,     mods: Alt,           chars: "\x5d"                         }
-  - { key: Key7,     mods: Alt,           chars: "\x7c"                         }
-  - { key: Key7,     mods: Shift|Alt,     chars: "\x5c"                         }
-  - { key: Key8,     mods: Alt,           chars: "\x7b"                         }
-  - { key: Key9,     mods: Alt,           chars: "\x7d"                         }
-  - { key: Equals,                        chars: "\xb4"                         }
-  - { key: Equals,   mods: Shift,         chars: "\x60"                         }
-  - { key: N,        mods: Alt,           chars: "\x7e"                         }
-  - { key: L,        mods: Alt,           chars: "\x40"                         }
-
-
+  - { key: F1,       mods: Command, chars: "\x1b[1;3P"                   }
+  - { key: F2,       mods: Command, chars: "\x1b[1;3Q"                   }
+  - { key: F3,       mods: Command, chars: "\x1b[1;3R"                   }
+  - { key: F4,       mods: Command, chars: "\x1b[1;3S"                   }
+  - { key: F5,       mods: Command, chars: "\x1b[15;3~"                  }
+  - { key: F6,       mods: Command, chars: "\x1b[17;3~"                  }
+  - { key: F7,       mods: Command, chars: "\x1b[18;3~"                  }
+  - { key: F8,       mods: Command, chars: "\x1b[19;3~"                  }
+  - { key: F9,       mods: Command, chars: "\x1b[20;3~"                  }
+  - { key: F10,      mods: Command, chars: "\x1b[21;3~"                  }
+  - { key: F11,      mods: Command, chars: "\x1b[23;3~"                  }
+  - { key: F12,      mods: Command, chars: "\x1b[24;3~"                  }
+  - { key: Key5,     mods: Alt,           chars: "\x5b"                          }
+  - { key: Key6,     mods: Alt,           chars: "\x5d"                          }
+  - { key: Key7,     mods: Alt,           chars: "\x7c"                          }
+  - { key: Key7,     mods: Shift|Alt,     chars: "\x5c"                          }
+  - { key: Key8,     mods: Alt,           chars: "\x7b"                          }
+  - { key: Key9,     mods: Alt,           chars: "\x7d"                          }
+  - { key: Equals,                        chars: "\xb4"                          }
+  - { key: Equals,   mods: Shift,         chars: "\x60"                          }
+  - { key: N,        mods: Alt,           chars: "\x7e"                          }
+  - { key: L,        mods: Alt,           chars: "\x40"                          }
+  - { key: Caret,                         chars: "\x5e"                           }

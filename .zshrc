@@ -50,4 +50,6 @@ tmateip () {
   echo ${output#*session: } | pbcopy
 }
 
+alias vim=nvim
+
 stty icrnl

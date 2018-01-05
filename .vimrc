@@ -50,8 +50,12 @@ set expandtab
 set ttyfast
 set lazyredraw
 set mouse=a
-set ttymouse=xterm2
-set term=screen-256color
+
+if !has('nvim')
+  set ttymouse=xterm2
+  set term=screen-256color
+endif
+
 nmap <leader>n :NERDTreeToggle<CR>
 " set statusline+=%#warningmsg#
 " set statusline+=%{SyntasticStatuslineFlag()}

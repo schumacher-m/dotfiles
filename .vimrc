@@ -32,6 +32,7 @@ Plugin 'majutsushi/tagbar'
 Plugin 'taglist.vim'
 Plugin 'tpope/vim-obsession'
 Plugin 'lifepillar/vim-solarized8'
+Plugin 'hdima/python-syntax'
 call vundle#end()            " required
 filetype plugin indent on    " required
 let mapleader=","

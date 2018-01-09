@@ -44,6 +44,9 @@ eval "$(rbenv init -)"
 alias pbcopy='xclip -selection clipboard'
 alias pbpaste='xclip -selection clipboard -o'
 
+bindkey "^[[1;3C" forward-word
+bindkey "^[[1;3D" backward-word
+
 tmateip () {
   output=$(tmate show-message | grep -m 1 "ssh session:")
   echo ${output#*session: }

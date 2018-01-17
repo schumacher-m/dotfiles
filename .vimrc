@@ -33,6 +33,9 @@ Plugin 'taglist.vim'
 Plugin 'tpope/vim-obsession'
 Plugin 'lifepillar/vim-solarized8'
 Plugin 'hdima/python-syntax'
+Plugin 'leafgarland/typescript-vim'
+Plugin 'pangloss/vim-javascript'
+Plugin 'peitalin/vim-jsx-typescript'
 call vundle#end()            " required
 filetype plugin indent on    " required
 let mapleader=","
@@ -84,6 +87,7 @@ let g:airline_theme='solarized'
 
 " set synmaxcol=128
 " syntax sync minlines=256
+autocmd BufNewFile,BufRead *.tsx,*.jsx set filetype=typescript.jsx
 
 augroup CursorLine
   au!

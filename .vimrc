@@ -31,11 +31,13 @@ Plugin 'tpope/vim-speeddating'
 Plugin 'majutsushi/tagbar'
 Plugin 'taglist.vim'
 Plugin 'tpope/vim-obsession'
+Plugin 'dhruvasagar/vim-prosession'
 Plugin 'lifepillar/vim-solarized8'
 Plugin 'hdima/python-syntax'
 Plugin 'leafgarland/typescript-vim'
 Plugin 'pangloss/vim-javascript'
 Plugin 'peitalin/vim-jsx-typescript'
+Plugin 'posva/vim-vue'
 call vundle#end()            " required
 filetype plugin indent on    " required
 let mapleader=","
@@ -81,24 +83,24 @@ let g:AutoPairsUseInsertedCount = 1
 let g:scala_scaladoc_indent = 1
 let g:airline_theme='solarized'
 
+autocmd BufNewFile,BufRead *.tsx,*.jsx set filetype=typescript.jsx
+
 " autocmd BufWritePost *.scala silent :EnTypeCheck
 " nnoremap <localleader>t :EnTypeCheck<CR>
 " au FileType scala nnoremap <localleader>df :EnDeclaration<CR>
-
 " set synmaxcol=128
 " syntax sync minlines=256
-autocmd BufNewFile,BufRead *.tsx,*.jsx set filetype=typescript.jsx
+"autocmd VimEnter * Prosession ./
+" augroup CursorLine
+"   au!
+"   au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
+"   au WinLeave * setlocal nocursorline
+" augroup END
 
-augroup CursorLine
-  au!
-  au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
-  au WinLeave * setlocal nocursorline
-augroup END
-
-augroup sourcesession
-  autocmd!
-  autocmd VimEnter * nested
-        \ if !argc() && empty(v:this_session) && filereadable('Session.vim') |
-        \   source Session.vim |
-        \ endif
-augroup END
+" augroup sourcesession
+"   autocmd!
+"   autocmd VimEnter * nested
+"         \ if !argc() && empty(v:this_session) && filereadable('Session.vim') |
+"         \   source Session.vim |
+"         \ endif
+" augroup END

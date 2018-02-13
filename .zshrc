@@ -47,12 +47,18 @@ alias pbpaste='xclip -selection clipboard -o'
 bindkey "^[[1;3C" forward-word
 bindkey "^[[1;3D" backward-word
 
-tmateip () {
+function tmateip () {
   output=$(tmate show-message | grep -m 1 "ssh session:")
   echo ${output#*session: }
   echo ${output#*session: } | pbcopy
 }
 
-alias vim=nvim
+function vim() {
+  if test $# -gt 0; then
+    env nvim "$@"
+  else
+    env nvim -c "Prosession $(pwd)"
+  fi
+}
 
 stty icrnl

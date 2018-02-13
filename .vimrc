@@ -39,6 +39,8 @@ Plugin 'leafgarland/typescript-vim'
 Plugin 'pangloss/vim-javascript'
 Plugin 'peitalin/vim-jsx-typescript'
 Plugin 'posva/vim-vue'
+Plugin 'tpope/vim-surround'
+Plugin 'ervandew/supertab'
 call vundle#end()            " required
 filetype plugin indent on    " required
 let mapleader=","
@@ -46,6 +48,7 @@ set backupdir=$TMPDIR
 set directory=$TMPDIR
 set hidden
 set number
+set numberwidth=5
 syntax enable
 set background=dark
 colorscheme solarized8
@@ -56,6 +59,8 @@ set expandtab
 set ttyfast
 set lazyredraw
 set mouse=a
+set textwidth=80
+set colorcolumn=+1
 
 if !has('nvim')
   set ttymouse=xterm2
@@ -85,6 +90,18 @@ let g:scala_scaladoc_indent = 1
 let g:airline_theme='solarized'
 
 autocmd BufNewFile,BufRead *.tsx,*.jsx set filetype=typescript.jsx
+
+" The Silver Searcher
+if executable('ag')
+  " Use ag over grep
+  set grepprg=ag\ --nogroup\ --nocolor
+
+  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+
+  " ag is fast enough that CtrlP doesn't need to cache
+  let g:ctrlp_use_caching = 0
+endif
 
 " autocmd BufWritePost *.scala silent :EnTypeCheck
 " nnoremap <localleader>t :EnTypeCheck<CR>

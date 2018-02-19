@@ -41,6 +41,8 @@ Plugin 'peitalin/vim-jsx-typescript'
 Plugin 'posva/vim-vue'
 Plugin 'tpope/vim-surround'
 Plugin 'ervandew/supertab'
+Plugin 'editorconfig/editorconfig-vim'
+Plugin 'rhlobo/vim-super-retab'
 call vundle#end()            " required
 filetype plugin indent on    " required
 let mapleader=","
@@ -88,6 +90,7 @@ let g:racer_cmd = system('echo $HOME/.cargo/bin/racer')
 let g:AutoPairsUseInsertedCount = 1
 let g:scala_scaladoc_indent = 1
 let g:airline_theme='solarized'
+let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
 
 autocmd BufNewFile,BufRead *.tsx,*.jsx set filetype=typescript.jsx
 

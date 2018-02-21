@@ -43,6 +43,7 @@ Plugin 'tpope/vim-surround'
 Plugin 'ervandew/supertab'
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'rhlobo/vim-super-retab'
+Plugin 'nyarly/cadre'
 call vundle#end()            " required
 filetype plugin indent on    " required
 let mapleader=","

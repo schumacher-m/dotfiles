@@ -38,6 +38,8 @@ export PATH="$HOME/.cargo/RustDT/bin:$PATH"
 export PATH="$HOME/go/bin:$PATH"
 export PATH="$HOME/Library/Python/3.6/bin:$PATH"
 export PATH="$HOME/bin:$PATH"
+export PATH="$HOME/Library/Android/sdk/platform-tools:$PATH"
+export PATH="/usr/local/opt/python@2/bin:$PATH"
 
 eval "$(rbenv init -)"
 
@@ -62,3 +64,4 @@ function vim() {
 }
 
 stty icrnl
+

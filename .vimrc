@@ -38,12 +38,12 @@ Plugin 'hdima/python-syntax'
 Plugin 'leafgarland/typescript-vim'
 Plugin 'pangloss/vim-javascript'
 Plugin 'peitalin/vim-jsx-typescript'
-Plugin 'posva/vim-vue'
 Plugin 'tpope/vim-surround'
 Plugin 'ervandew/supertab'
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'rhlobo/vim-super-retab'
-Plugin 'nyarly/cadre'
+Plugin 'posva/vim-vue'
+Plugin 'digitaltoad/vim-pug'
 call vundle#end()            " required
 filetype plugin indent on    " required
 let mapleader=","
@@ -94,6 +94,7 @@ let g:airline_theme='solarized'
 let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
 
 autocmd BufNewFile,BufRead *.tsx,*.jsx set filetype=typescript.jsx
+autocmd FileType vue syntax sync fromstart
 
 " The Silver Searcher
 if executable('ag')

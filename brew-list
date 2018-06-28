@@ -3,6 +3,7 @@ ansiweather
 antigen
 autoconf
 autojump
+automake
 aws-elasticbeanstalk
 bash
 bc
@@ -11,6 +12,8 @@ cairo
 cmake
 cscope
 docker-compose
+dos2unix
+editorconfig
 encfs
 ffmpeg
 fontconfig
@@ -18,8 +21,10 @@ freetype
 gawk
 gcc
 gd
+gdb
 gdbm
 gettext
+git
 git-lfs
 glances
 glib
@@ -30,7 +35,9 @@ gnutls
 go
 gobject-introspection
 graphviz
+httpie
 icu4c
+imagemagick
 isl
 jemalloc
 jpeg
@@ -64,6 +71,7 @@ maven
 maven@3.3
 mpfr
 msgpack
+mysql
 neovim
 nettle
 node
@@ -76,6 +84,7 @@ p11-kit
 pcre
 pdfgrep
 perl
+phantomjs
 pigz
 pinentry
 pixman
@@ -85,9 +94,11 @@ postgresql
 pwgen
 pxz
 python
-python3
+python@2
+qt@5.5
 rbenv
 readline
+recode
 rsync
 ruby-build
 sdl2
@@ -98,6 +109,7 @@ thefuck
 tmate
 tmux
 unibilium
+utf8proc
 webp
 wget
 x264
@@ -105,3 +117,5 @@ xclip
 xvid
 xz
 youtube-dl
+zsh
+getantibody/tap/antibody

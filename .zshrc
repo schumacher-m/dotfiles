@@ -1,35 +1,16 @@
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
-ZSH_TMUX_AUTOSTART="true"
+ZSH="$(antibody home)/https-COLON--SLASH--SLASH-github.com-SLASH-robbyrussell-SLASH-oh-my-zsh"
+ZSH_THEME="robbyrussell"
+ZSH_TMUX_AUTOSTART=true
+DISABLE_UPDATE_PROMPT=true
+DISABLE_AUTO_UPDATE=true
 
-source /usr/local/share/antigen/antigen.zsh
+source <(antibody init)
+antibody bundle < ~/.zsh_plugins
 
-antigen use oh-my-zsh
-
-antigen bundle git
-antigen bundle autojump
-antigen bundle tmux
-antigen bundle thefuck
-antigen bundle rbenv
-antigen bundle docker
-antigen bundle docker-compose
-antigen bundle bundler
-antigen bundle ruby
-antigen bundle rust
-antigen bundle rake-fast
-antigen bundle brew
-antigen bundle aws
-
-antigen bundle zsh-users/zsh-syntax-highlighting
-antigen bundle zsh-users/zsh-completions
-antigen bundle zsh-users/zsh-autosuggestions
-antigen bundle unixorn/autoupdate-antigen.zshplugin
-antigen bundle fcambus/ansiweather
-
-antigen theme robbyrussell
-
-antigen apply
+eval "$(rbenv init --no-rehash -)"
 
 export PATH="/usr/local/bin:$PATH"
 export PATH="$HOME/.rbenv/bin:$PATH"
@@ -40,8 +21,7 @@ export PATH="$HOME/Library/Python/3.6/bin:$PATH"
 export PATH="$HOME/bin:$PATH"
 export PATH="$HOME/Library/Android/sdk/platform-tools:$PATH"
 export PATH="/usr/local/opt/python@2/bin:$PATH"
-
-eval "$(rbenv init -)"
+export PATH="/usr/local/opt/qt@5.5/bin:$PATH"
 
 alias pbcopy='xclip -selection clipboard'
 alias pbpaste='xclip -selection clipboard -o'
@@ -64,4 +44,3 @@ function vim() {
 }
 
 stty icrnl
-

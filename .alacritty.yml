@@ -32,7 +32,7 @@ window:
   decorations: true
 
 # Display tabs using this many cells (changes require restart)
-tabspaces: 8
+tabspaces: 2
 
 # When true, bold text is drawn using the bright variant of colors.
 draw_bold_text_with_bright_colors: true
@@ -43,7 +43,7 @@ font:
   normal:
     family: Hack
     # Style can be specified to pick a specific face.
-    style: Regular
+    # style: Regular
 
   # The bold font face
   bold:
@@ -226,7 +226,7 @@ live_config_reload: true
 #     - --login
 
 shell:
-  program: /bin/zsh
+  program: /usr/local/bin/zsh
   args:
     - --login
 
@@ -375,4 +375,4 @@ key_bindings:
   - { key: Equals,   mods: Shift,         chars: "\x60"                          }
   - { key: N,        mods: Alt,           chars: "\x7e"                          }
   - { key: L,        mods: Alt,           chars: "\x40"                          }
-  - { key: Caret,                         chars: "\x5e"                           }
+  - { key: Caret,                         chars: "\x5e"                          }

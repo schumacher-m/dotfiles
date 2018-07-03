@@ -3,7 +3,8 @@ export LANG=en_US.UTF-8
 
 ZSH="$(antibody home)/https-COLON--SLASH--SLASH-github.com-SLASH-robbyrussell-SLASH-oh-my-zsh"
 ZSH_THEME="robbyrussell"
-ZSH_TMUX_AUTOSTART=true
+ZSH_TMUX_AUTOSTART=false
+[[ $TMUX == "" ]] && tmux new-session -A -s 0
 DISABLE_UPDATE_PROMPT=true
 DISABLE_AUTO_UPDATE=true
 
@@ -22,6 +23,7 @@ export PATH="$HOME/bin:$PATH"
 export PATH="$HOME/Library/Android/sdk/platform-tools:$PATH"
 export PATH="/usr/local/opt/python@2/bin:$PATH"
 export PATH="/usr/local/opt/qt@5.5/bin:$PATH"
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
 alias pbcopy='xclip -selection clipboard'
 alias pbpaste='xclip -selection clipboard -o'
@@ -44,3 +46,5 @@ function vim() {
 }
 
 stty icrnl
+
+

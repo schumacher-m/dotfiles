@@ -5,7 +5,7 @@ We all need them!
 
 # Recovery
 
-* `git clone schumacher-m/dotfiles`
+* `git clone git@github.com:schumacher-m/dotfiles.git`
 * `cp -r dotfiles/.[^.]* ~/`
 * `/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"`
 * `xargs brew install < brew-list`

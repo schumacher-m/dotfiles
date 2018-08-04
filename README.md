@@ -14,7 +14,6 @@ We all need them!
 
 # Spacemacs
 
-* `brew install emacs`
 * `git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d`
 * `cp -r .emacs.d/private/* ~/.emacs.d/private/`
 

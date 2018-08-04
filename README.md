@@ -11,6 +11,15 @@ We all need them!
 * `xargs brew install < brew-list`
 * `rbenv install 2.5.0`
 * `git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm`
+
+# Spacemacs
+
+* `brew install emacs`
+* `git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d`
+* `cp -r .emacs.d/private/* ~/.emacs.d/private/`
+
+# Vim
+
 * `git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim`
 * `vim +PluginInstall +qall`
 * `~/.vim/bundle/YouCompleteMe/install.py --clang-completer --go-completer --rust-completer --js-completer`

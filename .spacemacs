@@ -31,6 +31,7 @@ values."
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
    '(
+     sql
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
      ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
@@ -50,7 +51,7 @@ values."
      icon-spaceline
      shell
      org
-     (version-control :variables version-control-diff-tool 'diff-hl)
+     version-control
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
@@ -60,9 +61,6 @@ values."
                                       company
                                       editorconfig
                                       pug-mode
-                                      ;; (pug-mode :location
-                                      ;;           (recipe :fetcher github
-                                      ;;                   :repo "schumacher-m/emacs-pug-mode"))
                                       scss-mode
                                       all-the-icons
                                       spaceline-all-the-icons)
@@ -326,6 +324,7 @@ you should place your code here."
   (add-hook 'window-setup-hook #'neotree-find-project-root)
   (global-linum-mode)
   (setq neo-show-hidden-files nil)
+  (setq ns-right-alternate-modifier 'none)
 )
 
 ;; Do not write anything past this comment. This is where Emacs will

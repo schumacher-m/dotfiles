@@ -7,17 +7,20 @@ We all need them!
 
 * `git clone git@github.com:schumacher-m/dotfiles.git`
 * `cp -r dotfiles/.[^.]* ~/`
-* `/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"`
 * `xargs brew install < brew-list`
-* `rbenv install 2.5.0`
 * `git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm`
+
+# Recovery: Optional
+* `/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"`
+* `rbenv install 2.5.0`
 
 # Spacemacs
 
 * `git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d`
 * `cp -r .emacs.d/private/* ~/.emacs.d/private/`
+* `brew services start emacs`
 
-# Vim
+# Vim (Deprecated)
 
 * `git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim`
 * `vim +PluginInstall +qall`

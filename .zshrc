@@ -24,12 +24,17 @@ export PATH="$HOME/Library/Android/sdk/platform-tools:$PATH"
 export PATH="/usr/local/opt/python@2/bin:$PATH"
 export PATH="/usr/local/opt/qt@5.5/bin:$PATH"
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+export PATH="/usr/local/opt/openssl/bin:$PATH"
 
 alias pbcopy='xclip -selection clipboard'
 alias pbpaste='xclip -selection clipboard -o'
 
 bindkey "^[[1;3C" forward-word
 bindkey "^[[1;3D" backward-word
+
+export ALTERNATE_EDITOR=""
+export EDITOR="emacsclient -t"                  # $EDITOR opens in terminal
+export VISUAL="emacsclient -c -a emacs"         # $VISUAL opens in GUI mode
 
 function tmateip () {
   output=$(tmate show-message | grep -m 1 "ssh session:")
@@ -46,5 +51,3 @@ function vim() {
 }
 
 stty icrnl
-
-

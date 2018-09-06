@@ -2,13 +2,13 @@ robbyrussell/oh-my-zsh
 
 robbyrussell/oh-my-zsh folder:plugins/git
 robbyrussell/oh-my-zsh folder:plugins/autojump
-robbyrussell/oh-my-zsh folder:plugins/tmux
 robbyrussell/oh-my-zsh folder:plugins/thefuck
 robbyrussell/oh-my-zsh folder:plugins/docker
 robbyrussell/oh-my-zsh folder:plugins/docker-compose
 robbyrussell/oh-my-zsh folder:plugins/bundler
 robbyrussell/oh-my-zsh folder:plugins/ruby
 robbyrussell/oh-my-zsh folder:plugins/rust
+bhilburn/powerlevel9k
 
 zsh-users/zsh-completions
 zsh-users/zsh-autosuggestions

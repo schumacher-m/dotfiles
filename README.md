@@ -9,6 +9,7 @@ We all need them!
 * `cp -r dotfiles/.[^.]* ~/`
 * `xargs brew install < brew-list`
 * `git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm`
+* `git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k`
 
 # Recovery: Optional
 * `/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"`

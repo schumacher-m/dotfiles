@@ -15,6 +15,7 @@ eval "$(rbenv init - --no-rehash)"
 source <(antibody init)
 antibody bundle < ~/.zsh_plugins
 
+alias vim='emacsclient -nw '
 alias pbcopy='xclip -selection clipboard'
 alias pbpaste='xclip -selection clipboard -o'
 

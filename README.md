@@ -19,6 +19,10 @@ We all need them!
 * `cp -r .emacs.d/private/* ~/.emacs.d/private/`
 * `brew services start emacs`
 
+# Toggl CLI
+
+* https://github.com/meeDamian/toggl-cli
+
 # Vim (Deprecated)
 
 * `git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim`

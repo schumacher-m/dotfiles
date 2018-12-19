@@ -7,8 +7,11 @@ ZSH_TMUX_AUTOSTART=false
 [[ $TMUX == "" ]] && tmux new-session -A -s 0
 DISABLE_UPDATE_PROMPT=true
 DISABLE_AUTO_UPDATE=true
+
+# P9K Config: https://github.com/bhilburn/powerlevel9k/issues/501
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir vcs)
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=()
+POWERLEVEL9K_SHORTEN_DIR_LENGTH=3
 
 eval "$(direnv hook zsh)"
 

@@ -10,7 +10,7 @@ DISABLE_AUTO_UPDATE=true
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir vcs)
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=()
 
-eval "$(rbenv init - --no-rehash)"
+eval "$(direnv hook zsh)"
 
 source <(antibody init)
 antibody bundle < ~/.zsh_plugins

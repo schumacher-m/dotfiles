@@ -8,8 +8,11 @@ robbyrussell/oh-my-zsh path:plugins/docker-compose
 robbyrussell/oh-my-zsh path:plugins/bundler
 robbyrussell/oh-my-zsh path:plugins/ruby
 robbyrussell/oh-my-zsh path:plugins/rust
+robbyrussell/oh-my-zsh path:plugins/rbenv
+robbyrussell/oh-my-zsh path:plugins/pyenv
 bhilburn/powerlevel9k
 
 zsh-users/zsh-completions
 zsh-users/zsh-autosuggestions
 zsh-users/zsh-syntax-highlighting
+zsh-users/zsh-history-substring-search

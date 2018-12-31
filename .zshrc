@@ -23,10 +23,10 @@ POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir vcs)
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=()
 POWERLEVEL9K_SHORTEN_DIR_LENGTH=3
 
-eval "$(direnv hook zsh)"
-
 source <(antibody init)
 antibody bundle < ~/.zsh_plugins
+
+eval "$(direnv hook zsh)"
 
 alias vim='emacsclient -nw '
 alias pbcopy='xclip -selection clipboard'

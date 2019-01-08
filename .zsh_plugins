@@ -1,5 +1,6 @@
 robbyrussell/oh-my-zsh
 
+robbyrussell/oh-my-zsh path:plugins/pyenv
 robbyrussell/oh-my-zsh path:plugins/rbenv
 robbyrussell/oh-my-zsh path:plugins/nvm
 robbyrussell/oh-my-zsh path:plugins/git

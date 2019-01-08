@@ -23,6 +23,12 @@ We all need them!
 
 * https://github.com/meeDamian/toggl-cli
 
+# Python (pyenv)
+
+## OSX Quirks
+* xcode-select --install
+* sudo installer -pkg /Library/Developer/CommandLineTools/Packages/macOS_SDK_headers_for_macOS_10.14.pkg -target /
+
 # Vim (Deprecated)
 
 * `git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim`

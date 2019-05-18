@@ -27,7 +27,6 @@ source <(antibody init)
 antibody bundle < ~/.zsh_plugins
 
 eval "$(direnv hook zsh)"
-eval "$(goenv init -)"
 eval $(thefuck --alias)
 
 alias vim='emacs -nw '

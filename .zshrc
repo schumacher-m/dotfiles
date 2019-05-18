@@ -27,22 +27,22 @@ source <(antibody init)
 antibody bundle < ~/.zsh_plugins
 
 eval "$(direnv hook zsh)"
+eval "$(goenv init -)"
+eval $(thefuck --alias)
 
-alias vim='emacsclient -nw '
-alias pbcopy='xclip -selection clipboard'
-alias pbpaste='xclip -selection clipboard -o'
+alias vim='emacs -nw '
 
 bindkey "^[[1;3C" forward-word
 bindkey "^[[1;3D" backward-word
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
 
-export ALTERNATE_EDITOR=""
-export EDITOR="emacsclient -t"                  # $EDITOR opens in terminal
-export VISUAL="emacsclient -c -a emacs"         # $VISUAL opens in GUI mode
+export EDITOR="emacs -nw"
 
 function tmateip () {
   output=$(tmate show-message | grep -m 1 "ssh session:")
   echo ${output#*session: }
   echo ${output#*session: } | pbcopy
 }
+
+

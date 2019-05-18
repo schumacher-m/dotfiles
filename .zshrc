@@ -44,5 +44,3 @@ function tmateip () {
   echo ${output#*session: }
   echo ${output#*session: } | pbcopy
 }
-
-

@@ -1,8 +1,1 @@
 export PATH="$HOME/bin:$PATH"
-export PATH="/usr/local/Cellar/less/530_1/bin:$PATH"
-export PATH="/usr/local/bin:/usr/local/sbin:$PATH"
-export PATH="$HOME/.rbenv/bin:$PATH"
-export PATH="$HOME/.cargo/RustDT/bin:$PATH"
-export PATH="$HOME/.goenv/bin:$PATH"
-export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
-export PATH="/usr/local/opt/openssl/bin:$PATH"

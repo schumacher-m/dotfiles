@@ -1,14 +1,12 @@
 robbyrussell/oh-my-zsh
 
-robbyrussell/oh-my-zsh path:plugins/pyenv
-robbyrussell/oh-my-zsh path:plugins/rbenv
-robbyrussell/oh-my-zsh path:plugins/nvm
 robbyrussell/oh-my-zsh path:plugins/git
 robbyrussell/oh-my-zsh path:plugins/autojump
 robbyrussell/oh-my-zsh path:plugins/thefuck
 robbyrussell/oh-my-zsh path:plugins/osx
-bhilburn/powerlevel9k
 
+kiurchv/asdf.plugin.zsh
+bhilburn/powerlevel9k
 zsh-users/zsh-completions
 zsh-users/zsh-autosuggestions
 zsh-users/zsh-syntax-highlighting

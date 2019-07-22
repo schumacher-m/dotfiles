@@ -29,7 +29,7 @@ antibody bundle < ~/.zsh_plugins
 eval "$(direnv hook zsh)"
 eval $(thefuck --alias)
 
-alias vim='emacs -nw '
+alias vim='emacsclient -nw '
 
 bindkey "^[[1;3C" forward-word
 bindkey "^[[1;3D" backward-word

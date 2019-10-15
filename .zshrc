@@ -36,8 +36,6 @@ bindkey "^[[1;3D" backward-word
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
 
-export EDITOR="emacs -nw"
-
 function tmateip () {
   output=$(tmate show-message | grep -m 1 "ssh session:")
   echo ${output#*session: }

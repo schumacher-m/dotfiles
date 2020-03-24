@@ -476,6 +476,7 @@ Put your configuration code here, except for variables that should be set
 before packages are loaded."
   (editorconfig-mode 1)
   (xclip-mode 1)
+  (setq create-lockfiles nil)
   (setq make-backup-files nil)
   (setq auto-save-default nil)
   (setq backup-directory-alist `(("." . "~/.emacs.d/backup")))

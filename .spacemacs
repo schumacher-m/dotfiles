@@ -32,31 +32,31 @@ This function should only modify configuration layer settings."
 
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
-   '(html
-     ruby
-     typescript
-     rust
-     cucumber
-     yaml
-     org
-     lsp
-     docker
-     xclipboard
-     terraform
-     helm
+   '(
      auto-completion
-     sql
-     markdown
-     yaml
-     python
-     go
+     colors
+     cscope
      csv
+     cucumber
+     dap
      git
-     treemacs
+     go
+     helm
+     javascript
+     lsp
+     markdown
+     multiple-cursors
+     org
+     python
      spell-checking
+     sql
      syntax-checking
+     terraform
+     treemacs
+     unicode-fonts
      version-control
-     (go :variables go-use-golangci-lint t)
+     xclipboard
+     yaml
      )
 
    ;; List of additional packages that will be installed without being
@@ -67,12 +67,12 @@ This function should only modify configuration layer settings."
    ;; '(your-package :location "~/path/to/your-package/")
    ;; Also include the dependencies as they will not be resolved automatically.
    dotspacemacs-additional-packages '(
-                                      editorconfig
-                                      company
-                                      xclip
-                                      all-the-icons
-                                      exec-path-from-shell
                                       ag
+                                      company
+                                      editorconfig
+                                      evil-smartparens
+                                      exec-path-from-shell
+                                      xclip
    )
 
    ;; A list of packages that cannot be updated.
@@ -115,7 +115,7 @@ It should only modify the values of Spacemacs settings."
    ;; when invoking Emacs 27.1 executable on the command line, for instance:
    ;;   ./emacs --dump-file=~/.emacs.d/.cache/dumps/spacemacs.pdmp
    ;; (default spacemacs.pdmp)
-   dotspacemacs-emacs-dumper-dump-file "spacemacs.pdmp"
+   dotspacemacs-emacs-dumper-dump-file (format "spacemacs-%s.pdmp" emacs-version)
 
    ;; If non-nil ELPA repositories are contacted via HTTPS whenever it's
    ;; possible. Set it to nil if you have no way to use HTTPS in your
@@ -134,6 +134,13 @@ It should only modify the values of Spacemacs settings."
    ;; performance issues due to garbage collection operations.
    ;; (default '(100000000 0.1))
    dotspacemacs-gc-cons '(100000000 0.1)
+
+   ;; Set `read-process-output-max' when startup finishes.
+   ;; This defines how much data is read from a foreign process.
+   ;; Setting this >= 1 MB should increase performance for lsp servers
+   ;; in emacs 27.
+   ;; (default (* 1024 1024))
+   dotspacemacs-read-process-output-max (* 1024 2048)
 
    ;; If non-nil then Spacelpa repository is the primary source to install
    ;; a locked version of packages. If nil then Spacemacs will install the
@@ -163,13 +170,18 @@ It should only modify the values of Spacemacs settings."
    ;; (default 'vim)
    dotspacemacs-editing-style 'vim
 
+   ;; If non-nil show the version string in the Spacemacs buffer. It will
+   ;; appear as (spacemacs version)@(emacs version)
+   ;; (default t)
+   dotspacemacs-startup-buffer-show-version t
+
    ;; Specify the startup banner. Default value is `official', it displays
    ;; the official spacemacs logo. An integer value is the index of text
    ;; banner, `random' chooses a random text banner in `core/banners'
    ;; directory. A string value must be a path to an image format supported
    ;; by your Emacs build.
    ;; If the value is nil then no banner is displayed. (default 'official)
-   dotspacemacs-startup-banner 'official
+   dotspacemacs-startup-banner nil
 
    ;; List of items to show in startup buffer or an association list of
    ;; the form `(list-type . list-size)`. If nil then it is disabled.
@@ -238,8 +250,10 @@ It should only modify the values of Spacemacs settings."
    dotspacemacs-major-mode-leader-key ","
 
    ;; Major mode leader key accessible in `emacs state' and `insert state'.
-   ;; (default "C-M-m")
-   dotspacemacs-major-mode-emacs-leader-key "C-M-m"
+   ;; (default "C-M-m" for terminal mode, "<M-return>" for GUI mode).
+   ;; Thus M-RET should work as leader key in both GUI and terminal modes.
+   ;; C-M-m also should work in terminal mode, but not in GUI mode.
+   dotspacemacs-major-mode-emacs-leader-key (if window-system "<M-return>" "C-M-m")
 
    ;; These variables control whether separate commands are bound in the GUI to
    ;; the key pairs `C-i', `TAB' and `C-m', `RET'.
@@ -248,9 +262,6 @@ It should only modify the values of Spacemacs settings."
    ;; In the terminal, these pairs are generally indistinguishable, so this only
    ;; works in the GUI. (default nil)
    dotspacemacs-distinguish-gui-tab nil
-
-   ;; Name of the default layout (default "Default")
-   dotspacemacs-default-layout-name "Default"
 
    ;; If non-nil the default layout name is displayed in the mode-line.
    ;; (default nil)
@@ -375,12 +386,12 @@ It should only modify the values of Spacemacs settings."
 
    ;; If non-nil `smartparens-strict-mode' will be enabled in programming modes.
    ;; (default nil)
-   dotspacemacs-smartparens-strict-mode nil
+   dotspacemacs-smartparens-strict-mode t
 
    ;; If non-nil pressing the closing parenthesis `)' key in insert mode passes
    ;; over any automatically added closing parenthesis, bracket, quote, etc...
    ;; This can be temporary disabled by pressing `C-q' before `)'. (default nil)
-   dotspacemacs-smart-closing-parenthesis nil
+   dotspacemacs-smart-closing-parenthesis t
 
    ;; Select a scope to highlight delimiters. Possible values are `any',
    ;; `current', `all' or `nil'. Default is `all' (highlight any scope and
@@ -437,6 +448,8 @@ It should only modify the values of Spacemacs settings."
    ;; (default nil)
    dotspacemacs-whitespace-cleanup "all"
 
+   dotspacemacs-use-clean-aindent-mode t
+
    ;; Either nil or a number of seconds. If non-nil zone out after the specified
    ;; number of seconds. (default nil)
    dotspacemacs-zone-out-when-idle nil
@@ -475,15 +488,26 @@ This function is called at the very end of Spacemacs startup, after layer
 configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
+  (add-hook 'smartparens-enabled-hook #'evil-smartparens-mode)
+  ;; (require 'comp)
+  ;; (add-to-list 'comp-bootstrap-black-list "smartparens")
+  ;; (add-to-list 'comp-deferred-compilation-black-list "smartparens")
+  (setq comp-deferred-compilation t)
   (editorconfig-mode 1)
   (xclip-mode 1)
+  (setq lsp-ui-doc-enable nil)
   (setq create-lockfiles nil)
   (setq make-backup-files nil)
   (setq auto-save-default nil)
   (setq backup-directory-alist `(("." . "~/.emacs.d/backup")))
   (exec-path-from-shell-initialize)
+  (setq-default dotspacemacs-configuration-layers '(
+    (treemacs :variables treemacs-use-filewatch-mode t)
+    (treemacs :variables treemacs-use-git-mode 'deferred)
+    (colors :variables colors-colorize-identifiers 'all)
+    )
   )
-
+)
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
 (defun dotspacemacs/emacs-custom-settings ()
@@ -514,8 +538,9 @@ This function is called at the very end of Spacemacs initialization."
      ("XXX+" . "#dc752f")
      ("\\?\\?\\?+" . "#dc752f")))
  '(package-selected-packages
-   '(helm-css-scss haml-mode emmet-mode counsel-css counsel swiper ivy company-web web-completion-data add-node-modules-path ag dockerfile-mode docker json-mode tablist docker-tramp json-snatcher json-reformat exec-path-from-shell dash-functional tern flycheck-golangci-lint yasnippet-snippets helm-company helm-c-yasnippet fuzzy company-statistics auto-yasnippet yasnippet ac-ispell auto-complete yapfify yaml-mode xclip ws-butler writeroom-mode winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package treemacs-projectile treemacs-magit treemacs-evil toc-org symon symbol-overlay string-inflection sql-indent spaceline-all-the-icons smeargle restart-emacs rainbow-delimiters pytest pyenv-mode py-isort popwin pippel pipenv pip-requirements persp-mode pcre2el password-generator paradox org-plus-contrib org-bullets open-junk-file move-text monokai-theme mmm-mode markdown-toc magit-svn magit-gitflow lorem-ipsum live-py-mode link-hint indent-guide importmagic hybrid-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-xref helm-themes helm-swoop helm-pydoc helm-purpose helm-projectile helm-mode-manager helm-make helm-gitignore helm-git-grep helm-flx helm-descbinds helm-ag google-translate golden-ratio godoctor go-tag go-rename go-impl go-guru go-gen-test go-fill-struct go-eldoc gitignore-templates gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ gh-md font-lock+ flyspell-correct-helm flycheck-pos-tip flx-ido fill-column-indicator fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-textobj-line evil-surround evil-numbers evil-nerd-commenter evil-matchit evil-magit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-cleverparens evil-args evil-anzu eval-sexp-fu editorconfig dumb-jump dotenv-mode doom-modeline diminish diff-hl devdocs define-word cython-mode csv-mode company-terraform company-tern company-go company-anaconda column-enforce-mode clean-aindent-mode centered-cursor-mode browse-at-remote blacken auto-highlight-symbol auto-dictionary aggressive-indent ace-link ace-jump-helm-line))
- '(pdf-view-midnight-colors '("#b2b2b2" . "#262626")))
+   '(helm-cscope xcscope rainbow-mode rainbow-identifiers color-identifiers-mode evil-easymotion dired-quick-sort posframe livid-mode skewer-mode json-navigator hierarchy js2-refactor multiple-cursors web-beautify typescript-mode prettier-js nodejs-repl js2-mode js-doc grizzl simple-httpd helm-gtags ggtags bui shrink-path unicode-fonts ucs-utils font-utils persistent-soft list-utils pcache evil-mc treemacs evil-smartparens realgud test-simple loc-changes load-relative company-plsense nginx-mode helm-css-scss haml-mode emmet-mode counsel-css counsel swiper ivy company-web web-completion-data add-node-modules-path ag dockerfile-mode docker json-mode tablist docker-tramp json-snatcher json-reformat exec-path-from-shell dash-functional tern flycheck-golangci-lint yasnippet-snippets helm-company helm-c-yasnippet fuzzy company-statistics auto-yasnippet yasnippet ac-ispell auto-complete yapfify yaml-mode xclip ws-butler writeroom-mode winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package treemacs-projectile treemacs-magit treemacs-evil toc-org symon symbol-overlay string-inflection sql-indent spaceline-all-the-icons smeargle restart-emacs rainbow-delimiters pytest pyenv-mode py-isort popwin pippel pipenv pip-requirements persp-mode pcre2el password-generator paradox org-plus-contrib org-bullets open-junk-file move-text monokai-theme mmm-mode markdown-toc magit-svn magit-gitflow lorem-ipsum live-py-mode link-hint indent-guide importmagic hybrid-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-xref helm-themes helm-swoop helm-pydoc helm-purpose helm-projectile helm-mode-manager helm-make helm-gitignore helm-git-grep helm-flx helm-descbinds helm-ag google-translate golden-ratio godoctor go-tag go-rename go-impl go-guru go-gen-test go-fill-struct go-eldoc gitignore-templates gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ gh-md font-lock+ flyspell-correct-helm flycheck-pos-tip flx-ido fill-column-indicator fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-textobj-line evil-surround evil-numbers evil-nerd-commenter evil-matchit evil-magit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-cleverparens evil-args evil-anzu eval-sexp-fu editorconfig dumb-jump dotenv-mode doom-modeline diminish diff-hl devdocs define-word cython-mode csv-mode company-terraform company-tern company-go company-anaconda column-enforce-mode clean-aindent-mode centered-cursor-mode browse-at-remote blacken auto-highlight-symbol auto-dictionary aggressive-indent ace-link ace-jump-helm-line))
+ '(pdf-view-midnight-colors '("#b2b2b2" . "#262626"))
+ '(warning-suppress-types '((comp) (comp))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

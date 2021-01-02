@@ -41,6 +41,7 @@ humanize==3.1.0
 idna==2.10
 importmagic==0.1.7
 inflection==0.5.1
+iniconfig==1.1.1
 ipdb==0.13.4
 ipykernel==5.3.4
 ipython==7.19.0
@@ -95,11 +96,14 @@ prompt-toolkit==3.0.8
 psutil==5.7.3
 psycopg2==2.8.6
 ptyprocess==0.6.0
+py==1.9.0
+py-sg==0.13
 pyasn1==0.4.8
 pycodestyle==2.6.0
 pycparser==2.20
 pycrypto==2.6.1
 pycryptodome==3.9.9
+pycscope==1.2.1
 pydocstyle==5.1.1
 pyflakes==2.2.0
 PyGithub==1.53
@@ -113,10 +117,12 @@ pyparsing==2.4.7
 pyrsistent==0.17.3
 pystache==0.5.4
 pyte==0.8.0
+pytest==6.1.2
 python-dateutil==2.8.1
 python-jsonrpc-server==0.4.0
 python-language-server==0.36.0
 pytz==2020.4
+pyudev==0.22.0
 PyYAML==5.3.1
 pyzmq==19.0.2
 qtconsole==4.7.7

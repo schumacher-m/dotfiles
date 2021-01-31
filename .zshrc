@@ -26,10 +26,7 @@ POWERLEVEL9K_SHORTEN_DIR_LENGTH=3
 source <(antibody init)
 antibody bundle < ~/.zsh_plugins
 
-eval "$(direnv hook zsh)"
-eval $(thefuck --alias)
-
-alias vim='emacsclient -tc'
+alias e='emacsclient -t'
 
 bindkey "^[[1;3C" forward-word
 bindkey "^[[1;3D" backward-word

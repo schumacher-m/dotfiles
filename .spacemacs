@@ -269,7 +269,7 @@ It should only modify the values of Spacemacs settings."
 
    ;; If non-nil then the last auto saved layouts are resumed automatically upon
    ;; start. (default nil)
-   dotspacemacs-auto-resume-layouts nil
+   dotspacemacs-auto-resume-layouts t
 
    ;; If non-nil, auto-generate layout name when creating new layouts. Only has
    ;; effect when using the "jump to layout by number" commands. (default nil)
@@ -386,7 +386,7 @@ It should only modify the values of Spacemacs settings."
 
    ;; If non-nil `smartparens-strict-mode' will be enabled in programming modes.
    ;; (default nil)
-   dotspacemacs-smartparens-strict-mode t
+   dotspacemacs-smartparens-strict-mode nil
 
    ;; If non-nil pressing the closing parenthesis `)' key in insert mode passes
    ;; over any automatically added closing parenthesis, bracket, quote, etc...
@@ -488,7 +488,7 @@ This function is called at the very end of Spacemacs startup, after layer
 configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
-  (add-hook 'smartparens-enabled-hook #'evil-smartparens-mode)
+  ;; (add-hook 'smartparens-enabled-hook #'evil-smartparens-mode)
   ;; (require 'comp)
   ;; (add-to-list 'comp-bootstrap-black-list "smartparens")
   ;; (add-to-list 'comp-deferred-compilation-black-list "smartparens")
@@ -504,6 +504,8 @@ before packages are loaded."
   (setq-default dotspacemacs-configuration-layers '(
     (treemacs :variables treemacs-use-filewatch-mode t)
     (treemacs :variables treemacs-use-git-mode 'deferred)
+    (treemacs :variables treemacs-use-scope-type 'Perspectives)
+    (treemacs :variables treemacs-use-all-the-icons-theme t)
     (colors :variables colors-colorize-identifiers 'all)
     )
   )
@@ -538,9 +540,15 @@ This function is called at the very end of Spacemacs initialization."
      ("XXX+" . "#dc752f")
      ("\\?\\?\\?+" . "#dc752f")))
  '(package-selected-packages
-   '(helm-cscope xcscope rainbow-mode rainbow-identifiers color-identifiers-mode evil-easymotion dired-quick-sort posframe livid-mode skewer-mode json-navigator hierarchy js2-refactor multiple-cursors web-beautify typescript-mode prettier-js nodejs-repl js2-mode js-doc grizzl simple-httpd helm-gtags ggtags bui shrink-path unicode-fonts ucs-utils font-utils persistent-soft list-utils pcache evil-mc treemacs evil-smartparens realgud test-simple loc-changes load-relative company-plsense nginx-mode helm-css-scss haml-mode emmet-mode counsel-css counsel swiper ivy company-web web-completion-data add-node-modules-path ag dockerfile-mode docker json-mode tablist docker-tramp json-snatcher json-reformat exec-path-from-shell dash-functional tern flycheck-golangci-lint yasnippet-snippets helm-company helm-c-yasnippet fuzzy company-statistics auto-yasnippet yasnippet ac-ispell auto-complete yapfify yaml-mode xclip ws-butler writeroom-mode winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package treemacs-projectile treemacs-magit treemacs-evil toc-org symon symbol-overlay string-inflection sql-indent spaceline-all-the-icons smeargle restart-emacs rainbow-delimiters pytest pyenv-mode py-isort popwin pippel pipenv pip-requirements persp-mode pcre2el password-generator paradox org-plus-contrib org-bullets open-junk-file move-text monokai-theme mmm-mode markdown-toc magit-svn magit-gitflow lorem-ipsum live-py-mode link-hint indent-guide importmagic hybrid-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-xref helm-themes helm-swoop helm-pydoc helm-purpose helm-projectile helm-mode-manager helm-make helm-gitignore helm-git-grep helm-flx helm-descbinds helm-ag google-translate golden-ratio godoctor go-tag go-rename go-impl go-guru go-gen-test go-fill-struct go-eldoc gitignore-templates gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ gh-md font-lock+ flyspell-correct-helm flycheck-pos-tip flx-ido fill-column-indicator fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-textobj-line evil-surround evil-numbers evil-nerd-commenter evil-matchit evil-magit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-cleverparens evil-args evil-anzu eval-sexp-fu editorconfig dumb-jump dotenv-mode doom-modeline diminish diff-hl devdocs define-word cython-mode csv-mode company-terraform company-tern company-go company-anaconda column-enforce-mode clean-aindent-mode centered-cursor-mode browse-at-remote blacken auto-highlight-symbol auto-dictionary aggressive-indent ace-link ace-jump-helm-line))
+   '(impatient-mode helm-cscope xcscope rainbow-mode rainbow-identifiers color-identifiers-mode evil-easymotion dired-quick-sort posframe livid-mode skewer-mode json-navigator hierarchy js2-refactor multiple-cursors web-beautify typescript-mode prettier-js nodejs-repl js2-mode js-doc grizzl simple-httpd helm-gtags ggtags bui shrink-path unicode-fonts ucs-utils font-utils persistent-soft list-utils pcache evil-mc treemacs evil-smartparens realgud test-simple loc-changes load-relative company-plsense nginx-mode helm-css-scss haml-mode emmet-mode counsel-css counsel swiper ivy company-web web-completion-data add-node-modules-path ag dockerfile-mode docker json-mode tablist docker-tramp json-snatcher json-reformat exec-path-from-shell dash-functional tern flycheck-golangci-lint yasnippet-snippets helm-company helm-c-yasnippet fuzzy company-statistics auto-yasnippet yasnippet ac-ispell auto-complete yapfify yaml-mode xclip ws-butler writeroom-mode winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package treemacs-projectile treemacs-magit treemacs-evil toc-org symon symbol-overlay string-inflection sql-indent spaceline-all-the-icons smeargle restart-emacs rainbow-delimiters pytest pyenv-mode py-isort popwin pippel pipenv pip-requirements persp-mode pcre2el password-generator paradox org-plus-contrib org-bullets open-junk-file move-text monokai-theme mmm-mode markdown-toc magit-svn magit-gitflow lorem-ipsum live-py-mode link-hint indent-guide importmagic hybrid-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-xref helm-themes helm-swoop helm-pydoc helm-purpose helm-projectile helm-mode-manager helm-make helm-gitignore helm-git-grep helm-flx helm-descbinds helm-ag google-translate golden-ratio godoctor go-tag go-rename go-impl go-guru go-gen-test go-fill-struct go-eldoc gitignore-templates gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ gh-md font-lock+ flyspell-correct-helm flycheck-pos-tip flx-ido fill-column-indicator fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-textobj-line evil-surround evil-numbers evil-nerd-commenter evil-matchit evil-magit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-cleverparens evil-args evil-anzu eval-sexp-fu editorconfig dumb-jump dotenv-mode doom-modeline diminish diff-hl devdocs define-word cython-mode csv-mode company-terraform company-tern company-go company-anaconda column-enforce-mode clean-aindent-mode centered-cursor-mode browse-at-remote blacken auto-highlight-symbol auto-dictionary aggressive-indent ace-link ace-jump-helm-line))
  '(pdf-view-midnight-colors '("#b2b2b2" . "#262626"))
- '(warning-suppress-types '((comp) (comp))))
+ '(warning-suppress-log-types '((comp) (editorconfig) (comp) (comp)))
+ '(warning-suppress-types
+   '(((flycheck syntax-checker))
+     ((flycheck syntax-checker))
+     (editorconfig)
+     (comp)
+     (comp))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

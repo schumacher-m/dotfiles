@@ -6,7 +6,7 @@ robbyrussell/oh-my-zsh path:plugins/thefuck
 robbyrussell/oh-my-zsh path:plugins/direnv
 
 kiurchv/asdf.plugin.zsh
-bhilburn/powerlevel9k
+romkatv/powerlevel10k
 zsh-users/zsh-completions
 zsh-users/zsh-autosuggestions
 zsh-users/zsh-syntax-highlighting

@@ -18,11 +18,6 @@ ZSH_TMUX_AUTOSTART=false
 DISABLE_UPDATE_PROMPT=true
 DISABLE_AUTO_UPDATE=true
 
-# P9K Config: https://github.com/bhilburn/powerlevel9k/issues/501
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir vcs)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=()
-POWERLEVEL9K_SHORTEN_DIR_LENGTH=3
-
 source <(antibody init)
 antibody bundle < ~/.zsh_plugins
 
@@ -32,6 +27,8 @@ bindkey "^[[1;3C" forward-word
 bindkey "^[[1;3D" backward-word
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
+
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 function tmateip () {
   output=$(tmate show-message | grep -m 1 "ssh session:")

@@ -7,7 +7,7 @@ We all need them!
 
 * `git clone git@github.com:schumacher-m/dotfiles.git`
 * `cp -r dotfiles/.[^.]* ~/`
-* `curl -sfL git.io/antibody | sh -s - -b /usr/local/bin`
+* `git clone --depth 1 https://github.com/marlonrichert/zsh-snap.git ~/.znap`
 * `git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch HEAD`
 * `git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm`
 * `asdf plugin-add python`

@@ -1,6 +1,26 @@
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 export TERM="xterm-256color"
+ZSH_TMUX_AUTOSTART=false
+[[ $TMUX == "" ]] && tmux new-session -A -s 0
+DISABLE_UPDATE_PROMPT=true
+DISABLE_AUTO_UPDATE=true
+
+zstyle ':znap:*' git-dir ~/.znap
+source ~/.znap/zsh-snap/znap.zsh
+
+znap prompt agnoster/agnoster-zsh-theme
+znap source ohmyzsh/ohmyzsh plugins/git
+znap source ohmyzsh/ohmyzsh plugins/autojump
+znap source ohmyzsh/ohmyzsh plugins/thefuck
+znap source ohmyzsh/ohmyzsh plugins/direnv
+znap source kiurchv/asdf.plugin.zsh
+znap source romkatv/powerlevel10k
+znap source zsh-users/zsh-completions
+znap source zsh-users/zsh-autosuggestions
+znap source zsh-users/zsh-syntax-highlighting
+znap source zsh-users/zsh-history-substring-search
+znap source zdharma/fast-syntax-highlighting
 
 setopt hist_ignore_all_dups # remove older duplicate entries from history
 setopt hist_reduce_blanks # remove superfluous blanks from history items
@@ -12,14 +32,6 @@ setopt auto_list # automatically list choices on ambiguous completion
 setopt auto_menu # automatically use menu completion
 setopt always_to_end # move cursor to end if word had one match
 
-ZSH="$(antibody home)/https-COLON--SLASH--SLASH-github.com-SLASH-robbyrussell-SLASH-oh-my-zsh"
-ZSH_TMUX_AUTOSTART=false
-[[ $TMUX == "" ]] && tmux new-session -A -s 0
-DISABLE_UPDATE_PROMPT=true
-DISABLE_AUTO_UPDATE=true
-
-source <(antibody init)
-antibody bundle < ~/.zsh_plugins
 
 alias e='emacsclient -t'
 

@@ -53,7 +53,7 @@ ipywidgets==7.6.3
 isort==5.7.0
 jdcal==1.4.1
 jedi==0.17.2
-Jinja2==2.11.2
+Jinja2==2.11.3
 jmespath==0.10.0
 json5==0.9.5
 jsonschema==3.2.0

@@ -18,6 +18,8 @@ znap source zsh-users/zsh-autosuggestions
 znap source zsh-users/zsh-syntax-highlighting
 znap source zsh-users/zsh-history-substring-search
 znap source zdharma/fast-syntax-highlighting
+znap source sirhc/op.plugin.zsh
+znap source DarrinTisdale/zsh-aliases-exa
 
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
@@ -37,8 +39,6 @@ bindkey "^[[1;3C" forward-word
 bindkey "^[[1;3D" backward-word
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
-
-
 
 function tmateip () {
   output=$(tmate show-message | grep -m 1 "ssh session:")

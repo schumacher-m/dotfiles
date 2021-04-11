@@ -7,7 +7,7 @@ DISABLE_UPDATE_PROMPT=true
 DISABLE_AUTO_UPDATE=true
 
 zstyle ':znap:*' git-dir ~/.znap
-source ~/.znap/zsh-snap/znap.zsh
+source ~/.znap/znap.zsh
 
 znap source ohmyzsh/ohmyzsh
 znap source ohmyzsh/ohmyzsh plugins/{git,autojump,thefuck,direnv}

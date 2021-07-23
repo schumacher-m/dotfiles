@@ -17,23 +17,27 @@ We all need them!
 
 # NPM
 
-Export
+## Export
 `npm list --global --parseable --depth=0 | sed '1d' | awk '{gsub(/\/.*\//,"",$1); print}' > path/to/npmfile`
 
-Import
+## Import
 `xargs npm install --global < path/to/npmfile`
 
 https://stackoverflow.com/a/41199625
 
+## Upgrade
+npm install npm@latest -g
+npm update -g
+
 # PIP
 
-Export
+## Export
 `pip freeze > ~/workspace/dotfiles/requirements.txt`
 
-Import
+## Import
 `pip install -r ~/workspace/dotfiles/requirements.txt`
 
-Might want to upgrade also
+## Upgrade
 `pip list --outdated --format=freeze | grep -v '^\-e' | cut -d = -f 1 | xargs -n1 pip install -U`
 
 # Spacemacs

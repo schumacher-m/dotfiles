@@ -15,6 +15,27 @@ We all need them!
 * `asdf reshim`
 * `pip install pipenv`
 
+# NPM
+
+Export
+`npm list --global --parseable --depth=0 | sed '1d' | awk '{gsub(/\/.*\//,"",$1); print}' > path/to/npmfile`
+
+Import
+`xargs npm install --global < path/to/npmfile`
+
+https://stackoverflow.com/a/41199625
+
+# PIP
+
+Export
+`pip freeze > ~/workspace/dotfiles/requirements.txt`
+
+Import
+`pip install -r ~/workspace/dotfiles/requirements.txt`
+
+Might want to upgrade also
+`pip list --outdated --format=freeze | grep -v '^\-e' | cut -d = -f 1 | xargs -n1 pip install -U`
+
 # Spacemacs
 
 * `git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d`

@@ -1,7 +1,3 @@
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 export TERM="xterm-256color"
@@ -10,20 +6,19 @@ ZSH_TMUX_AUTOSTART=false
 DISABLE_UPDATE_PROMPT=true
 DISABLE_AUTO_UPDATE=true
 
-zstyle ':znap:*' git-dir ~/.znap
 source ~/.znap/zsh-snap/znap.zsh
-
 znap source ohmyzsh/ohmyzsh
 znap source ohmyzsh/ohmyzsh plugins/{git,autojump,thefuck,direnv}
-znap source kiurchv/asdf.plugin.zsh
+znap source asdf-vm/asdf
 znap source romkatv/powerlevel10k
 znap source zsh-users/zsh-completions
 znap source zsh-users/zsh-autosuggestions
 znap source zsh-users/zsh-syntax-highlighting
 znap source zsh-users/zsh-history-substring-search
-znap source zdharma/fast-syntax-highlighting
+znap source zdharma-continuum/fast-syntax-highlighting
 znap source sirhc/op.plugin.zsh
 znap source DarrinTisdale/zsh-aliases-exa
+znap source zdharma-continuum/history-search-multi-word
 
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 

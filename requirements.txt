@@ -121,7 +121,7 @@ pi==0.1.2
 pickleshare==0.7.5
 Pillow==8.3.0
 pip-review==1.1.0
-pipenv==2021.5.29
+pipenv==2022.1.8
 pluggy==0.13.1
 prometheus-client==0.11.0
 prompt-toolkit==3.0.19

@@ -22,12 +22,17 @@ font:
     family: Hack Nerd Font Mono
     style: Bold Italic
 
-  size: 11.0
+  size: 10.0
   use_thin_strokes: true
 
 selection:
   semantic_escape_chars: ",│`|:\"' ()[]{}<>\t"
   save_to_clipboard: true
+
+cursor:
+  style:
+    shape: Beam
+    blinking: On
 
 mouse:
   hide_when_typing: true

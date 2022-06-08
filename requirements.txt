@@ -45,7 +45,7 @@ deepdiff==5.5.0
 defusedxml==0.7.1
 Deprecated==1.2.12
 distlib==0.3.2
-distributed==2021.6.2
+distributed==2021.10.0
 docutils==0.17.1
 entrypoints==0.3
 environs==9.3.2

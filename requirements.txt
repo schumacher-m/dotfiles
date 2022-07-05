@@ -234,7 +234,7 @@ typed-ast==1.4.3
 typing-extensions==3.10.0.0
 tzdata==2021.4
 tzlocal==2.1
-ujson==5.2.0
+ujson==5.4.0
 undetected-chromedriver==3.0.2
 uritemplate==3.0.1
 urllib3==1.26.6

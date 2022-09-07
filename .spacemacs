@@ -32,39 +32,44 @@ This function should only modify configuration layer settings."
 
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
-   '(windows-scripts
-     typescript
+   '(javascript
+     ;; lua
+     go
+     cucumber
+     ;; windows-scripts
+     ;; typescript
      auto-completion
-     confluence
-     copy-as-format
-     cscope
+     ;; confluence
+     ;; copy-as-format
+     ;; cscope
      csv
-     dap
-     docker
+     ;; docker
      emacs-lisp
      git
-     helm
-     html
-     import-js
-     java
-     javascript
+     ;; helm
+     ;; html
+     ;; import-js
+     ;; java
+     ;; javascript
      ;; (keyboard-layout :variables kl-layout 'workman)
      lsp
+     ;; dap
      markdown
      multiple-cursors
-     (org :variables
-          org-enable-jira-support t
-          jiralib-url "https://jira.zeppelin.com:443"
-          org-projectile-file "TODOs.org"
-          org-jira-working-dir "~/org-jira"
-          org-agenda-files '("~/org" "~/org-jira")
-          org-enable-valign t
-          org-enable-notifications t
-          org-start-notification-daemon-on-startup t)
+     ;; org
+     ;; (org :variables
+     ;;      org-enable-jira-support t
+     ;;      jiralib-url "https://jira.zeppelin.com:443"
+     ;;      org-projectile-file "TODOs.org"
+     ;;      org-jira-working-dir "~/org-jira"
+     ;;      org-agenda-files '("~/org" "~/org-jira")
+     ;;      org-enable-valign t
+     ;;      org-enable-notifications t
+     ;;      org-start-notification-daemon-on-startup t)
      prettier
      python
      rust
-     search-engine
+     ;; search-engine
      sql
      syntax-checking
      tern
@@ -72,7 +77,7 @@ This function should only modify configuration layer settings."
      treemacs
      unicode-fonts
      version-control
-     (vue :variables vue-backend 'lsp)
+     ;; (vue :variables vue-backend 'lsp)
      xclipboard
      yaml
      )
@@ -87,10 +92,11 @@ This function should only modify configuration layer settings."
    dotspacemacs-additional-packages '(
                                       ag
                                       all-the-icons
+                                      treemacs-all-the-icons
                                       company
                                       editorconfig
                                       exec-path-from-shell
-                                      org-jira
+                                      ;; org-jira
                                       xclip
    )
    ;; A list of packages that cannot be updated.
@@ -607,7 +613,7 @@ This function is called at the very end of Spacemacs initialization."
      ("XXX+" . "#dc752f")
      ("\\?\\?\\?+" . "#dc752f")))
  '(package-selected-packages
-   '(powershell bmx-mode projectile magit-section evil overseer nameless macrostep flycheck-package package-lint flycheck-elsa emr clang-format elisp-slime-nav auto-compile packed valign ox-jira org-wild-notifier org-jira copy-as-format engine-mode import-js sqlup-mode treemacs-all-the-icons phpunit php-extras geben drupal-mode counsel-gtags company-phpactor phpactor composer php-runtime company-php ac-php-core php-mode mvn meghanada maven-test-mode lsp-java groovy-mode groovy-imports toml-mode smartparens ron-mode racer flycheck-rust rust-mode org-superstar lsp-ui evil-collection dap-mode lsp-treemacs helm go-mode iedit magit helm-core lsp-mode markdown-mode dash all-the-icons impatient-mode helm-cscope xcscope rainbow-mode rainbow-identifiers color-identifiers-mode evil-easymotion dired-quick-sort posframe livid-mode skewer-mode json-navigator hierarchy js2-refactor multiple-cursors web-beautify typescript-mode prettier-js nodejs-repl js2-mode js-doc grizzl simple-httpd helm-gtags ggtags bui shrink-path unicode-fonts ucs-utils font-utils persistent-soft list-utils pcache evil-mc treemacs evil-smartparens realgud test-simple loc-changes load-relative company-plsense nginx-mode helm-css-scss haml-mode emmet-mode counsel-css counsel swiper ivy company-web web-completion-data add-node-modules-path ag dockerfile-mode docker json-mode tablist docker-tramp json-snatcher json-reformat exec-path-from-shell dash-functional tern flycheck-golangci-lint yasnippet-snippets helm-company helm-c-yasnippet fuzzy company-statistics auto-yasnippet yasnippet ac-ispell auto-complete yapfify yaml-mode xclip ws-butler writeroom-mode winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package treemacs-projectile treemacs-magit treemacs-evil toc-org symon symbol-overlay string-inflection sql-indent spaceline-all-the-icons smeargle restart-emacs rainbow-delimiters pytest pyenv-mode py-isort popwin pippel pipenv pip-requirements persp-mode pcre2el password-generator paradox org-plus-contrib org-bullets open-junk-file move-text monokai-theme mmm-mode markdown-toc magit-svn magit-gitflow lorem-ipsum live-py-mode link-hint indent-guide importmagic hybrid-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-xref helm-themes helm-swoop helm-pydoc helm-purpose helm-projectile helm-mode-manager helm-make helm-gitignore helm-git-grep helm-flx helm-descbinds helm-ag google-translate golden-ratio godoctor go-tag go-rename go-impl go-guru go-gen-test go-fill-struct go-eldoc gitignore-templates gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ gh-md font-lock+ flyspell-correct-helm flycheck-pos-tip flx-ido fill-column-indicator fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-textobj-line evil-surround evil-numbers evil-nerd-commenter evil-matchit evil-magit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-cleverparens evil-args evil-anzu eval-sexp-fu editorconfig dumb-jump dotenv-mode doom-modeline diminish diff-hl devdocs define-word cython-mode csv-mode company-terraform company-tern company-go company-anaconda column-enforce-mode clean-aindent-mode centered-cursor-mode browse-at-remote blacken auto-highlight-symbol auto-dictionary aggressive-indent ace-link ace-jump-helm-line))
+   '(feature-mode lsp-docker htmlize npm-mode dap-mode forge yaml ghub closql emacsql-sqlite emacsql treepy company-lua lua-mode helm-org-rifle helm-org helm-lsp helm-ls-git wgrep smex lsp-ivy ivy-yasnippet ivy-xref ivy-purpose ivy-hydra ivy-avy counsel-projectile powershell bmx-mode projectile magit-section evil overseer nameless macrostep flycheck-package package-lint flycheck-elsa emr clang-format elisp-slime-nav auto-compile packed valign ox-jira org-wild-notifier org-jira copy-as-format engine-mode import-js sqlup-mode treemacs-all-the-icons phpunit php-extras geben drupal-mode counsel-gtags company-phpactor phpactor composer php-runtime company-php ac-php-core php-mode mvn meghanada maven-test-mode lsp-java groovy-mode groovy-imports toml-mode smartparens ron-mode racer flycheck-rust rust-mode org-superstar lsp-ui evil-collection lsp-treemacs helm go-mode iedit magit helm-core lsp-mode markdown-mode dash all-the-icons impatient-mode helm-cscope xcscope rainbow-mode rainbow-identifiers color-identifiers-mode evil-easymotion dired-quick-sort posframe livid-mode skewer-mode json-navigator hierarchy js2-refactor multiple-cursors web-beautify typescript-mode prettier-js nodejs-repl js2-mode js-doc grizzl simple-httpd helm-gtags ggtags bui shrink-path unicode-fonts ucs-utils font-utils persistent-soft list-utils pcache evil-mc treemacs evil-smartparens realgud test-simple loc-changes load-relative company-plsense nginx-mode helm-css-scss haml-mode emmet-mode counsel-css counsel swiper ivy company-web web-completion-data add-node-modules-path ag dockerfile-mode docker json-mode tablist docker-tramp json-snatcher json-reformat exec-path-from-shell dash-functional tern flycheck-golangci-lint yasnippet-snippets helm-company helm-c-yasnippet fuzzy company-statistics auto-yasnippet yasnippet ac-ispell auto-complete yapfify yaml-mode xclip ws-butler writeroom-mode winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package treemacs-projectile treemacs-magit treemacs-evil toc-org symon symbol-overlay string-inflection sql-indent spaceline-all-the-icons smeargle restart-emacs rainbow-delimiters pytest pyenv-mode py-isort popwin pippel pipenv pip-requirements persp-mode pcre2el password-generator paradox org-plus-contrib org-bullets open-junk-file move-text monokai-theme mmm-mode markdown-toc magit-svn magit-gitflow lorem-ipsum live-py-mode link-hint indent-guide importmagic hybrid-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-xref helm-themes helm-swoop helm-pydoc helm-purpose helm-projectile helm-mode-manager helm-make helm-gitignore helm-git-grep helm-flx helm-descbinds helm-ag google-translate golden-ratio godoctor go-tag go-rename go-impl go-guru go-gen-test go-fill-struct go-eldoc gitignore-templates gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ gh-md font-lock+ flyspell-correct-helm flycheck-pos-tip flx-ido fill-column-indicator fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-textobj-line evil-surround evil-numbers evil-nerd-commenter evil-matchit evil-magit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-cleverparens evil-args evil-anzu eval-sexp-fu editorconfig dumb-jump dotenv-mode doom-modeline diminish diff-hl devdocs define-word cython-mode csv-mode company-terraform company-tern company-go company-anaconda column-enforce-mode clean-aindent-mode centered-cursor-mode browse-at-remote blacken auto-highlight-symbol auto-dictionary aggressive-indent ace-link ace-jump-helm-line))
  '(pdf-view-midnight-colors '("#b2b2b2" . "#262626"))
  '(warning-suppress-log-types '((comp) (editorconfig) (comp) (comp)))
  '(warning-suppress-types
@@ -621,5 +627,5 @@ This function is called at the very end of Spacemacs initialization."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(highlight-parentheses-highlight ((nil (:weight ultra-bold))) t))
 )

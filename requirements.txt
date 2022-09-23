@@ -148,7 +148,7 @@ platformdirs==2.4.0
 pluggy==1.0.0
 prometheus-client==0.11.0
 prompt-toolkit==3.0.19
-protobuf==3.17.3
+protobuf==3.18.3
 psutil==5.8.0
 psycopg2==2.9.1
 ptyprocess==0.7.0

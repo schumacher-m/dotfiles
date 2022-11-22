@@ -141,7 +141,7 @@ pgcli==3.1.0
 pgspecial==1.13.0
 pi==0.1.2
 pickleshare==0.7.5
-Pillow==9.0.1
+Pillow==9.3.0
 pip-review==1.1.0
 pipenv==2022.5.2
 platformdirs==2.4.0

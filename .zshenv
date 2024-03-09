@@ -1,4 +1,5 @@
 export PATH="$HOME/bin:$PATH"
 export PATH="$PATH:$HOME/.asdf/shims/"
-export JAVA_HOME=/usr/lib/jvm/default
-export DISPLAY=:1
+export PATH="$PATH:$HOME/.emacs.d/bin/"
+export PATH="$PATH:$HOME/.local/bin"
+export LSP_USE_PLISTS=true

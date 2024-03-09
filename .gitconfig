@@ -3,7 +3,7 @@
 [push]
 	default = simple
 [user]
-	name = Michael Schumacher
+	name = Michael Schumacher-Kunze
 	email = schumacher.m@me.com
 [merge]
 	tool = opendiff

@@ -32,55 +32,19 @@ This function should only modify configuration layer settings."
 
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
-   '(javascript
-     ;; lua
-     go
-     cucumber
-     ;; windows-scripts
-     ;; typescript
+   '(yaml
      auto-completion
-     ;; confluence
-     ;; copy-as-format
-     ;; cscope
-     csv
-     ;; docker
-     emacs-lisp
-     git
-     ;; helm
-     ;; html
-     ;; import-js
-     ;; java
-     ;; javascript
-     ;; (keyboard-layout :variables kl-layout 'workman)
      lsp
-     ;; dap
-     markdown
      multiple-cursors
-     ;; org
-     ;; (org :variables
-     ;;      org-enable-jira-support t
-     ;;      jiralib-url "https://jira.zeppelin.com:443"
-     ;;      org-projectile-file "TODOs.org"
-     ;;      org-jira-working-dir "~/org-jira"
-     ;;      org-agenda-files '("~/org" "~/org-jira")
-     ;;      org-enable-valign t
-     ;;      org-enable-notifications t
-     ;;      org-start-notification-daemon-on-startup t)
      prettier
      python
-     rust
-     ;; search-engine
-     sql
      syntax-checking
-     tern
-     terraform
      treemacs
      unicode-fonts
-     version-control
-     ;; (vue :variables vue-backend 'lsp)
      xclipboard
-     yaml
-     )
+     spell-checking
+     git
+    )
 
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
@@ -91,13 +55,13 @@ This function should only modify configuration layer settings."
    ;; Also include the dependencies as they will not be resolved automatically.
    dotspacemacs-additional-packages '(
                                       ag
-                                      all-the-icons
-                                      treemacs-all-the-icons
                                       company
-                                      editorconfig
                                       exec-path-from-shell
-                                      ;; org-jira
+                                      all-the-icons
+                                      editorconfig
                                       xclip
+                                      gptel
+				      xterm-extras
    )
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -256,7 +220,7 @@ It should only modify the values of Spacemacs settings."
    ;; refer to the DOCUMENTATION.org for more info on how to create your own
    ;; spaceline theme. Value can be a symbol or list with additional properties.
    ;; (default '(spacemacs :separator wave :separator-scale 1.5))
-   dotspacemacs-mode-line-theme '(all-the-icons :separator none :separator-scale 1.5)
+   dotspacemacs-mode-line-theme '(all-the-icons :separator none :separator-scale 1.0)
 
    ;; If non-nil the cursor color matches the state color in GUI Emacs.
    ;; (default t)
@@ -524,7 +488,7 @@ It should only modify the values of Spacemacs settings."
    dotspacemacs-home-shorten-agenda-source nil
 
    ;; If non-nil then byte-compile some of Spacemacs files.
-   dotspacemacs-byte-compile nil))
+   dotspacemacs-byte-compile t))
 
 (defun dotspacemacs/user-env ()
   "Environment variables setup.
@@ -559,6 +523,7 @@ before packages are loaded."
   ;; (require 'comp)
   ;; (add-to-list 'comp-bootstrap-black-list "smartparens")
   ;; (add-to-list 'comp-deferred-compilation-black-list "smartparens")
+  (require 'gptel)
   (setq comp-deferred-compilation t)
   (editorconfig-mode 1)
   (xclip-mode 1)
@@ -567,21 +532,21 @@ before packages are loaded."
   (setq make-backup-files nil)
   (setq auto-save-default nil)
   (setq backup-directory-alist `(("." . "~/.emacs.d/backup")))
-  (exec-path-from-shell-initialize)
-
+  (setq native-compile-prune-cache t)
   (setq treemacs-use-git-mode 'deferred)
-  (setq python-backend 'lsp)
-  (setq python-lsp-server 'pyright)
-  (setq python-formatter 'black)
-  (setq lsp-headerline-breadcrumb-mode nil)
   (setq lsp-completion-enable t)
-
+  (setq lsp-headerline-breadcrumb-enable nil)
+  (exec-path-from-shell-initialize)
   (with-eval-after-load 'org-agenda
     (require 'org-projectile)
     (mapcar '(lambda (file)
                (when (file-exists-p file)
                  (push file org-agenda-files)))
             (org-projectile-todo-files)))
+
+  (with-eval-after-load 'lsp-mode
+    (add-to-list 'lsp-file-watch-ignored-directories "[/\\\\]\\.terragrunt-cache\\'"))
+  (global-key-set (kbd "<select>") 'evil-end-of-line-or-visual-line)
 )
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
@@ -595,37 +560,12 @@ This function is called at the very end of Spacemacs initialization."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(evil-want-Y-yank-to-eol nil)
- '(hl-todo-keyword-faces
-   '(("TODO" . "#dc752f")
-     ("NEXT" . "#dc752f")
-     ("THEM" . "#2aa198")
-     ("PROG" . "#268bd2")
-     ("OKAY" . "#268bd2")
-     ("DONT" . "#d70000")
-     ("FAIL" . "#d70000")
-     ("DONE" . "#86dc2f")
-     ("NOTE" . "#875f00")
-     ("KLUDGE" . "#875f00")
-     ("HACK" . "#875f00")
-     ("TEMP" . "#875f00")
-     ("FIXME" . "#dc752f")
-     ("XXX+" . "#dc752f")
-     ("\\?\\?\\?+" . "#dc752f")))
  '(package-selected-packages
-   '(feature-mode lsp-docker htmlize npm-mode dap-mode forge yaml ghub closql emacsql-sqlite emacsql treepy company-lua lua-mode helm-org-rifle helm-org helm-lsp helm-ls-git wgrep smex lsp-ivy ivy-yasnippet ivy-xref ivy-purpose ivy-hydra ivy-avy counsel-projectile powershell bmx-mode projectile magit-section evil overseer nameless macrostep flycheck-package package-lint flycheck-elsa emr clang-format elisp-slime-nav auto-compile packed valign ox-jira org-wild-notifier org-jira copy-as-format engine-mode import-js sqlup-mode treemacs-all-the-icons phpunit php-extras geben drupal-mode counsel-gtags company-phpactor phpactor composer php-runtime company-php ac-php-core php-mode mvn meghanada maven-test-mode lsp-java groovy-mode groovy-imports toml-mode smartparens ron-mode racer flycheck-rust rust-mode org-superstar lsp-ui evil-collection lsp-treemacs helm go-mode iedit magit helm-core lsp-mode markdown-mode dash all-the-icons impatient-mode helm-cscope xcscope rainbow-mode rainbow-identifiers color-identifiers-mode evil-easymotion dired-quick-sort posframe livid-mode skewer-mode json-navigator hierarchy js2-refactor multiple-cursors web-beautify typescript-mode prettier-js nodejs-repl js2-mode js-doc grizzl simple-httpd helm-gtags ggtags bui shrink-path unicode-fonts ucs-utils font-utils persistent-soft list-utils pcache evil-mc treemacs evil-smartparens realgud test-simple loc-changes load-relative company-plsense nginx-mode helm-css-scss haml-mode emmet-mode counsel-css counsel swiper ivy company-web web-completion-data add-node-modules-path ag dockerfile-mode docker json-mode tablist docker-tramp json-snatcher json-reformat exec-path-from-shell dash-functional tern flycheck-golangci-lint yasnippet-snippets helm-company helm-c-yasnippet fuzzy company-statistics auto-yasnippet yasnippet ac-ispell auto-complete yapfify yaml-mode xclip ws-butler writeroom-mode winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package treemacs-projectile treemacs-magit treemacs-evil toc-org symon symbol-overlay string-inflection sql-indent spaceline-all-the-icons smeargle restart-emacs rainbow-delimiters pytest pyenv-mode py-isort popwin pippel pipenv pip-requirements persp-mode pcre2el password-generator paradox org-plus-contrib org-bullets open-junk-file move-text monokai-theme mmm-mode markdown-toc magit-svn magit-gitflow lorem-ipsum live-py-mode link-hint indent-guide importmagic hybrid-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-xref helm-themes helm-swoop helm-pydoc helm-purpose helm-projectile helm-mode-manager helm-make helm-gitignore helm-git-grep helm-flx helm-descbinds helm-ag google-translate golden-ratio godoctor go-tag go-rename go-impl go-guru go-gen-test go-fill-struct go-eldoc gitignore-templates gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ gh-md font-lock+ flyspell-correct-helm flycheck-pos-tip flx-ido fill-column-indicator fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-textobj-line evil-surround evil-numbers evil-nerd-commenter evil-matchit evil-magit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-cleverparens evil-args evil-anzu eval-sexp-fu editorconfig dumb-jump dotenv-mode doom-modeline diminish diff-hl devdocs define-word cython-mode csv-mode company-terraform company-tern company-go company-anaconda column-enforce-mode clean-aindent-mode centered-cursor-mode browse-at-remote blacken auto-highlight-symbol auto-dictionary aggressive-indent ace-link ace-jump-helm-line))
- '(pdf-view-midnight-colors '("#b2b2b2" . "#262626"))
- '(warning-suppress-log-types '((comp) (editorconfig) (comp) (comp)))
- '(warning-suppress-types
-   '(((flycheck syntax-checker))
-     ((flycheck syntax-checker))
-     (editorconfig)
-     (comp)
-     (comp))))
+   '(flyspell-correct auto-yasnippet evil-matchit flycheck helm-descbinds helm which-key yasnippet-snippets yapfify yaml-mode xclip ws-butler writeroom-mode winum wfnames volatile-highlights vim-powerline vi-tilde-fringe uuidgen unicode-fonts undo-tree treemacs-projectile treemacs-persp treemacs-magit treemacs-icons-dired treemacs-evil toml-mode toc-org term-cursor symon symbol-overlay string-inflection string-edit-at-point sql-indent sphinx-doc spacemacs-whitespace-cleanup spacemacs-purpose-popwin spaceline-all-the-icons space-doc smeargle rustic ron-mode restart-emacs rainbow-delimiters quickrun pytest pylookup pyenv-mode pydoc py-isort prettier-js popwin poetry pippel pipenv pip-requirements pcre2el password-generator paradox overseer org-superstar open-junk-file nose nameless mvn multi-line monokai-theme maven-test-mode macrostep lsp-ui lsp-python-ms lsp-pyright lsp-origami lsp-java lorem-ipsum live-py-mode link-hint inspector info+ indent-guide importmagic hybrid-mode hungry-delete holy-mode hl-todo highlight-parentheses highlight-numbers highlight-indentation hide-comnt helm-xref helm-themes helm-swoop helm-pydoc helm-purpose helm-projectile helm-org helm-mode-manager helm-make helm-lsp helm-ls-git helm-git-grep helm-company helm-comint helm-c-yasnippet helm-ag groovy-mode groovy-imports gptel google-translate golden-ratio gitignore-templates git-timemachine git-modes git-messenger git-link forge flyspell-correct-helm flycheck-pos-tip flycheck-package flycheck-elsa flx-ido fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-textobj-line evil-surround evil-numbers evil-nerd-commenter evil-mc evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-evilified-state evil-escape evil-easymotion evil-collection evil-cleverparens evil-args evil-anzu eval-sexp-fu emr elisp-slime-nav elisp-def editorconfig dumb-jump drag-stuff dotenv-mode dired-quick-sort diminish diff-hl devdocs define-word cython-mode csv-mode company-terraform company-anaconda column-enforce-mode code-cells clean-aindent-mode centered-cursor-mode browse-at-remote blacken auto-highlight-symbol auto-dictionary auto-compile aggressive-indent ag ace-link ace-jump-helm-line)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(highlight-parentheses-highlight ((nil (:weight ultra-bold))) t))
+ )
 )

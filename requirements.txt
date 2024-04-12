@@ -23,7 +23,7 @@ Deprecated==1.2.14
 dill==0.3.8
 distlib==0.3.7
 distro==1.8.0
-dnspython==2.4.2
+dnspython==2.6.1
 epc==0.0.5
 executing==2.0.1
 filelock==3.12.4

@@ -103,7 +103,7 @@ traitlets==5.13.0
 typing_extensions==4.8.0
 tzdata==2023.3
 ujson==5.9.0
-urllib3==2.0.6
+urllib3==2.2.2
 virtualenv==20.24.5
 virtualenv-clone==0.5.7
 wcwidth==0.2.10

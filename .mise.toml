@@ -1,0 +1,7 @@
+[tools]
+python = "3.12"
+maven = "3.9"
+node = "18"
+go = "latest"
+terraform = "latest"
+kubectl = "1.30"

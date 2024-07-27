@@ -8,7 +8,7 @@ We all need them!
 ```
 mkdir -p ~/.znap
 
-git@github.com:marlonrichert/zsh-snap.git ~/.znap
+git clone git@github.com:marlonrichert/zsh-snap.git ~/.znap/zsh-snap
 git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 curl https://mise.run | sh

@@ -12,13 +12,14 @@ git clone git@github.com:marlonrichert/zsh-snap.git ~/.znap/zsh-snap
 git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 curl https://mise.run | sh
-
 ```
 
 # Emacs
 
 * `brew tap d12frosted/emacs-plus`
 * `brew install emacs-plus@29 --with-native-comp`
+
+Ref.: https://www.masteringemacs.org/article/speed-up-emacs-libjansson-native-elisp-compilation
 
 # Alacritty
 

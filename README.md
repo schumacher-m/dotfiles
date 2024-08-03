@@ -6,26 +6,17 @@ We all need them!
 # Recovery
 
 ```
-mkdir -p ~/.znap
+pacman -S --needed git base-devel
+git clone https://aur.archlinux.org/yay.git
+cd yay
+makepkg -si
+
+
+yay -Syu mise
+sudo pacman -Syu fzf zoxide eza thefuck ttf-hack-nerd emacs-nativecomp alacritty  
+
 
 git clone git@github.com:marlonrichert/zsh-snap.git ~/.znap/zsh-snap
 git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-curl https://mise.run | sh
 ```
-
-# Emacs
-
-* `brew tap d12frosted/emacs-plus`
-* `brew install emacs-plus@29 --with-native-comp`
-
-Ref.: https://www.masteringemacs.org/article/speed-up-emacs-libjansson-native-elisp-compilation
-
-# Alacritty
-
-* `brew install alacritty`
-
-# Fonts
-
-* `brew tap homebrew/cask-fonts`
-* `brew search '/font-.*-nerd-font/' | awk '{ print $1 }' | xargs -I{} brew install --cask {} || true`

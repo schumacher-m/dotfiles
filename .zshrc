@@ -8,10 +8,10 @@ znap source ohmyzsh/ohmyzsh
 znap source ohmyzsh/ohmyzsh plugins/{tmux,aws,gh,git,thefuck,direnv,fzf,1password}
 znap source romkatv/powerlevel10k
 znap source zsh-users/zsh-autosuggestions
-znap source joshskidmore/zsh-fzf-history-search
 znap source DarrinTisdale/zsh-aliases-exa
 znap source ajeetdsouza/zoxide
 znap source wintermi/zsh-mise
+znap source atuinsh/atuin
 
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
@@ -30,3 +30,4 @@ alias t='terragrunt'
 
 bindkey "^[[1;3C" forward-word
 bindkey "^[[1;3D" backward-word
+source /Users/m/.config/op/plugins.sh

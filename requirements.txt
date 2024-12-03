@@ -7,7 +7,7 @@ asttokens==2.4.1
 autopep8==1.5.5
 aws-mfa==0.0.12
 beautifulsoup4==4.12.2
-black==23.10.1
+black==24.3.0
 boto3==1.28.62
 botocore==1.31.62
 Brotli==1.1.0

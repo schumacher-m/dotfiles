@@ -5,7 +5,7 @@ DISABLE_AUTO_UPDATE=true
 source ~/.znap/zsh-snap/znap.zsh
 
 znap source ohmyzsh/ohmyzsh
-znap source ohmyzsh/ohmyzsh plugins/{tmux,aws,gh,git,thefuck,direnv,fzf,1password}
+znap source ohmyzsh/ohmyzsh plugins/{tmux,aws,gh,git,thefuck,direnv,fzf,1password,aliases,jj}
 znap source romkatv/powerlevel10k
 znap source zsh-users/zsh-autosuggestions
 znap source DarrinTisdale/zsh-aliases-exa

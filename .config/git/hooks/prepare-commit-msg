@@ -28,10 +28,10 @@ def main():
         print("DEBUG: Commit source detected, skipping message generation")
         sys.exit(0)
     
-    # Check if CLAUDE_CODE_OAUTH_TOKEN is set
-    api_key = os.environ.get('CLAUDE_CODE_OAUTH_TOKEN')
+    # Check if ANTHROPIC_API_KEY is set
+    api_key = os.environ.get('ANTHROPIC_API_KEY')
     if not api_key:
-        print("Warning: CLAUDE_CODE_OAUTH_TOKEN not set. Skipping commit message generation.")
+        print("Warning: ANTHROPIC_API_KEY not set. Skipping commit message generation.")
         sys.exit(0)
     
     print("DEBUG: API key found")
@@ -70,7 +70,7 @@ Changes:
     try:
         print("DEBUG: Making API call to Claude")
         response = client.messages.create(
-            model="claude-3-5-sonnet-20241022",
+            model="claude-3-5-haiku-20241022",
             max_tokens=200,
             messages=[
                 {
@@ -98,7 +98,7 @@ Changes:
     try:
         with open(commit_msg_file, 'w') as f:
             f.write(commit_message)
-        print("Generated commit message using Claude Sonnet 4")
+        print("Generated commit message using Claude 3.5 Haiku")
     except Exception as e:
         print(f"Error: Failed to write commit message: {e}")
         sys.exit(1)

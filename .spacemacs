@@ -32,22 +32,20 @@ This function should only modify configuration layer settings."
 
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
-   '(csv
-     javascript
+   '(
+     toml
      yaml
-     auto-completion
-     multiple-cursors
-     prettier
+     json
      python
+     terraform
      syntax-checking
      treemacs
      unicode-fonts
      xclipboard
-     spell-checking
-     git
      lsp
-     terraform
-    )
+     auto-completion
+     github-copilot
+     )
 
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
@@ -58,12 +56,10 @@ This function should only modify configuration layer settings."
    ;; Also include the dependencies as they will not be resolved automatically.
    dotspacemacs-additional-packages '(
                                       ag
-                                      company
                                       exec-path-from-shell
                                       all-the-icons
                                       editorconfig
                                       xclip
-                                      gptel
                                       mise
                                       )
    ;; A list of packages that cannot be updated.
@@ -528,7 +524,6 @@ before packages are loaded."
   ;; (add-to-list 'comp-deferred-compilation-black-list "smartparens")
   (require 'mise)
   (add-hook 'after-init-hook #'global-mise-mode)
-  (require 'gptel)
   (setq comp-deferred-compilation t)
   (editorconfig-mode 1)
   (xclip-mode 1)
@@ -552,7 +547,17 @@ before packages are loaded."
   (with-eval-after-load 'lsp-mode
     (add-to-list 'lsp-file-watch-ignored-directories "[/\\\\]\\.terragrunt-cache\\'"))
 
-  (global-key-set (kbd "<select>") 'evil-end-of-line-or-visual-line)
+  ;; Configure copilot keybindings
+  (with-eval-after-load 'copilot
+    (define-key copilot-completion-map (kbd "<tab>") 'copilot-accept-completion)
+    (define-key copilot-completion-map (kbd "TAB") 'copilot-accept-completion)
+    (define-key copilot-completion-map (kbd "C-TAB") 'copilot-accept-completion-by-word)
+    (define-key copilot-completion-map (kbd "C-<tab>") 'copilot-accept-completion-by-word))
+
+  ;; Enable copilot in programming modes
+  (add-hook 'prog-mode-hook 'copilot-mode)
+
+
 )
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
@@ -567,7 +572,7 @@ This function is called at the very end of Spacemacs initialization."
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(origami lsp-treemacs lsp-mode lsp-pyright add-node-modules-path counsel-gtags counsel swiper ivy dap-mode lsp-docker bui ggtags impatient-mode htmlize import-js grizzl js-doc js2-refactor multiple-cursors livid-mode nodejs-repl npm-mode skewer-mode js2-mode simple-httpd tern web-beautify flyspell-correct auto-yasnippet evil-matchit flycheck helm-descbinds helm which-key yasnippet-snippets yapfify yaml-mode xclip ws-butler writeroom-mode winum wfnames volatile-highlights vim-powerline vi-tilde-fringe uuidgen unicode-fonts undo-tree treemacs-projectile treemacs-persp treemacs-magit treemacs-icons-dired treemacs-evil toml-mode toc-org term-cursor symon symbol-overlay string-inflection string-edit-at-point sql-indent sphinx-doc spacemacs-whitespace-cleanup spacemacs-purpose-popwin spaceline-all-the-icons space-doc smeargle rustic ron-mode restart-emacs rainbow-delimiters quickrun pytest pylookup pyenv-mode pydoc py-isort prettier-js popwin poetry pippel pipenv pip-requirements pcre2el password-generator paradox overseer org-superstar open-junk-file nose nameless mvn multi-line monokai-theme maven-test-mode macrostep lsp-ui lsp-python-ms lsp-origami lsp-java lorem-ipsum live-py-mode link-hint inspector info+ indent-guide importmagic hybrid-mode hungry-delete holy-mode hl-todo highlight-parentheses highlight-numbers highlight-indentation hide-comnt helm-xref helm-themes helm-swoop helm-pydoc helm-purpose helm-projectile helm-org helm-mode-manager helm-make helm-lsp helm-ls-git helm-git-grep helm-company helm-comint helm-c-yasnippet helm-ag groovy-mode groovy-imports gptel google-translate golden-ratio gitignore-templates git-timemachine git-modes git-messenger git-link forge flyspell-correct-helm flycheck-pos-tip flycheck-package flycheck-elsa flx-ido fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-textobj-line evil-surround evil-numbers evil-nerd-commenter evil-mc evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-evilified-state evil-escape evil-easymotion evil-collection evil-cleverparens evil-args evil-anzu eval-sexp-fu emr elisp-slime-nav elisp-def editorconfig dumb-jump drag-stuff dotenv-mode dired-quick-sort diminish diff-hl devdocs define-word cython-mode csv-mode company-terraform company-anaconda column-enforce-mode code-cells clean-aindent-mode centered-cursor-mode browse-at-remote blacken auto-highlight-symbol auto-dictionary auto-compile aggressive-indent ag ace-link ace-jump-helm-line)))
+   '(sqlup-mode avy-jump-helm-line company-go flycheck-golangci-lint go-eldoc go-fill-struct copilot copilot-chat shell-maker polymode transient request aio compat company-web web-completion-data emmet-mode helm-css-scss pug-mode sass-mode haml-mode scss-mode slim-mode tagedit web-mode nginx-mode go-gen-test go-guru go-impl go-rename go-tag go-mode godoctor origami lsp-treemacs lsp-mode lsp-pyright add-node-modules-path counsel-gtags counsel swiper ivy dap-mode lsp-docker bui ggtags impatient-mode htmlize import-js grizzl js-doc js2-refactor multiple-cursors livid-mode nodejs-repl npm-mode skewer-mode js2-mode simple-httpd tern web-beautify flyspell-correct auto-yasnippet evil-matchit flycheck helm-descbinds helm which-key yasnippet-snippets yapfify yaml-mode xclip ws-butler writeroom-mode winum wfnames volatile-highlights vim-powerline vi-tilde-fringe uuidgen unicode-fonts undo-tree treemacs-projectile treemacs-persp treemacs-magit treemacs-icons-dired treemacs-evil toml-mode toc-org term-cursor symon symbol-overlay string-inflection string-edit-at-point sql-indent sphinx-doc spacemacs-whitespace-cleanup spacemacs-purpose-popwin spaceline-all-the-icons space-doc smeargle rustic ron-mode restart-emacs rainbow-delimiters quickrun pytest pylookup pyenv-mode pydoc py-isort prettier-js popwin poetry pippel pipenv pip-requirements pcre2el password-generator paradox overseer org-superstar open-junk-file nose nameless mvn multi-line monokai-theme maven-test-mode macrostep lsp-ui lsp-python-ms lsp-origami lsp-java lorem-ipsum live-py-mode link-hint inspector info+ indent-guide importmagic hybrid-mode hungry-delete holy-mode hl-todo highlight-parentheses highlight-numbers highlight-indentation hide-comnt helm-xref helm-themes helm-swoop helm-pydoc helm-purpose helm-projectile helm-org helm-mode-manager helm-make helm-lsp helm-ls-git helm-git-grep helm-company helm-comint helm-c-yasnippet helm-ag groovy-mode groovy-imports gptel google-translate golden-ratio gitignore-templates git-timemachine git-modes git-messenger git-link forge flyspell-correct-helm flycheck-pos-tip flycheck-package flycheck-elsa flx-ido fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-textobj-line evil-surround evil-numbers evil-nerd-commenter evil-mc evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-evilified-state evil-escape evil-easymotion evil-collection evil-cleverparens evil-args evil-anzu eval-sexp-fu emr elisp-slime-nav elisp-def editorconfig dumb-jump drag-stuff dotenv-mode dired-quick-sort diminish diff-hl devdocs define-word cython-mode csv-mode company-terraform company-anaconda column-enforce-mode code-cells clean-aindent-mode centered-cursor-mode browse-at-remote blacken auto-highlight-symbol auto-dictionary auto-compile aggressive-indent ag ace-link ace-jump-helm-line)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

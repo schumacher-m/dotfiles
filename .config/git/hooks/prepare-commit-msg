@@ -1,0 +1,107 @@
+#!/usr/bin/env python3
+
+"""
+Git hook to generate commit messages using Claude via Anthropic SDK
+This is a prepare-commit-msg hook that generates a commit message based on staged changes
+"""
+
+import os
+import sys
+import subprocess
+from anthropic import Anthropic
+
+def main():
+    # Get command line arguments
+    if len(sys.argv) < 2:
+        print("Error: Missing commit message file argument")
+        sys.exit(1)
+    
+    commit_msg_file = sys.argv[1]
+    commit_source = sys.argv[2] if len(sys.argv) > 2 else None
+    
+    print("DEBUG: Starting prepare-commit-msg hook")
+    print(f"DEBUG: Commit message file: {commit_msg_file}")
+    print(f"DEBUG: Commit source: {commit_source}")
+    
+    # Only generate message for regular commits (not merge, squash, etc.)
+    if commit_source:
+        print("DEBUG: Commit source detected, skipping message generation")
+        sys.exit(0)
+    
+    # Check if CLAUDE_CODE_OAUTH_TOKEN is set
+    api_key = os.environ.get('CLAUDE_CODE_OAUTH_TOKEN')
+    if not api_key:
+        print("Warning: CLAUDE_CODE_OAUTH_TOKEN not set. Skipping commit message generation.")
+        sys.exit(0)
+    
+    print("DEBUG: API key found")
+    
+    # Get the staged diff
+    try:
+        result = subprocess.run(['git', 'diff', '--staged'], 
+                              capture_output=True, text=True, check=True)
+        diff = result.stdout
+    except subprocess.CalledProcessError as e:
+        print(f"Error: Failed to get staged diff: {e}")
+        sys.exit(1)
+    
+    if not diff.strip():
+        print("No staged changes found.")
+        sys.exit(0)
+    
+    print(f"DEBUG: Got diff, length: {len(diff)}")
+    
+    # Initialize Anthropic client
+    try:
+        client = Anthropic(api_key=api_key)
+        print("DEBUG: Anthropic client initialized")
+    except Exception as e:
+        print(f"Error: Failed to initialize Anthropic client: {e}")
+        sys.exit(1)
+    
+    # Generate commit message
+    prompt = f"""Generate ONLY a conventional commit message for these changes. Follow the format: type(scope): description. Keep it concise and under 50 characters for the first line. If needed, add a blank line and more detailed explanation. Do not include any explanation or commentary - return only the commit message itself.
+
+Changes:
+```
+{diff}
+```"""
+    
+    try:
+        print("DEBUG: Making API call to Claude")
+        response = client.messages.create(
+            model="claude-3-5-sonnet-20241022",
+            max_tokens=200,
+            messages=[
+                {
+                    "role": "user",
+                    "content": prompt
+                }
+            ]
+        )
+        
+        commit_message = response.content[0].text.strip()
+        print(f"DEBUG: Generated commit message: {commit_message}")
+        
+    except Exception as e:
+        print(f"Error: Failed to generate commit message: {e}")
+        print("Please run 'git commit' again or write a message manually.")
+        sys.exit(1)
+    
+    # Validate the commit message
+    if not commit_message or "Error:" in commit_message:
+        print("Error: Invalid commit message generated")
+        print("Please run 'git commit' again or write a message manually.")
+        sys.exit(1)
+    
+    # Write the generated message to the commit message file
+    try:
+        with open(commit_msg_file, 'w') as f:
+            f.write(commit_message)
+        print("Generated commit message using Claude Sonnet 4")
+    except Exception as e:
+        print(f"Error: Failed to write commit message: {e}")
+        sys.exit(1)
+
+if __name__ == "__main__":
+    main()

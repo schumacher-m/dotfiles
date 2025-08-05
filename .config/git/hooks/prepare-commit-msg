@@ -1,14 +1,15 @@
 #!/usr/bin/env python3
 
 """
-Git hook to generate commit messages using Claude via Anthropic SDK
+Git hook to generate commit messages using LLaMA via local API
 This is a prepare-commit-msg hook that generates a commit message based on staged changes
 """
 
 import os
 import sys
 import subprocess
-from anthropic import Anthropic
+import httpx
+from typing import Dict, List
 
 def main():
     # Get command line arguments
@@ -28,14 +29,6 @@ def main():
         print("DEBUG: Commit source detected, skipping message generation")
         sys.exit(0)
     
-    # Check if ANTHROPIC_API_KEY is set
-    api_key = os.environ.get('ANTHROPIC_API_KEY')
-    if not api_key:
-        print("Warning: ANTHROPIC_API_KEY not set. Skipping commit message generation.")
-        sys.exit(0)
-    
-    print("DEBUG: API key found")
-    
     # Get the staged diff
     try:
         result = subprocess.run(['git', 'diff', '--staged'], 
@@ -51,14 +44,6 @@ def main():
     
     print(f"DEBUG: Got diff, length: {len(diff)}")
     
-    # Initialize Anthropic client
-    try:
-        client = Anthropic(api_key=api_key)
-        print("DEBUG: Anthropic client initialized")
-    except Exception as e:
-        print(f"Error: Failed to initialize Anthropic client: {e}")
-        sys.exit(1)
-    
     # Generate commit message
     prompt = f"""Generate ONLY a conventional commit message for these changes. Follow the format: type(scope): description. Keep it concise and under 50 characters for the first line. If needed, add a blank line and more detailed explanation. Do not include any explanation or commentary - return only the commit message itself.
 
@@ -68,19 +53,17 @@ Changes:
 ```"""
     
     try:
-        print("DEBUG: Making API call to Claude")
-        response = client.messages.create(
-            model="claude-3-5-haiku-20241022",
-            max_tokens=200,
-            messages=[
-                {
-                    "role": "user",
-                    "content": prompt
-                }
-            ]
-        )
+        print("DEBUG: Making API call to LLaMA")
+        payload = {
+            "model": "llama3.1",
+            "prompt": prompt,
+            "stream": False
+        }
         
-        commit_message = response.content[0].text.strip()
+        response = httpx.post('http://localhost:11434/api/generate', 
+                              json=payload)
+
+        commit_message = response.json()['response'].strip()
         print(f"DEBUG: Generated commit message: {commit_message}")
         
     except Exception as e:
@@ -98,7 +81,7 @@ Changes:
     try:
         with open(commit_msg_file, 'w') as f:
             f.write(commit_message)
-        print("Generated commit message using Claude 3.5 Haiku")
+        print("Generated commit message using LLaMA 3.1")
     except Exception as e:
         print(f"Error: Failed to write commit message: {e}")
         sys.exit(1)

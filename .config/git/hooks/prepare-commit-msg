@@ -3,6 +3,8 @@
 """
 Git hook to generate commit messages using local LLM.
 This prepare-commit-msg hook generates a conventional commit message based on staged changes.
+
+Enable: git config --global core.hooksPath ~/.config/git/hooks
 """
 
 import os

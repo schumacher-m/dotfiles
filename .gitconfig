@@ -3,12 +3,15 @@
 [push]
 	default = simple
 [user]
-	name = Michael Schumacher-Kunze
+	name = Michael
 	email = schumacher.m@me.com
+	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFNdGLjb/M2RKouSJuAhITyAAvxoV4ug26Hq9A8Ygcm+
 [merge]
 	tool = opendiff
 [core]
-	editor = emacs
+	editor = vim
+	excludesfile = /home/m/.gitignore
+	hooksPath = /Users/m/.config/git/hooks
 [filter "hawser"]
 	clean = git hawser clean %f
 	smudge = git hawser smudge %f
@@ -65,4 +68,10 @@
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
 [init]
-	defaultBranch = master
+	defaultBranch = main
+[submodule]
+	recurse = true
+[gpg]
+	format = ssh
+[gpg "ssh"]
+	program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign

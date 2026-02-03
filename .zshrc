@@ -5,15 +5,12 @@ DISABLE_AUTO_UPDATE=true
 source ~/.znap/zsh-snap/znap.zsh
 
 znap source ohmyzsh/ohmyzsh
-znap source ohmyzsh/ohmyzsh plugins/{tmux,aws,gh,git,thefuck,direnv,fzf,1password,aliases,jj}
-znap source romkatv/powerlevel10k
+znap source ohmyzsh/ohmyzsh plugins/{tmux,aws,gh,git,thefuck,direnv,fzf,1password,aliases,jj,mise}
 znap source zsh-users/zsh-autosuggestions
 znap source DarrinTisdale/zsh-aliases-exa
 znap source ajeetdsouza/zoxide
 znap source wintermi/zsh-mise
 znap source atuinsh/atuin
-
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 export HISTSIZE=1000000000
 export SAVEHIST=1000000000
@@ -25,9 +22,8 @@ export ZSH_FZF_HISTORY_SEARCH_FZF_ARGS="-i -x --preview-window=hidden --height=2
 
 alias ee='emacs -nw'
 alias e='emacsclient -t'
-alias k='kubectl'
-alias t='terragrunt'
 
 bindkey "^[[1;3C" forward-word
 bindkey "^[[1;3D" backward-word
-source /Users/m/.config/op/plugins.sh
+
+eval "$(starship init zsh)"

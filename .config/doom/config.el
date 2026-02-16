@@ -50,6 +50,18 @@
 (map! :leader
       :desc "Treemacs focus" "0" #'treemacs-select-window)
 
+;; Treemacs git integration: choose one of 'extended or 'deferred.
+(after! treemacs
+  (setq treemacs-git-mode 'extended))
+
+;; Reverse Treemacs split semantics to match Vim-style naming:
+;; horizontal => top/bottom, vertical => left/right.
+;;(after! treemacs
+;;  (let ((horizontal (symbol-function 'treemacs-visit-node-horizontal-split))
+;;        (vertical (symbol-function 'treemacs-visit-node-vertical-split)))
+;;    (fset 'treemacs-visit-node-horizontal-split vertical)
+;;    (fset 'treemacs-visit-node-vertical-split horizontal)))
+
 ;; Bind SPC 1..9 to window numbers (requires :ui window-select +numbers).
 (after! winum
   (map! :leader
@@ -62,6 +74,16 @@
         :desc "Window 7" "7" #'winum-select-window-7
         :desc "Window 8" "8" #'winum-select-window-8
         :desc "Window 9" "9" #'winum-select-window-9))
+
+(xterm-mouse-mode 1)
+
+;; Sync yanks/kill-ring with the OS clipboard (especially in terminal sessions).
+(setq select-enable-clipboard t
+      select-enable-primary t)
+
+(use-package! xclip
+  :config
+  (xclip-mode 1))
 
 ;; Whenever you reconfigure a package, make sure to wrap your config in an
 ;; `after!' block, otherwise Doom's defaults may override your settings. E.g.

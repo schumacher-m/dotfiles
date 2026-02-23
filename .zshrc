@@ -22,6 +22,10 @@ export ZSH_FZF_HISTORY_SEARCH_FZF_ARGS="-i -x --preview-window=hidden --height=2
 
 alias ee='emacs -nw'
 alias e='emacsclient -t'
+alias k='kubectl'
+alias t='terragrunt'
+alias awsume="source awsume"
+fpath=(~/.awsume/zsh-autocomplete/ $fpath)
 
 bindkey "^[[1;3C" forward-word
 bindkey "^[[1;3D" backward-word

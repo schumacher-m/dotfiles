@@ -1,0 +1,4 @@
+interface:
+  display_name: "Bootstrap Repository"
+  short_description: "Build a runnable repository setup"
+  default_prompt: "Use $bootstrap-repository to create a reproducible setup for this repository."

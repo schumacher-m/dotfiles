@@ -1,0 +1,4 @@
+interface:
+  display_name: "Conventional Commit"
+  short_description: "Create a focused conventional Git commit"
+  default_prompt: "Use $conventional-commit to review and commit the intended local changes."

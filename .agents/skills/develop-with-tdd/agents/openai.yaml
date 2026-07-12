@@ -1,0 +1,4 @@
+interface:
+  display_name: "Develop with TDD"
+  short_description: "Build features with red-green-refactor"
+  default_prompt: "Use $develop-with-tdd to implement this behavior in small tested increments."

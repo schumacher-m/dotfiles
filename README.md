@@ -52,6 +52,30 @@ codex --profile lmstudio
 The profile uses `qwen/qwen3.6-35b-a3b` through the OpenAI-compatible LM Studio
 server at `http://192.168.178.122:1234/v1` and does not require authentication.
 
+## Personal Codex guidance and skills
+
+The repository versions personal Codex behavior separately from reusable
+workflows:
+
+- `.codex/AGENTS.md` contains development preferences that apply across repositories.
+- `.agents/skills/` contains personal skills for repeatable workflows.
+
+`make setup` includes these through `make link`. The global guidance is linked
+to `~/.codex/AGENTS.md`, while each skill is linked individually under
+`~/.agents/skills/`. Linking skills individually preserves other installed
+skills that are not managed by this repository.
+
+The starter skills are:
+
+- `$design-together` challenges ideas and converges on a design before implementation.
+- `$develop-with-tdd` implements behavior through small red-green-refactor iterations.
+- `$conventional-commit` reviews and commits only the intended local changes.
+- `$verify-change` validates changes with project-native checks and runtime evidence.
+- `$bootstrap-repository` builds reproducible setup automation and onboarding documentation.
+
+Edit the tracked guidance or skills in this repository and rerun `make link` to
+install them on another machine.
+
 ## Useful targets
 
 ```sh

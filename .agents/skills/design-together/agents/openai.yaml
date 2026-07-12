@@ -1,0 +1,4 @@
+interface:
+  display_name: "Design Together"
+  short_description: "Debate architecture and converge on a design"
+  default_prompt: "Use $design-together to challenge this idea and converge on a design with me."

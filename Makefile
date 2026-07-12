@@ -30,7 +30,10 @@ BIN_FILES := \
 	.local/bin/tmux-window-name
 
 CODEX_FILES := \
+	.codex/AGENTS.md \
 	.codex/lmstudio.config.toml
+
+CODEX_SKILLS_DIR := .agents/skills
 
 .DEFAULT_GOAL := help
 .PHONY: help setup homebrew brew secrets link znap tmux check
@@ -73,7 +76,7 @@ secrets: ## Create the local Zsh secrets file if it is missing
 		printf 'created %s\n' "$$secrets_file"; \
 	fi
 
-link: ## Link tracked files (ZSHENV_PROFILE=default|work)
+link: ## Link tracked files and personal Codex skills (ZSHENV_PROFILE=default|work)
 	@set -euo pipefail; \
 	if [[ ! -f "$(ZSHENV_FILE)" ]]; then printf 'Unknown Zsh profile: %s\n' "$(ZSHENV_PROFILE)" >&2; exit 1; fi; \
 	if [[ ! -f "$(ZSHRC_FILE)" ]]; then printf 'Unknown Zsh profile: %s\n' "$(ZSHENV_PROFILE)" >&2; exit 1; fi; \
@@ -93,6 +96,11 @@ link: ## Link tracked files (ZSHENV_PROFILE=default|work)
 		printf 'linked  %s -> %s\n' "$$dest_rel" "$$rel"; \
 	}; \
 	for rel in $(ROOT_FILES) $(CONFIG_FILES) $(BIN_FILES) $(CODEX_FILES); do link_one "$$rel"; done; \
+	for skill_src in "$(DOTFILES)/$(CODEX_SKILLS_DIR)"/*; do \
+		[[ -d "$$skill_src" ]] || continue; \
+		skill_name="$${skill_src##*/}"; \
+		link_one "$(CODEX_SKILLS_DIR)/$$skill_name" ".agents/skills/$$skill_name"; \
+	done; \
 	link_one ".zshenv.$(ZSHENV_PROFILE)" ".zshenv.profile"; \
 	link_one ".zshrc.$(ZSHENV_PROFILE)" ".zshrc.profile"
 

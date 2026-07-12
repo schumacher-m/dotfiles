@@ -1,0 +1,4 @@
+interface:
+  display_name: "Verify Change"
+  short_description: "Verify changes with project-native checks"
+  default_prompt: "Use $verify-change to verify the current implementation and report remaining risks."

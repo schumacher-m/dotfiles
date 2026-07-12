@@ -8,10 +8,12 @@
 	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFNdGLjb/M2RKouSJuAhITyAAvxoV4ug26Hq9A8Ygcm+
 [merge]
 	tool = opendiff
+	conflictStyle = zdiff3
 [core]
 	editor = vim
 	excludesfile = /home/m/.gitignore
 	hooksPath = /Users/m/.config/git/hooks
+	pager = delta
 [filter "hawser"]
 	clean = git hawser clean %f
 	smudge = git hawser smudge %f
@@ -75,3 +77,8 @@
 	format = ssh
 [gpg "ssh"]
 	program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign
+[interactive]
+	diffFilter = delta --color-only
+[delta]
+	navigate = true
+	dark = true

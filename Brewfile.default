@@ -1,0 +1,11 @@
+eval File.read(File.expand_path("Brewfile", __dir__))
+
+brew "deno"
+brew "ffmpeg"
+brew "just"
+brew "nvtop"
+brew "parallel"
+brew "scons"
+brew "smartmontools"
+brew "wget"
+cask "codex"

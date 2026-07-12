@@ -1,3 +1,4 @@
 !.sbt/**/*.sbt
 .emacs.d
 !.emacs.d/private/
+.zshenv.secrets

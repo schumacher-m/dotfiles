@@ -1,0 +1,6 @@
+znap source ohmyzsh/ohmyzsh plugins/aws
+
+alias k='kubectl'
+alias t='terragrunt'
+alias awsume='source awsume'
+fpath=("$HOME/.awsume/zsh-autocomplete" $fpath)

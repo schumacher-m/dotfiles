@@ -1,0 +1,8 @@
+# Add environment variables for the work profile here.
+path=(
+  /opt/homebrew/opt/gnu-sed/libexec/gnubin
+  /opt/homebrew/opt/libpq/bin
+  "$HOME/workspace/zai/anypoint-configuration-cli/dist"
+  "$HOME/.bat/bat/bin"
+  $path
+)

@@ -2,26 +2,32 @@ SHELL := /bin/bash
 
 DOTFILES := $(CURDIR)
 BACKUP_ROOT := $(HOME)/.dotfiles-backup
+PROFILE ?= default
+BREWFILE := $(DOTFILES)/Brewfile.$(PROFILE)
+ZSHENV_PROFILE ?= $(PROFILE)
+ZSHENV_FILE := $(DOTFILES)/.zshenv.$(ZSHENV_PROFILE)
+ZSHRC_FILE := $(DOTFILES)/.zshrc.$(ZSHENV_PROFILE)
 BREW_PREFIX := $(if $(filter arm64,$(shell uname -m)),/opt/homebrew,/usr/local)
 export PATH := $(BREW_PREFIX)/bin:$(BREW_PREFIX)/sbin:$(PATH)
 
 ROOT_FILES := \
-	.alacritty.toml \
 	.gitconfig \
-	.mise.toml \
 	.tmux.conf \
 	.zshenv \
 	.zshrc
 
 CONFIG_FILES := \
+	.config/alacritty/alacritty.toml \
+	.config/atuin/config.toml \
 	.config/doom/config.el \
 	.config/doom/init.el \
 	.config/doom/packages.el \
 	.config/helix/config.toml \
+	.config/mise/config.toml \
 	.config/starship.toml
 
 .DEFAULT_GOAL := help
-.PHONY: help setup homebrew brew link znap tmux check
+.PHONY: help setup homebrew brew secrets link znap tmux check
 
 help: ## Show the available targets
 	@awk 'BEGIN {FS = ":.*## "; printf "Usage: make <target>\n\nTargets:\n"} /^[a-zA-Z_-]+:.*## / {printf "  %-12s %s\n", $$1, $$2}' $(MAKEFILE_LIST)
@@ -29,6 +35,7 @@ help: ## Show the available targets
 setup: ## Install packages, link dotfiles, and install shell/tmux plugins
 	@$(MAKE) homebrew
 	@$(MAKE) brew
+	@$(MAKE) secrets
 	@$(MAKE) link
 	@$(MAKE) znap
 	@$(MAKE) tmux
@@ -42,31 +49,46 @@ homebrew: ## Install Homebrew if it is missing
 		/bin/bash -c "$$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"; \
 	fi
 
-brew: ## Install or reconcile packages from Brewfile
+brew: ## Install or reconcile packages (PROFILE=default|work)
 	@brew_cmd="$$(command -v brew 2>/dev/null || true)"; \
+	if [[ ! -f "$(BREWFILE)" ]]; then printf 'Unknown Homebrew profile: %s\n' "$(PROFILE)" >&2; exit 1; fi; \
 	if [[ -z "$$brew_cmd" && -x /opt/homebrew/bin/brew ]]; then brew_cmd=/opt/homebrew/bin/brew; fi; \
 	if [[ -z "$$brew_cmd" && -x /usr/local/bin/brew ]]; then brew_cmd=/usr/local/bin/brew; fi; \
 	if [[ -z "$$brew_cmd" ]]; then printf 'Homebrew is missing; run make homebrew first.\n' >&2; exit 1; fi; \
-	"$$brew_cmd" bundle --file="$(DOTFILES)/Brewfile"
+	"$$brew_cmd" bundle --file="$(BREWFILE)"
 
-link: ## Link tracked configuration files into the home directory
+secrets: ## Create the local Zsh secrets file if it is missing
+	@secrets_file="$(HOME)/.zshenv.secrets"; \
+	if [[ -e "$$secrets_file" || -L "$$secrets_file" ]]; then \
+		printf 'exists  %s\n' "$$secrets_file"; \
+	else \
+		printf '%s\n' '# Add environment secrets here. This file is intentionally not tracked by Git.' > "$$secrets_file"; \
+		chmod 600 "$$secrets_file"; \
+		printf 'created %s\n' "$$secrets_file"; \
+	fi
+
+link: ## Link tracked files (ZSHENV_PROFILE=default|work)
 	@set -euo pipefail; \
+	if [[ ! -f "$(ZSHENV_FILE)" ]]; then printf 'Unknown Zsh profile: %s\n' "$(ZSHENV_PROFILE)" >&2; exit 1; fi; \
+	if [[ ! -f "$(ZSHRC_FILE)" ]]; then printf 'Unknown Zsh profile: %s\n' "$(ZSHENV_PROFILE)" >&2; exit 1; fi; \
 	backup_dir="$(BACKUP_ROOT)/$$(date +%Y%m%d-%H%M%S)"; \
 	link_one() { \
-		rel="$$1"; src="$(DOTFILES)/$$rel"; dest="$(HOME)/$$rel"; \
+		rel="$$1"; dest_rel="$${2:-$$rel}"; src="$(DOTFILES)/$$rel"; dest="$(HOME)/$$dest_rel"; \
 		if [[ -L "$$dest" && "$$(readlink "$$dest")" == "$$src" ]]; then \
-			printf 'linked  %s\n' "$$rel"; return; \
+			printf 'linked  %s -> %s\n' "$$dest_rel" "$$rel"; return; \
 		fi; \
 		if [[ -e "$$dest" || -L "$$dest" ]]; then \
-			mkdir -p "$$backup_dir/$$(dirname "$$rel")"; \
-			mv "$$dest" "$$backup_dir/$$rel"; \
-			printf 'backup  %s -> %s\n' "$$rel" "$$backup_dir/$$rel"; \
+			mkdir -p "$$backup_dir/$$(dirname "$$dest_rel")"; \
+			mv "$$dest" "$$backup_dir/$$dest_rel"; \
+			printf 'backup  %s -> %s\n' "$$dest_rel" "$$backup_dir/$$dest_rel"; \
 		fi; \
 		mkdir -p "$$(dirname "$$dest")"; \
 		ln -s "$$src" "$$dest"; \
-		printf 'linked  %s\n' "$$rel"; \
+		printf 'linked  %s -> %s\n' "$$dest_rel" "$$rel"; \
 	}; \
-	for rel in $(ROOT_FILES) $(CONFIG_FILES); do link_one "$$rel"; done
+	for rel in $(ROOT_FILES) $(CONFIG_FILES); do link_one "$$rel"; done; \
+	link_one ".zshenv.$(ZSHENV_PROFILE)" ".zshenv.profile"; \
+	link_one ".zshrc.$(ZSHENV_PROFILE)" ".zshrc.profile"
 
 znap: ## Install znap and install/update Zsh plugins
 	@set -euo pipefail; \

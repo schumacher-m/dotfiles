@@ -27,6 +27,9 @@ history = 0
 save_to_clipboard = true
 semantic_escape_chars = ",│`|:\"' ()[]{}<>\t"
 
+[terminal]
+shell = { program = "/bin/zsh", args = ["-lc", "exec tmux new-session -A -s main"] }
+
 [window]
 startup_mode = "Fullscreen"
 

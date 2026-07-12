@@ -1,5 +1,0 @@
-[tools]
-python = "3.14"
-node = "26"
-java = "26"
-rust = "latest"

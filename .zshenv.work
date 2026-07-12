@@ -1,4 +1,7 @@
 # Add environment variables for the work profile here.
+export GIT_CMA_CLI=copilot
+export GIT_CMA_MODEL=claude-haiku-4.5
+
 path=(
   /opt/homebrew/opt/gnu-sed/libexec/gnubin
   /opt/homebrew/opt/libpq/bin

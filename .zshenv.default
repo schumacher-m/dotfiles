@@ -1,1 +1,2 @@
-# Add environment variables for the default profile here.
+export GIT_CMA_CLI=codex
+export GIT_CMA_MODEL=gpt-5.4-mini

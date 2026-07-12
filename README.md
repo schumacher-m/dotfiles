@@ -67,6 +67,16 @@ The shared `.zshenv` and `.zshrc` source `~/.zshenv.profile` and
 `PROFILE=work` selects the work Homebrew and Zsh profiles together; use
 `ZSHENV_PROFILE=work make link` to switch only Zsh.
 
+The `git cma` alias generates a conventional commit message for the staged
+changes and commits them. The default Zsh profile uses Codex CLI with
+`gpt-5.4-mini`; the work profile uses Copilot CLI with `claude-haiku-4.5`.
+Override either choice for one command with environment variables:
+
+```sh
+GIT_CMA_CLI=codex GIT_CMA_MODEL=gpt-5.4-mini git cma
+GIT_CMA_CLI=copilot GIT_CMA_MODEL=claude-haiku-4.5 git cma
+```
+
 `make check` uses [Gitleaks](https://github.com/gitleaks/gitleaks). It scans both
 Git history and the current working tree for credentials, tokens, private keys,
 and other suspicious values. Gitleaks is recommended here because it is fast,

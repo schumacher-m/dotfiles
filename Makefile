@@ -26,6 +26,12 @@ CONFIG_FILES := \
 	.config/mise/config.toml \
 	.config/starship.toml
 
+BIN_FILES := \
+	.local/bin/tmux-window-name
+
+CODEX_FILES := \
+	.codex/lmstudio.config.toml
+
 .DEFAULT_GOAL := help
 .PHONY: help setup homebrew brew secrets link znap tmux check
 
@@ -86,7 +92,7 @@ link: ## Link tracked files (ZSHENV_PROFILE=default|work)
 		ln -s "$$src" "$$dest"; \
 		printf 'linked  %s -> %s\n' "$$dest_rel" "$$rel"; \
 	}; \
-	for rel in $(ROOT_FILES) $(CONFIG_FILES); do link_one "$$rel"; done; \
+	for rel in $(ROOT_FILES) $(CONFIG_FILES) $(BIN_FILES) $(CODEX_FILES); do link_one "$$rel"; done; \
 	link_one ".zshenv.$(ZSHENV_PROFILE)" ".zshenv.profile"; \
 	link_one ".zshrc.$(ZSHENV_PROFILE)" ".zshrc.profile"
 

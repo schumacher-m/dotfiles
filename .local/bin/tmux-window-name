@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+current_path="${1:-${HOME:-/}}"
+if [[ ! -d "$current_path" ]]; then
+  current_path="${HOME:-/}"
+fi
+
+git_root="$(git -C "$current_path" rev-parse --show-toplevel 2>/dev/null || true)"
+if [[ -n "$git_root" ]]; then
+  window_name="${git_root##*/}"
+else
+  current_path="${current_path%/}"
+  window_name="${current_path##*/}"
+  window_name="${window_name:-/}"
+fi
+
+printf '%s\n' "$window_name"

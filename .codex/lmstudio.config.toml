@@ -1,0 +1,8 @@
+model = "qwen/qwen3.6-35b-a3b"
+model_provider = "lmstudio-lan"
+
+[model_providers.lmstudio-lan]
+name = "LM Studio (LAN)"
+base_url = "http://192.168.178.122:1234/v1"
+wire_api = "responses"
+requires_openai_auth = false

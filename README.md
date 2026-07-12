@@ -24,7 +24,7 @@ make setup
 1. Install Homebrew when it is not already available.
 2. Install the shared and selected-profile Homebrew packages, including tmux and Gitleaks.
 3. Create `~/.zshenv.secrets` with restrictive permissions if it does not exist.
-4. Link the tracked configuration files into your home directory.
+4. Link the tracked configuration files and local helper scripts into your home directory.
 5. Clone znap and run `znap pull` to install or update Zsh plugins.
 6. Clone TPM and install the plugins from `.tmux.conf`.
 
@@ -40,6 +40,17 @@ exec zsh -l
 
 Alacritty attaches to or creates the `main` tmux session directly. Other Zsh
 shells do not start tmux automatically.
+
+## Codex profiles
+
+Run Codex against the LAN-hosted LM Studio model with:
+
+```sh
+codex --profile lmstudio
+```
+
+The profile uses `qwen/qwen3.6-35b-a3b` through the OpenAI-compatible LM Studio
+server at `http://192.168.178.122:1234/v1` and does not require authentication.
 
 ## Useful targets
 

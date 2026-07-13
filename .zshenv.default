@@ -1,2 +1,2 @@
 export GIT_CMA_CLI=codex
-export GIT_CMA_MODEL=gpt-5.4-mini
+export GIT_CMA_MODEL=gpt-5.6-terra

@@ -20,3 +20,14 @@ Implement the agreed behavior as a sequence of small, observable tests and minim
 9. Diagnose and fix every deterministic code or test failure until the complete suite is green. Treat flaky tests, missing services, and environment failures according to their actual cause; do not misreport them as passing.
 10. Treat a completed feature slice with its tests as a useful commit boundary, but do not commit unless explicitly requested.
 11. Report the red-green-refactor increments, focused and full-suite commands, fixes made after the full run, and any verification that remains blocked.
+
+## Readability gate
+
+When the behavior implements a flow, service workflow, client, persistence pipeline, or another multi-step use case:
+
+1. Preserve the agreed domain-level pseudocode as an implementation acceptance criterion. If none exists, write a short happy-path sketch before the first production change.
+2. After each coherent slice reaches green, and again at final green, compare the production entrypoint with that sketch. Refactor accumulated plumbing while keeping the tests green so a reader can understand the main use case without following several helpers or files.
+3. Prefer domain-facing operations that keep authentication, retries, serialization, framework integration, and persistence mechanics behind their boundaries.
+4. Introduce an abstraction only when it protects a real invariant, isolates an external boundary, or removes repeated decisions.
+5. Treat generic base classes, registries, context threading, single-use wrappers, and excessive file hopping as readability warnings.
+6. Allow departures only for concrete constraints, which must remain visible and documented at the orchestration boundary.

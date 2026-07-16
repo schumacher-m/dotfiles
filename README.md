@@ -120,6 +120,7 @@ The starter skills are:
 
 - `$design-together` challenges ideas and converges on a design before implementation.
 - `$diagnose-runtime` finds evidence-backed root causes without changing the system.
+- `$review-architecture` assesses architecture, preserves sound decisions, and recommends proportionate structural improvements.
 - `$develop-with-tdd` implements behavior through small red-green-refactor iterations.
 - `$conventional-commit` reviews and commits only the intended local changes.
 - `$verify-change` validates changes with project-native checks and runtime evidence.

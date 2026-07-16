@@ -1,0 +1,4 @@
+interface:
+  display_name: "Review Architecture"
+  short_description: "Assess architecture and recommend improvements"
+  default_prompt: "Use $review-architecture to assess this design and recommend the smallest coherent improvement."

@@ -70,6 +70,7 @@ Delegated work uses model-specific agents:
 | --- | --- | --- | --- |
 | Built-in `worker` | `gpt-5.6-sol` | `medium` | TDD implementation and focused fixes |
 | `explorer` | `gpt-5.6-terra` | `medium` | Read-only repository mapping and evidence gathering |
+| `test_runner` | `gpt-5.6-terra` | `medium` | Existing tests, builds, health checks, and condensed failure evidence without source edits |
 | `reviewer` | `gpt-5.6-sol` | `high` | Correctness, security, concurrency, regression, and test review |
 | `docs_researcher` | `gpt-5.6-terra` | `low` | Primary documentation and version-specific API verification |
 | `batch_worker` | `gpt-5.6-luna` | `medium` | High-volume execution of an agreed, bounded plan |
@@ -118,6 +119,7 @@ individually preserves installations not managed by this repository.
 The starter skills are:
 
 - `$design-together` challenges ideas and converges on a design before implementation.
+- `$diagnose-runtime` finds evidence-backed root causes without changing the system.
 - `$develop-with-tdd` implements behavior through small red-green-refactor iterations.
 - `$conventional-commit` reviews and commits only the intended local changes.
 - `$verify-change` validates changes with project-native checks and runtime evidence.

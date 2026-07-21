@@ -13,6 +13,7 @@
 ## Workflow routing
 
 - Use `$design-together` for explicit planning, brainstorming, architecture, or meaningful technical tradeoffs. Keep design work read-only until the user asks to implement.
+- Use `$diagnose-runtime` for evidence-backed root-cause analysis of failing commands, tests, services, networks, or development environments. Keep diagnosis non-mutating and separate from repair.
 - Use `$develop-with-tdd` for testable behavioral implementation and let it own implementation-time verification through the final green suite.
 - Use `$verify-change` for standalone validation or when correctness has not already been established; do not repeat a completed TDD verification workflow without a reason.
 - Use `$bootstrap-repository` for reproducible setup surfaces and `$conventional-commit` only when the user explicitly asks to commit.

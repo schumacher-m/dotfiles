@@ -1,0 +1,4 @@
+interface:
+  display_name: "Diagnose Runtime"
+  short_description: "Find root causes without making changes"
+  default_prompt: "Use $diagnose-runtime to investigate this failure and report the evidence-backed root cause without making changes."

@@ -1,0 +1,45 @@
+{
+  "renderMarkdown": true,
+  "theme": "default",
+  "footer": {
+    "showModelEffort": true,
+    "showDirectory": true,
+    "showBranch": true,
+    "showContextWindow": false,
+    "showQuota": true,
+    "showAiUsed": false,
+    "showAgent": true,
+    "showCodeChanges": false,
+    "showUsername": false,
+    "showSandbox": true,
+    "showYolo": false,
+    "showCiStatus": false,
+    "showPullRequest": false,
+    "showCustom": true
+  },
+  "showReasoning": false,
+  "model": "gpt-5.6-sol",
+  "effortLevel": "high",
+  "includeCoAuthoredBy": false,
+  "subagents": {
+    "maxConcurrency": 3,
+    "maxDepth": 1,
+    "agents": {
+      "batch_worker": {
+        "effortLevel": "medium"
+      },
+      "docs_researcher": {
+        "effortLevel": "low"
+      },
+      "explorer": {
+        "effortLevel": "medium"
+      },
+      "reviewer": {
+        "effortLevel": "high"
+      },
+      "test_runner": {
+        "effortLevel": "medium"
+      }
+    }
+  }
+}

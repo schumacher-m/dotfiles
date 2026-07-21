@@ -1,6 +1,6 @@
 ---
 name: conventional-commit
-description: Create focused Conventional Commits from local repository changes while preserving unrelated work. Use when the user asks Codex to commit staged or unstaged changes, create a conventional commit, organize changes into commits, or finish a local change with a commit. Do not use merely to suggest a commit message without performing Git operations.
+description: Create focused Conventional Commits from local repository changes while preserving unrelated work. Use when the user asks the assistant to commit staged or unstaged changes, create a conventional commit, organize changes into commits, or finish a local change with a commit. Do not use merely to suggest a commit message without performing Git operations.
 ---
 
 # Conventional Commit

@@ -41,7 +41,7 @@ exec zsh -l
 Alacritty attaches to or creates the `main` tmux session directly. Other Zsh
 shells do not start tmux automatically.
 
-## Codex models and agents
+## Codex and Copilot models and agents
 
 Start Codex with the personal pair-programming profile:
 
@@ -63,6 +63,22 @@ codex --profile max
 ```
 
 This selects `gpt-5.6-sol` with `max` reasoning for both normal and plan mode.
+
+Start GitHub Copilot CLI with:
+
+```sh
+copilot
+```
+
+The tracked Copilot settings use `gpt-5.6-sol` with `high` reasoning and keep
+the current terminal, footer, and attribution preferences. The custom agents
+below are available to both tools with matching model and reasoning choices;
+Copilot stores the per-agent reasoning settings in `.copilot/settings.json`.
+
+Copilot applies those reasoning settings when it dispatches an agent as a
+subagent. In Copilot CLI 1.0.73, selecting a custom agent as the top-level
+session agent applies its model but retains the session's reasoning effort; use
+`--effort` when starting that kind of session if a different level is needed.
 
 Delegated work uses model-specific agents:
 
@@ -86,6 +102,11 @@ cost and coordination predictable. The model choices follow OpenAI's current
 [GPT-5.6 guidance](https://developers.openai.com/api/docs/guides/latest-model.md)
 and [Codex subagent guidance](https://learn.chatgpt.com/docs/agent-configuration/subagents#choosing-models-and-reasoning).
 
+Copilot may select the five converted custom agents automatically. Its
+`git-commit` agent is manual-only because it generates message text without
+creating a commit; use the shared `/conventional-commit` skill in Copilot for an actual
+reviewed commit workflow.
+
 ### LM Studio profile
 
 Run Codex against the LAN-hosted LM Studio model with:
@@ -97,24 +118,31 @@ codex --profile lmstudio
 The profile uses `qwen/qwen3.6-35b-a3b` through the OpenAI-compatible LM Studio
 server at `http://192.168.178.122:1234/v1` and does not require authentication.
 
-## Personal Codex guidance and skills
+## Personal agent guidance and skills
 
-The repository versions personal Codex behavior separately from reusable
-workflows:
+The repository versions personal Codex and Copilot behavior separately from
+their shared reusable workflows:
 
 - `.codex/*.config.toml` contains explicit profiles without tracking Codex's
   mutable user config.
 - `.codex/agents/` defines delegated models and roles.
 - `.codex/AGENTS.md` contains concise development preferences that apply across repositories.
+- `.copilot/settings.json` contains Copilot's user-editable preferences and subagent settings.
+- `.copilot/agents/` contains Copilot versions of the delegated roles plus the manual `git-commit` agent.
+- `.copilot/copilot-instructions.md` adapts the personal development guidance and skill routing for Copilot.
 - `AGENTS.md` contains setup and configuration rules specific to this repository.
-- `.agents/skills/` contains personal skills for repeatable workflows.
+- `.agents/skills/` is the shared source of personal skills for both tools.
 
 `make setup` includes these through `make link`. The global guidance is linked
-to `~/.codex/AGENTS.md`, profiles are linked as `~/.codex/*.config.toml`, each
-custom agent is linked under `~/.codex/agents/`, and each skill is linked
-individually under `~/.agents/skills/`. The mutable `~/.codex/config.toml`
-remains a regular machine-local file owned by Codex. Linking agents and skills
+to `~/.codex/AGENTS.md` and `~/.copilot/copilot-instructions.md`; profiles and
+settings are linked to their respective tool directories; each custom agent is
+linked individually under `~/.codex/agents/` or `~/.copilot/agents/`; and each
+shared skill is linked under `~/.agents/skills/`. Linking agents and skills
 individually preserves installations not managed by this repository.
+
+The mutable `~/.codex/config.toml` and Copilot's `config.json`, permissions,
+credentials, session data, logs, plugins, and caches remain machine-owned and
+untracked.
 
 The starter skills are:
 
@@ -129,8 +157,10 @@ The starter skills are:
 The global guidance limits the unmanaged Graphify skill to explicit knowledge-graph
 requests so ordinary repository questions stay lightweight.
 
-Edit the tracked guidance or skills in this repository and rerun `make link` to
-install them on another machine.
+Edit the tracked guidance, agents, settings, or skills in this repository and
+rerun `make link` to install them on another machine. Copilot discovers the
+shared skills directly from `~/.agents/skills/`; separate copies under
+`~/.copilot/skills/` are not needed.
 
 ## Useful targets
 

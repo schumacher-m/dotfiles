@@ -1,6 +1,6 @@
 ---
 name: develop-with-tdd
-description: Implement code behavior with test-driven development using small red-green-refactor iterations and a final green test suite. Use when the user explicitly asks to implement, build, change, or fix a feature or bug in code where executable behavior can be tested. Do not use for design-only discussions or changes that contain no testable behavior.
+description: Implement testable code behavior through small red-green-refactor iterations and a final green test suite. Use when the user explicitly asks to implement, build, change, or fix a feature or bug with executable behavior. This skill owns implementation-time testing through final verification. Do not use for design-only discussions, documentation or configuration-only changes, or standalone verification of an existing change.
 ---
 
 # Develop with TDD

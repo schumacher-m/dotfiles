@@ -1,6 +1,6 @@
 ---
 name: design-together
-description: Run a short, opinionated pair-design interview that challenges assumptions, surfaces tradeoffs, and converges on a concrete technical direction before implementation. Use when the user asks to plan, brainstorm, think through architecture or design, compare approaches, bounce ideas, or asks an open-ended question about how something should be built. Remain read-only until the user clearly asks to implement or change code.
+description: Explore and converge on technical designs through a short, opinionated pair-design discussion. Use when the user explicitly asks to plan, brainstorm, compare architectural approaches, evaluate meaningful implementation tradeoffs, or think through how a non-trivial system should be built. Do not use for ordinary explanations, status questions, simple how-to questions, or implementation requests with an already settled design. Remain read-only until the user clearly asks to implement or change code.
 ---
 
 # Design Together

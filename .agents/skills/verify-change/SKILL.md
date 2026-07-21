@@ -1,6 +1,6 @@
 ---
 name: verify-change
-description: Verify that code, configuration, documentation, or infrastructure changes satisfy the requested behavior using project-native checks and direct runtime evidence. Use when the user asks to test, validate, check, prove, smoke-test, or finish verifying a change, and after material implementation work where correctness has not yet been established.
+description: Independently verify that code, configuration, documentation, or infrastructure changes satisfy the requested behavior using project-native checks and direct runtime evidence. Use for explicit test, validation, proof, smoke-test, or final-verification requests, and after material work whose correctness has not already been established. Do not repeat a completed develop-with-tdd final verification unless the user requests an additional independent check.
 ---
 
 # Verify Change

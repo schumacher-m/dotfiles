@@ -104,7 +104,8 @@ workflows:
 - `.codex/*.config.toml` contains explicit profiles without tracking Codex's
   mutable user config.
 - `.codex/agents/` defines delegated models and roles.
-- `.codex/AGENTS.md` contains development preferences that apply across repositories.
+- `.codex/AGENTS.md` contains concise development preferences that apply across repositories.
+- `AGENTS.md` contains setup and configuration rules specific to this repository.
 - `.agents/skills/` contains personal skills for repeatable workflows.
 
 `make setup` includes these through `make link`. The global guidance is linked
@@ -121,6 +122,9 @@ The starter skills are:
 - `$conventional-commit` reviews and commits only the intended local changes.
 - `$verify-change` validates changes with project-native checks and runtime evidence.
 - `$bootstrap-repository` builds reproducible setup automation and onboarding documentation.
+
+The global guidance limits the unmanaged Graphify skill to explicit knowledge-graph
+requests so ordinary repository questions stay lightweight.
 
 Edit the tracked guidance or skills in this repository and rerun `make link` to
 install them on another machine.

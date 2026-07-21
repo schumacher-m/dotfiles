@@ -34,6 +34,24 @@
 ;; `load-theme' function. This is the default:
 (setq doom-theme 'doom-monokai-classic)
 
+;; Buffer-local display tables override the standard table entirely.
+(defun +set-vertical-border-character ()
+  (setq buffer-display-table (or buffer-display-table (make-display-table)))
+  (set-display-table-slot buffer-display-table 'vertical-border ?│))
+
+(setq standard-display-table (or standard-display-table (make-display-table)))
+(set-display-table-slot standard-display-table 'vertical-border ?│)
+(add-hook 'after-change-major-mode-hook #'+set-vertical-border-character)
+(dolist (buffer (buffer-list))
+  (with-current-buffer buffer
+    (+set-vertical-border-character)))
+
+(defun +set-vertical-border-color ()
+  (set-face-foreground 'vertical-border "color-236"))
+
+(add-hook 'doom-load-theme-hook #'+set-vertical-border-color)
+(+set-vertical-border-color)
+
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
 (setq display-line-numbers-type t)

@@ -12,7 +12,6 @@
 [core]
 	editor = vim
 	excludesfile = /home/m/.gitignore
-	hooksPath = /Users/m/.config/git/hooks
 	pager = delta
 [filter "hawser"]
 	clean = git hawser clean %f

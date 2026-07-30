@@ -22,7 +22,7 @@ make setup
 `make setup` will:
 
 1. Install Homebrew when it is not already available.
-2. Install the shared and selected-profile Homebrew packages, including tmux and Gitleaks.
+2. Install the shared and selected-profile Homebrew packages, including tmux, Gitleaks, and OpenCode.
 3. Create `~/.zshenv.secrets` with restrictive permissions if it does not exist.
 4. Link the tracked configuration files and local helper scripts into your home directory.
 5. Clone znap and run `znap pull` to install or update Zsh plugins.
@@ -41,7 +41,7 @@ exec zsh -l
 Alacritty attaches to or creates the `main` tmux session directly. Other Zsh
 shells do not start tmux automatically.
 
-## Codex and Copilot models and agents
+## Codex, Copilot, and OpenCode models and agents
 
 Start Codex with the personal pair-programming profile:
 
@@ -80,11 +80,23 @@ subagent. In Copilot CLI 1.0.73, selecting a custom agent as the top-level
 session agent applies its model but retains the session's reasoning effort; use
 `--effort` when starting that kind of session if a different level is needed.
 
+Start OpenCode with:
+
+```sh
+opencode
+```
+
+The tracked OpenCode config uses GitHub Copilot as its provider, with
+`gpt-5.6-sol` at medium reasoning for build mode and high reasoning for plan
+mode. Authenticate the provider once with `/connect` inside OpenCode. OpenCode
+loads the same personal guidance, delegated roles, and shared skills as Codex
+and Copilot.
+
 Delegated work uses model-specific agents:
 
 | Agent | Model | Reasoning | Responsibility |
 | --- | --- | --- | --- |
-| Built-in `worker` | `gpt-5.6-sol` | `medium` | TDD implementation and focused fixes |
+| Built-in worker/build agent | `gpt-5.6-sol` | `medium` | TDD implementation and focused fixes |
 | `explorer` | `gpt-5.6-terra` | `medium` | Read-only repository mapping and evidence gathering |
 | `test_runner` | `gpt-5.6-terra` | `medium` | Existing tests, builds, health checks, and condensed failure evidence without source edits |
 | `reviewer` | `gpt-5.6-sol` | `high` | Correctness, security, concurrency, regression, and test review |
@@ -107,6 +119,12 @@ Copilot may select the five converted custom agents automatically. Its
 creating a commit; use the shared `/conventional-commit` skill in Copilot for an actual
 reviewed commit workflow.
 
+OpenCode exposes the same five custom roles as native subagents. Use `@` to
+invoke one directly or let the primary agent select one from its description.
+The Copilot-only `git-commit` agent is intentionally not duplicated because
+the shared `conventional-commit` skill performs the complete reviewed commit
+workflow.
+
 ### LM Studio profile
 
 Run Codex against the LAN-hosted LM Studio model with:
@@ -118,9 +136,17 @@ codex --profile lmstudio
 The profile uses `qwen/qwen3.6-35b-a3b` through the OpenAI-compatible LM Studio
 server at `http://192.168.178.122:1234/v1` and does not require authentication.
 
+OpenCode uses merged config overrides instead of named profiles. Start its
+maximum-reasoning or LM Studio configuration with:
+
+```sh
+OPENCODE_CONFIG=~/.config/opencode/max.config.jsonc opencode
+OPENCODE_CONFIG=~/.config/opencode/lmstudio.config.jsonc opencode
+```
+
 ## Personal agent guidance and skills
 
-The repository versions personal Codex and Copilot behavior separately from
+The repository versions personal Codex, Copilot, and OpenCode behavior separately from
 their shared reusable workflows:
 
 - `.codex/*.config.toml` contains explicit profiles without tracking Codex's
@@ -130,19 +156,23 @@ their shared reusable workflows:
 - `.copilot/settings.json` contains Copilot's user-editable preferences and subagent settings.
 - `.copilot/agents/` contains Copilot versions of the delegated roles plus the manual `git-commit` agent.
 - `.copilot/copilot-instructions.md` adapts the personal development guidance and skill routing for Copilot.
+- `.config/opencode/*.config.jsonc` contains the default and alternate OpenCode configurations.
+- `.config/opencode/AGENTS.md` adapts the personal development guidance and skill routing for OpenCode.
+- `.config/opencode/agents/` contains native OpenCode versions of the five shared delegated roles.
 - `AGENTS.md` contains setup and configuration rules specific to this repository.
-- `.agents/skills/` is the shared source of personal skills for both tools.
+- `.agents/skills/` is the shared source of personal skills for all three tools.
 
-`make setup` includes these through `make link`. The global guidance is linked
-to `~/.codex/AGENTS.md` and `~/.copilot/copilot-instructions.md`; profiles and
-settings are linked to their respective tool directories; each custom agent is
-linked individually under `~/.codex/agents/` or `~/.copilot/agents/`; and each
-shared skill is linked under `~/.agents/skills/`. Linking agents and skills
-individually preserves installations not managed by this repository.
+`make setup` includes these through `make link`. Global guidance, profiles, and
+settings are linked to each tool's directory; each custom agent is linked
+individually under `~/.codex/agents/`, `~/.copilot/agents/`, or
+`~/.config/opencode/agents/`; and each shared skill is linked under
+`~/.agents/skills/`. OpenCode discovers that shared skill location directly.
+Linking files individually preserves installations not managed by this
+repository.
 
-The mutable `~/.codex/config.toml` and Copilot's `config.json`, permissions,
-credentials, session data, logs, plugins, and caches remain machine-owned and
-untracked.
+The mutable `~/.codex/config.toml`, Copilot's `config.json`, and OpenCode's
+credentials, package dependencies, session data, logs, plugins, and caches
+remain machine-owned and untracked.
 
 The starter skills are:
 
@@ -158,9 +188,9 @@ The global guidance limits the unmanaged Graphify skill to explicit knowledge-gr
 requests so ordinary repository questions stay lightweight.
 
 Edit the tracked guidance, agents, settings, or skills in this repository and
-rerun `make link` to install them on another machine. Copilot discovers the
-shared skills directly from `~/.agents/skills/`; separate copies under
-`~/.copilot/skills/` are not needed.
+rerun `make link` to install them on another machine. Copilot and OpenCode
+discover the shared skills directly from `~/.agents/skills/`; tool-specific
+skill copies are not needed.
 
 ## Useful targets
 

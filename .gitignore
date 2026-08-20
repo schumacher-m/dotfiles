@@ -2,3 +2,6 @@
 .emacs.d
 !.emacs.d/private/
 .zshenv.secrets
+.pi/tasks
+.pi-hermes-locks.sqlite*
+.bigpowers/

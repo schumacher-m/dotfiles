@@ -1,0 +1,15 @@
+{
+  "defaultProvider": "openrouter",
+  "defaultModel": "google/gemini-3.7-flash",
+  "defaultThinkingLevel": "high",
+  "theme": "dark/dark",
+  "tuiMode": "fullscreen",
+  "enableInstallTelemetry": false,
+  "packages": [
+    "npm:@dietrichgebert/ponytail",
+    "npm:pi-hermes-memory",
+    "npm:bigpowers",
+    "npm:pi-web-access",
+    "npm:pi-background-tasks"
+  ]
+}

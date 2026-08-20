@@ -44,6 +44,8 @@ OPENCODE_FILES := \
 	.config/opencode/lmstudio.config.jsonc \
 	.config/opencode/max.config.jsonc \
 	.config/opencode/opencode.jsonc
+PI_FILES := \
+	.pi/agent/settings.json
 
 CODEX_AGENTS_DIR := .codex/agents
 COPILOT_AGENTS_DIR := .copilot/agents
@@ -110,7 +112,7 @@ link: ## Link dotfiles and personal Codex/Copilot/OpenCode configuration
 		ln -s "$$src" "$$dest"; \
 		printf 'linked  %s -> %s\n' "$$dest_rel" "$$rel"; \
 	}; \
-	for rel in $(ROOT_FILES) $(CONFIG_FILES) $(BIN_FILES) $(CODEX_FILES) $(COPILOT_FILES) $(OPENCODE_FILES); do link_one "$$rel"; done; \
+	for rel in $(ROOT_FILES) $(CONFIG_FILES) $(BIN_FILES) $(CODEX_FILES) $(COPILOT_FILES) $(OPENCODE_FILES) $(PI_FILES); do link_one "$$rel"; done; \
 	for agent_src in "$(DOTFILES)/$(CODEX_AGENTS_DIR)"/*; do \
 		[[ -f "$$agent_src" ]] || continue; \
 		agent_name="$${agent_src##*/}"; \

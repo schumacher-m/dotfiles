@@ -7,5 +7,6 @@ path=(
   /opt/homebrew/opt/libpq/bin
   "$HOME/workspace/zai/anypoint-configuration-cli/dist"
   "$HOME/.bat/bat/bin"
+  "$HOME/.cache/.bun/bin"
   $path
 )

@@ -14,6 +14,7 @@ SAVEHIST=100000
 
 alias ee='emacs -nw'
 alias e='emacsclient -t'
+alias ripgrep='rg'
 
 bindkey "^[[1;3C" forward-word
 bindkey "^[[1;3D" backward-word

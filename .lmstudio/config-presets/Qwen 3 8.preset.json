@@ -1,0 +1,80 @@
+{
+  "identifier": "@local:qwen-3.8",
+  "name": "Qwen 3.8",
+  "changed": true,
+  "operation": {
+    "fields": [
+      {
+        "key": "llm.prediction.reasoning.budgetTokens",
+        "value": {
+          "checked": false,
+          "value": 1024
+        }
+      },
+      {
+        "key": "llm.prediction.temperature",
+        "value": 1
+      },
+      {
+        "key": "llm.prediction.topKSampling",
+        "value": 20
+      },
+      {
+        "key": "llm.prediction.topPSampling",
+        "value": {
+          "checked": true,
+          "value": 0.95
+        }
+      },
+      {
+        "key": "llm.prediction.minPSampling",
+        "value": {
+          "checked": false,
+          "value": 0
+        }
+      },
+      {
+        "key": "llm.prediction.repeatPenalty",
+        "value": {
+          "checked": false,
+          "value": 1
+        }
+      },
+      {
+        "key": "llm.prediction.llama.presencePenalty",
+        "value": {
+          "checked": false,
+          "value": 0
+        }
+      },
+      {
+        "key": "ext.virtualModel.customField.qwen.qwen3.827b.enableThinking",
+        "value": true
+      },
+      {
+        "key": "ext.virtualModel.customField.qwen.qwen3.827b.reasoningEffort",
+        "value": "medium"
+      },
+      {
+        "key": "ext.virtualModel.customField.qwen.qwen3.827b.preserveThinking",
+        "value": false
+      }
+    ]
+  },
+  "load": {
+    "fields": [
+      {
+        "key": "llm.load.contextLength",
+        "value": 131072
+      },
+      {
+        "key": "llm.load.mlx.autoFit",
+        "value": false
+      },
+      {
+        "key": "llm.load.llama.autoFit",
+        "value": false
+      }
+    ]
+  }
+}

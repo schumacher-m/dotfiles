@@ -82,7 +82,7 @@ secrets: ## Create the local Zsh secrets file if it is missing
 		printf 'created %s\n' "$$secrets_file"; \
 	fi
 
-link: ## Link dotfiles and personal Copilot/Pi configuration
+link: ## Link dotfiles and personal Copilot/Pi/LM Studio configuration
 	@set -euo pipefail; \
 	if [[ ! -f "$(ZSHENV_FILE)" ]]; then printf 'Unknown Zsh profile: %s\n' "$(ZSHENV_PROFILE)" >&2; exit 1; fi; \
 	if [[ ! -f "$(ZSHRC_FILE)" ]]; then printf 'Unknown Zsh profile: %s\n' "$(ZSHENV_PROFILE)" >&2; exit 1; fi; \
@@ -101,7 +101,12 @@ link: ## Link dotfiles and personal Copilot/Pi configuration
 		ln -s "$$src" "$$dest"; \
 		printf 'linked  %s -> %s\n' "$$dest_rel" "$$rel"; \
 	}; \
-	for rel in $(ROOT_FILES) $(CONFIG_FILES) $(BIN_FILES) $(COPILOT_FILES) $(PI_FILES); do link_one "$$rel"; done; \
+	pi_settings=".pi/agent/settings.$(ZSHENV_PROFILE).json"; \
+	for rel in $(ROOT_FILES) $(CONFIG_FILES) $(BIN_FILES) $(COPILOT_FILES) $(PI_FILES); do \
+		if [[ "$$rel" == ".pi/agent/settings.json" && -f "$(DOTFILES)/$$pi_settings" ]]; then continue; fi; \
+		link_one "$$rel"; \
+	done; \
+	if [[ -f "$(DOTFILES)/$$pi_settings" ]]; then link_one "$$pi_settings" ".pi/agent/settings.json"; fi; \
 	for agent_src in "$(DOTFILES)/$(COPILOT_AGENTS_DIR)"/*; do \
 		[[ -f "$$agent_src" ]] || continue; \
 		agent_name="$${agent_src##*/}"; \
@@ -123,6 +128,7 @@ link: ## Link dotfiles and personal Copilot/Pi configuration
 		skill_name="$${skill_src##*/}"; \
 		link_one "$(SKILLS_DIR)/$$skill_name" ".agents/skills/$$skill_name"; \
 	done; \
+	link_one ".lmstudio/config-presets/Qwen 3 8.preset.json"; \
 	link_one ".zshenv.$(ZSHENV_PROFILE)" ".zshenv.profile"; \
 	link_one ".zshrc.$(ZSHENV_PROFILE)" ".zshrc.profile"
 

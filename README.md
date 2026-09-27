@@ -95,6 +95,11 @@ pi --provider lmstudio-lan --model qwen/qwen3.8-27b
 The model is `qwen/qwen3.8-27b` through the OpenAI-compatible LM Studio server at
 `http://192.168.178.122:1234/v1` and does not require authentication.
 
+`.lmstudio/config-presets/Qwen 3 8.preset.json` is the tracked load and sampling
+preset for that model. `make link` installs it at
+`~/.lmstudio/config-presets/Qwen 3 8.preset.json`. Other LM Studio state stays
+machine-owned.
+
 ## Personal agent guidance and skills
 
 The repository versions personal Copilot and Pi behavior separately from their
@@ -103,8 +108,9 @@ shared reusable workflows:
 - `.copilot/settings.json` contains Copilot's user-editable preferences and subagent settings.
 - `.copilot/agents/` contains Copilot versions of the delegated roles plus the manual `git-commit` agent.
 - `.copilot/copilot-instructions.md` adapts the personal development guidance and skill routing for Copilot.
-- `.pi/agent/settings.json` contains Pi defaults, packages, and enabled models.
+- `.pi/agent/settings.json` contains Pi defaults, packages, and enabled models. The work profile links `.pi/agent/settings.work.json` there instead.
 - `.pi/agent/models.json` contains the LM Studio provider for Pi.
+- `.lmstudio/config-presets/Qwen 3 8.preset.json` is the tracked Qwen 3.8 preset.
 - `AGENTS.md` contains setup and configuration rules specific to this repository.
 - `.agents/skills/` is the shared source of personal skills for Copilot and Pi.
 
@@ -114,8 +120,8 @@ individually under `~/.copilot/agents/`; and each shared skill is linked under
 `~/.agents/skills/`. Linking files individually preserves installations not
 managed by this repository.
 
-Copilot's `config.json` and Pi auth, sessions, logs, packages, and caches remain
-machine-owned and untracked.
+Copilot's `config.json`, Pi auth, sessions, logs, packages, and caches, and the
+rest of `~/.lmstudio` remain machine-owned and untracked.
 
 The starter skills are:
 
@@ -163,11 +169,13 @@ The shared `.zshenv` and `.zshrc` source `~/.zshenv.profile` and
 
 The `git cma` alias runs `~/.local/bin/git-cma`, which asks `pi` for a
 conventional commit message from the staged diff and commits it. It uses
-your current `pi` model at low thinking. The work Zsh profile defaults to
-`github-copilot/gpt-6-luna`. Override with `GIT_CMA_MODEL`:
+your current `pi` model at low thinking. The personal profile starts Pi on
+`xai/grok-4.7` and also selects the LM Studio model. The work profile starts
+Pi on GitHub Copilot `gpt-6-sol` and also selects `gpt-6-luna`. `git cma`
+still uses Luna on the work profile. Override with `GIT_CMA_MODEL`:
 
 ```sh
-GIT_CMA_MODEL=xai/grok-4.6 git cma
+GIT_CMA_MODEL=xai/grok-4.7 git cma
 ```
 
 `make check` uses [Gitleaks](https://github.com/gitleaks/gitleaks). It scans both

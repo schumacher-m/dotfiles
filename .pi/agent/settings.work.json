@@ -1,6 +1,6 @@
 {
-  "defaultProvider": "xai",
-  "defaultModel": "grok-4.7",
+  "defaultProvider": "github-copilot",
+  "defaultModel": "gpt-6-sol",
   "defaultThinkingLevel": "high",
   "theme": "dark/dark",
   "tuiMode": "fullscreen",
@@ -20,7 +20,7 @@
   ],
   "lastChangelogVersion": "0.87.1",
   "enabledModels": [
-    "xai/grok-4.7",
-    "lmstudio-lan/qwen/qwen3.8-27b"
+    "github-copilot/gpt-6-sol",
+    "github-copilot/gpt-6-luna"
   ]
 }

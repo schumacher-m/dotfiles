@@ -1,1 +1,2 @@
 # Default profile environment variables.
+export GIT_CMA_MODEL=xai/grok-4.6

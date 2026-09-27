@@ -169,11 +169,11 @@ The shared `.zshenv` and `.zshrc` source `~/.zshenv.profile` and
 `ZSHENV_PROFILE=work make link` to switch only Zsh.
 
 The `git cma` alias runs `~/.local/bin/git-cma`, which asks `pi` for a
-conventional commit message from the staged diff and commits it. It uses
-your current `pi` model at low thinking. The personal profile starts Pi on
-`xai/grok-4.7` and also selects the LM Studio model. The work profile starts
-Pi on GitHub Copilot `gpt-6-sol` and also selects `gpt-6-luna`. `git cma`
-still uses Luna on the work profile. Override with `GIT_CMA_MODEL`:
+conventional commit message from the staged diff and commits it at low thinking.
+Personal `git cma` uses `xai/grok-4.6`. Work `git cma` uses
+`github-copilot/gpt-6-luna`. The personal profile still starts Pi on
+`xai/grok-4.7`; the work profile starts Pi on `gpt-6-sol`. Override with
+`GIT_CMA_MODEL`:
 
 ```sh
 GIT_CMA_MODEL=xai/grok-4.7 git cma

@@ -90,15 +90,16 @@ Pi has no named profiles. The LM Studio provider lives in `.pi/agent/models.json
 
 ```sh
 pi --provider lmstudio-lan --model qwen/qwen3.8-27b
+pi --provider lmstudio-lan --model qwen/qwen3-coder-next
 ```
 
-The model is `qwen/qwen3.8-27b` through the OpenAI-compatible LM Studio server at
-`http://192.168.178.122:1234/v1` and does not require authentication.
+Both models use the OpenAI-compatible LM Studio server at
+`http://192.168.178.122:1234/v1` and do not require authentication.
 
-`.lmstudio/config-presets/Qwen 3 8.preset.json` is the tracked load and sampling
-preset for that model. `make link` installs it at
-`~/.lmstudio/config-presets/Qwen 3 8.preset.json`. Other LM Studio state stays
-machine-owned.
+`make link` installs the tracked load presets at `~/.lmstudio/config-presets/`.
+Qwen 3.8 uses `.lmstudio/config-presets/Qwen 3 8.preset.json`. Qwen3-Coder-Next
+uses `.lmstudio/config-presets/Qwen3 Coder Next.preset.json` (4-bit, 128k context
+on this 64 GB machine). Other LM Studio state stays machine-owned.
 
 ## Personal agent guidance and skills
 
@@ -110,7 +111,7 @@ shared reusable workflows:
 - `.copilot/copilot-instructions.md` adapts the personal development guidance and skill routing for Copilot.
 - `.pi/agent/settings.json` contains Pi defaults, packages, and enabled models. The work profile links `.pi/agent/settings.work.json` there instead.
 - `.pi/agent/models.json` contains the LM Studio provider for Pi.
-- `.lmstudio/config-presets/Qwen 3 8.preset.json` is the tracked Qwen 3.8 preset.
+- `.lmstudio/config-presets/` holds the tracked Qwen 3.8 and Qwen3 Coder Next presets.
 - `AGENTS.md` contains setup and configuration rules specific to this repository.
 - `.agents/skills/` is the shared source of personal skills for Copilot and Pi.
 

@@ -129,6 +129,7 @@ link: ## Link dotfiles and personal Copilot/Pi/LM Studio configuration
 		link_one "$(SKILLS_DIR)/$$skill_name" ".agents/skills/$$skill_name"; \
 	done; \
 	link_one ".lmstudio/config-presets/Qwen 3 8.preset.json"; \
+	link_one ".lmstudio/config-presets/Qwen3 Coder Next.preset.json"; \
 	link_one ".zshenv.$(ZSHENV_PROFILE)" ".zshenv.profile"; \
 	link_one ".zshrc.$(ZSHENV_PROFILE)" ".zshrc.profile"
 

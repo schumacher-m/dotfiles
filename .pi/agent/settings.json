@@ -21,6 +21,7 @@
   "lastChangelogVersion": "0.87.1",
   "enabledModels": [
     "xai/grok-4.7",
-    "lmstudio-lan/qwen/qwen3.8-27b"
+    "lmstudio-lan/qwen/qwen3.8-27b",
+    "lmstudio-lan/qwen/qwen3-coder-next"
   ]
 }

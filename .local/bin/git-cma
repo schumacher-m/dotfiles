@@ -1,0 +1,93 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+extract_cc() {
+	awk '
+		function is_cc(s) {
+			return s ~ /^[[:alnum:]][[:alnum:]_-]*(\([^()]+\))?!?:[[:space:]]+/
+		}
+		{
+			sub(/\r$/, "")
+			lines[++n] = $0
+		}
+		END {
+			s = 1
+			e = n
+			while (s <= e && lines[s] ~ /^[[:space:]]*$/) s++
+			while (e >= s && lines[e] ~ /^[[:space:]]*$/) e--
+			if (s <= e && lines[s] ~ /^```/) s++
+			if (e >= s && lines[e] ~ /^```[[:space:]]*$/) e--
+			while (s <= e && lines[s] ~ /^[[:space:]]*$/) s++
+			while (e >= s && lines[e] ~ /^[[:space:]]*$/) e--
+			start = 0
+			for (i = s; i <= e; i++) {
+				line = lines[i]
+				sub(/^[[:space:]]+/, "", line)
+				if (is_cc(line)) {
+					start = i
+					lines[i] = line
+					break
+				}
+			}
+			if (!start) exit 1
+			while (e >= start && lines[e] ~ /^[[:space:]]*$/) e--
+			for (i = start; i <= e; i++) print lines[i]
+		}
+	'
+}
+
+if [[ "${1:-}" == --self-check ]]; then
+	got=$(printf '%s\n' '```' 'Sure.' '' 'feat(git): summarize staged changes' '' '- keep the body' '```' | extract_cc)
+	expected=$(printf '%s\n' 'feat(git): summarize staged changes' '' '- keep the body')
+	[[ "$got" == "$expected" ]]
+	! printf '%s\n' 'not a commit message' | extract_cc
+	printf 'ok\n'
+	exit 0
+fi
+
+if git diff --cached --quiet; then
+	printf 'No staged changes.\n' >&2
+	exit 1
+fi
+
+if ! command -v pi >/dev/null 2>&1; then
+	printf 'Commit AI CLI not found: pi\n' >&2
+	exit 1
+fi
+
+prompt='Generate a conventional commit message for the staged git diff on stdin.
+Rules:
+- Output ONLY the commit message text.
+- No markdown fences, no backticks, no commentary.
+- First line: type(scope): description, <= 50 chars.
+- The subject must summarize the overall staged change, not only the last file or hunk.
+- If the diff contains multiple meaningful change groups, add a blank line and a short bullet list covering each group.
+- Do not omit material staged changes from the subject/body.'
+
+pi_args=(
+	-p
+	--no-session
+	--no-tools
+	--no-extensions
+	--no-skills
+	--no-prompt-templates
+	--no-context-files
+	--thinking low
+	--system-prompt 'You generate conventional commit messages. Reply with the commit message only.'
+)
+[[ -n "${GIT_CMA_MODEL:-}" ]] && pi_args+=(--model "$GIT_CMA_MODEL")
+
+tmp=$(mktemp)
+trap 'rm -f "$tmp" "$tmp.msg"' EXIT
+
+git diff --cached | pi "${pi_args[@]}" "$prompt" >"$tmp"
+
+if ! extract_cc <"$tmp" >"$tmp.msg"; then
+	printf 'AI did not return a conventional commit message.\n' >&2
+	cat "$tmp" >&2
+	exit 1
+fi
+mv "$tmp.msg" "$tmp"
+
+git commit -F "$tmp" "$@"
+git log --stat -1

@@ -1,0 +1,12 @@
+{
+  "providers": {
+    "lmstudio-lan": {
+      "baseUrl": "http://192.168.178.122:1234/v1",
+      "api": "openai-responses",
+      "apiKey": "lmstudio",
+      "models": [
+        { "id": "qwen/qwen3.8-27b" }
+      ]
+    }
+  }
+}

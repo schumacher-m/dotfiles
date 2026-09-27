@@ -22,7 +22,7 @@ make setup
 `make setup` will:
 
 1. Install Homebrew when it is not already available.
-2. Install the shared and selected-profile Homebrew packages, including tmux, Gitleaks, and OpenCode.
+2. Install the shared and selected-profile Homebrew packages, including tmux, Gitleaks, and Pi.
 3. Create `~/.zshenv.secrets` with restrictive permissions if it does not exist.
 4. Link the tracked configuration files and local helper scripts into your home directory.
 5. Clone znap and run `znap pull` to install or update Zsh plugins.
@@ -41,28 +41,7 @@ exec zsh -l
 Alacritty attaches to or creates the `main` tmux session directly. Other Zsh
 shells do not start tmux automatically.
 
-## Codex, Copilot, and OpenCode models and agents
-
-Start Codex with the personal pair-programming profile:
-
-```sh
-codex --profile personal
-```
-
-The profile uses `gpt-5.6-sol` with `medium` reasoning. This keeps the main
-pair-programming thread capable enough for design and implementation without
-paying the latency and token cost of maximum reasoning on every turn. Plan mode
-keeps the same model and raises reasoning to `high` for architecture and
-consequential design work. Approval remains `on-request` with a
-`workspace-write` sandbox.
-
-Use the maximum-reasoning profile only for exceptional quality-first work:
-
-```sh
-codex --profile max
-```
-
-This selects `gpt-5.6-sol` with `max` reasoning for both normal and plan mode.
+## Copilot and Pi models and agents
 
 Start GitHub Copilot CLI with:
 
@@ -71,26 +50,13 @@ copilot
 ```
 
 The tracked Copilot settings use `gpt-5.6-sol` with `high` reasoning and keep
-the current terminal, footer, and attribution preferences. The custom agents
-below are available to both tools with matching model and reasoning choices;
-Copilot stores the per-agent reasoning settings in `.copilot/settings.json`.
+the current terminal, footer, and attribution preferences. Copilot stores the
+per-agent reasoning settings in `.copilot/settings.json`.
 
 Copilot applies those reasoning settings when it dispatches an agent as a
 subagent. In Copilot CLI 1.0.73, selecting a custom agent as the top-level
 session agent applies its model but retains the session's reasoning effort; use
 `--effort` when starting that kind of session if a different level is needed.
-
-Start OpenCode with:
-
-```sh
-opencode
-```
-
-The tracked OpenCode config uses GitHub Copilot as its provider, with
-`gpt-5.6-sol` at medium reasoning for build mode and high reasoning for plan
-mode. Authenticate the provider once with `/connect` inside OpenCode. OpenCode
-loads the same personal guidance, delegated roles, and shared skills as Codex
-and Copilot.
 
 Delegated work uses model-specific agents:
 
@@ -111,68 +77,45 @@ requires material judgment or changing the plan, keep it on Sol or Terra.
 
 Subagent fan-out is capped at three threads and one level of nesting to keep
 cost and coordination predictable. The model choices follow OpenAI's current
-[GPT-5.6 guidance](https://developers.openai.com/api/docs/guides/latest-model.md)
-and [Codex subagent guidance](https://learn.chatgpt.com/docs/agent-configuration/subagents#choosing-models-and-reasoning).
+[GPT-5.6 guidance](https://developers.openai.com/api/docs/guides/latest-model.md).
 
 Copilot may select the five converted custom agents automatically. Its
 `git-commit` agent is manual-only because it generates message text without
 creating a commit; use the shared `/conventional-commit` skill in Copilot for an actual
 reviewed commit workflow.
 
-OpenCode exposes the same five custom roles as native subagents. Use `@` to
-invoke one directly or let the primary agent select one from its description.
-The Copilot-only `git-commit` agent is intentionally not duplicated because
-the shared `conventional-commit` skill performs the complete reviewed commit
-workflow.
+### LM Studio
 
-### LM Studio profile
-
-Run Codex against the LAN-hosted LM Studio model with:
+Pi has no named profiles. The LM Studio provider lives in `.pi/agent/models.json`:
 
 ```sh
-codex --profile lmstudio
+pi --provider lmstudio-lan --model qwen/qwen3.8-27b
 ```
 
-The profile uses `qwen/qwen3.6-35b-a3b` through the OpenAI-compatible LM Studio
-server at `http://192.168.178.122:1234/v1` and does not require authentication.
-
-OpenCode uses merged config overrides instead of named profiles. Start its
-maximum-reasoning or LM Studio configuration with:
-
-```sh
-OPENCODE_CONFIG=~/.config/opencode/max.config.jsonc opencode
-OPENCODE_CONFIG=~/.config/opencode/lmstudio.config.jsonc opencode
-```
+The model is `qwen/qwen3.8-27b` through the OpenAI-compatible LM Studio server at
+`http://192.168.178.122:1234/v1` and does not require authentication.
 
 ## Personal agent guidance and skills
 
-The repository versions personal Codex, Copilot, and OpenCode behavior separately from
-their shared reusable workflows:
+The repository versions personal Copilot and Pi behavior separately from their
+shared reusable workflows:
 
-- `.codex/*.config.toml` contains explicit profiles without tracking Codex's
-  mutable user config.
-- `.codex/agents/` defines delegated models and roles.
-- `.codex/AGENTS.md` contains concise development preferences that apply across repositories.
 - `.copilot/settings.json` contains Copilot's user-editable preferences and subagent settings.
 - `.copilot/agents/` contains Copilot versions of the delegated roles plus the manual `git-commit` agent.
 - `.copilot/copilot-instructions.md` adapts the personal development guidance and skill routing for Copilot.
-- `.config/opencode/*.config.jsonc` contains the default and alternate OpenCode configurations.
-- `.config/opencode/AGENTS.md` adapts the personal development guidance and skill routing for OpenCode.
-- `.config/opencode/agents/` contains native OpenCode versions of the five shared delegated roles.
+- `.pi/agent/settings.json` contains Pi defaults, packages, and enabled models.
+- `.pi/agent/models.json` contains the LM Studio provider for Pi.
 - `AGENTS.md` contains setup and configuration rules specific to this repository.
-- `.agents/skills/` is the shared source of personal skills for all three tools.
+- `.agents/skills/` is the shared source of personal skills for Copilot and Pi.
 
-`make setup` includes these through `make link`. Global guidance, profiles, and
-settings are linked to each tool's directory; each custom agent is linked
-individually under `~/.codex/agents/`, `~/.copilot/agents/`, or
-`~/.config/opencode/agents/`; and each shared skill is linked under
-`~/.agents/skills/`. OpenCode discovers that shared skill location directly.
-Linking files individually preserves installations not managed by this
-repository.
+`make setup` includes these through `make link`. Global guidance and settings
+are linked to each tool's directory; each custom Copilot agent is linked
+individually under `~/.copilot/agents/`; and each shared skill is linked under
+`~/.agents/skills/`. Linking files individually preserves installations not
+managed by this repository.
 
-The mutable `~/.codex/config.toml`, Copilot's `config.json`, and OpenCode's
-credentials, package dependencies, session data, logs, plugins, and caches
-remain machine-owned and untracked.
+Copilot's `config.json` and Pi auth, sessions, logs, packages, and caches remain
+machine-owned and untracked.
 
 The starter skills are:
 
@@ -188,9 +131,9 @@ The global guidance limits the unmanaged Graphify skill to explicit knowledge-gr
 requests so ordinary repository questions stay lightweight.
 
 Edit the tracked guidance, agents, settings, or skills in this repository and
-rerun `make link` to install them on another machine. Copilot and OpenCode
-discover the shared skills directly from `~/.agents/skills/`; tool-specific
-skill copies are not needed.
+rerun `make link` to install them on another machine. Copilot discovers the
+shared skills directly from `~/.agents/skills/`; tool-specific skill copies are
+not needed.
 
 ## Useful targets
 
@@ -218,14 +161,13 @@ The shared `.zshenv` and `.zshrc` source `~/.zshenv.profile` and
 `PROFILE=work` selects the work Homebrew and Zsh profiles together; use
 `ZSHENV_PROFILE=work make link` to switch only Zsh.
 
-The `git cma` alias generates a conventional commit message for the staged
-changes and commits them. The default Zsh profile uses Codex CLI with
-`gpt-5.6-terra`; the work profile uses Copilot CLI with `claude-haiku-4.5`.
-Override either choice for one command with environment variables:
+The `git cma` alias runs `~/.local/bin/git-cma`, which asks `pi` for a
+conventional commit message from the staged diff and commits it. It uses
+your current `pi` model at low thinking. The work Zsh profile defaults to
+`github-copilot/gpt-6-luna`. Override with `GIT_CMA_MODEL`:
 
 ```sh
-GIT_CMA_CLI=codex GIT_CMA_MODEL=gpt-5.6-terra git cma
-GIT_CMA_CLI=copilot GIT_CMA_MODEL=claude-haiku-4.5 git cma
+GIT_CMA_MODEL=xai/grok-4.6 git cma
 ```
 
 `make check` uses [Gitleaks](https://github.com/gitleaks/gitleaks). It scans both

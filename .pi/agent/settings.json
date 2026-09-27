@@ -1,6 +1,6 @@
 {
-  "defaultProvider": "github-copilot",
-  "defaultModel": "github-copilot/gpt-5.6-luna",
+  "defaultProvider": "xai",
+  "defaultModel": "grok-4.6",
   "defaultThinkingLevel": "high",
   "theme": "dark/dark",
   "tuiMode": "fullscreen",
@@ -14,15 +14,13 @@
     "npm:pi-subagents",
     "npm:@juicesharp/rpiv-ask-user-question",
     "npm:context-mode",
-    "npm:pi-web-search",
-    "npm:@juicesharp/rpiv-todo"
+    "npm:@juicesharp/rpiv-todo",
+    "npm:pi-web-access",
+    "npm:pi-background-tasks"
   ],
-  "lastChangelogVersion": "0.85.1",
+  "lastChangelogVersion": "0.84.2",
   "enabledModels": [
-    "github-copilot/gpt-5.6-sol",
-    "github-copilot/gpt-5.6-luna",
     "xai/grok-4.6",
-    "openrouter/deepseek/deepseek-v4-flash",
-    "openrouter/z-ai/glm-5"
+    "openrouter/google/gemini-3.7-flash"
   ]
 }

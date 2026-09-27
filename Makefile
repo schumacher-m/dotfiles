@@ -27,30 +27,19 @@ CONFIG_FILES := \
 	.config/starship.toml
 
 BIN_FILES := \
-	.local/bin/tmux-window-name
-
-CODEX_FILES := \
-	.codex/AGENTS.md \
-	.codex/lmstudio.config.toml \
-	.codex/max.config.toml \
-	.codex/personal.config.toml
+	.local/bin/tmux-window-name \
+	.local/bin/git-cma
 
 COPILOT_FILES := \
 	.copilot/copilot-instructions.md \
 	.copilot/settings.json
 
-OPENCODE_FILES := \
-	.config/opencode/AGENTS.md \
-	.config/opencode/lmstudio.config.jsonc \
-	.config/opencode/max.config.jsonc \
-	.config/opencode/opencode.jsonc
 PI_FILES := \
-	.pi/agent/settings.json
+	.pi/agent/settings.json \
+	.pi/agent/models.json
 
-CODEX_AGENTS_DIR := .codex/agents
 COPILOT_AGENTS_DIR := .copilot/agents
-OPENCODE_AGENTS_DIR := .config/opencode/agents
-CODEX_SKILLS_DIR := .agents/skills
+SKILLS_DIR := .agents/skills
 
 .DEFAULT_GOAL := help
 .PHONY: help setup homebrew brew secrets link znap tmux check
@@ -93,7 +82,7 @@ secrets: ## Create the local Zsh secrets file if it is missing
 		printf 'created %s\n' "$$secrets_file"; \
 	fi
 
-link: ## Link dotfiles and personal Codex/Copilot/OpenCode configuration
+link: ## Link dotfiles and personal Copilot/Pi configuration
 	@set -euo pipefail; \
 	if [[ ! -f "$(ZSHENV_FILE)" ]]; then printf 'Unknown Zsh profile: %s\n' "$(ZSHENV_PROFILE)" >&2; exit 1; fi; \
 	if [[ ! -f "$(ZSHRC_FILE)" ]]; then printf 'Unknown Zsh profile: %s\n' "$(ZSHENV_PROFILE)" >&2; exit 1; fi; \
@@ -112,12 +101,7 @@ link: ## Link dotfiles and personal Codex/Copilot/OpenCode configuration
 		ln -s "$$src" "$$dest"; \
 		printf 'linked  %s -> %s\n' "$$dest_rel" "$$rel"; \
 	}; \
-	for rel in $(ROOT_FILES) $(CONFIG_FILES) $(BIN_FILES) $(CODEX_FILES) $(COPILOT_FILES) $(OPENCODE_FILES) $(PI_FILES); do link_one "$$rel"; done; \
-	for agent_src in "$(DOTFILES)/$(CODEX_AGENTS_DIR)"/*; do \
-		[[ -f "$$agent_src" ]] || continue; \
-		agent_name="$${agent_src##*/}"; \
-		link_one "$(CODEX_AGENTS_DIR)/$$agent_name" ".codex/agents/$$agent_name"; \
-	done; \
+	for rel in $(ROOT_FILES) $(CONFIG_FILES) $(BIN_FILES) $(COPILOT_FILES) $(PI_FILES); do link_one "$$rel"; done; \
 	for agent_src in "$(DOTFILES)/$(COPILOT_AGENTS_DIR)"/*; do \
 		[[ -f "$$agent_src" ]] || continue; \
 		agent_name="$${agent_src##*/}"; \
@@ -134,15 +118,10 @@ link: ## Link dotfiles and personal Codex/Copilot/OpenCode configuration
 		fi; \
 		link_one "$(COPILOT_AGENTS_DIR)/$$agent_name" ".copilot/agents/$$agent_name"; \
 	done; \
-	for agent_src in "$(DOTFILES)/$(OPENCODE_AGENTS_DIR)"/*; do \
-		[[ -f "$$agent_src" ]] || continue; \
-		agent_name="$${agent_src##*/}"; \
-		link_one "$(OPENCODE_AGENTS_DIR)/$$agent_name" ".config/opencode/agents/$$agent_name"; \
-	done; \
-	for skill_src in "$(DOTFILES)/$(CODEX_SKILLS_DIR)"/*; do \
+	for skill_src in "$(DOTFILES)/$(SKILLS_DIR)"/*; do \
 		[[ -d "$$skill_src" ]] || continue; \
 		skill_name="$${skill_src##*/}"; \
-		link_one "$(CODEX_SKILLS_DIR)/$$skill_name" ".agents/skills/$$skill_name"; \
+		link_one "$(SKILLS_DIR)/$$skill_name" ".agents/skills/$$skill_name"; \
 	done; \
 	link_one ".zshenv.$(ZSHENV_PROFILE)" ".zshenv.profile"; \
 	link_one ".zshrc.$(ZSHENV_PROFILE)" ".zshrc.profile"

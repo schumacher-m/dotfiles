@@ -1,6 +1,6 @@
 {
   "defaultProvider": "xai",
-  "defaultModel": "grok-4.7",
+  "defaultModel": "grok-4.6",
   "defaultThinkingLevel": "high",
   "theme": "dark/dark",
   "tuiMode": "fullscreen",
@@ -20,6 +20,7 @@
   "lastChangelogVersion": "0.87.1",
   "enabledModels": [
     "xai/grok-4.7",
+    "xai/grok-4.6",
     "lmstudio-lan/qwen/qwen3.8-27b",
     "lmstudio-lan/qwen/qwen3-coder-next"
   ]
